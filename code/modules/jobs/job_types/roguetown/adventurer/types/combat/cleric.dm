@@ -127,7 +127,7 @@
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
 				if(/datum/patron/divine/abyssor)
 					cloak = /obj/item/clothing/cloak/templar/abyssor
-					head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
+					head = /obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm
 				if(/datum/patron/divine/dendor)
 					cloak = /obj/item/clothing/cloak/templar/dendor
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
