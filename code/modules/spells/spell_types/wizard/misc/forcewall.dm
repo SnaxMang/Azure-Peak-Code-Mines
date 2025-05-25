@@ -23,14 +23,14 @@
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	var/wall_type = /obj/structure/forcefield_weak
-	cost = 1
+	cost = 3
 
 //adapted from forcefields.dm, this needs to be destructible
 /obj/structure/forcefield_weak
 	desc = "A wall of pure arcyne force."
 	name = "Arcyne Wall"
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "forcefield"
+	icon_state = "arcynewall"
 	break_sound = 'sound/combat/hits/onstone/stonedeath.ogg'
 	attacked_sound = list('sound/combat/hits/onstone/wallhit.ogg', 'sound/combat/hits/onstone/wallhit2.ogg', 'sound/combat/hits/onstone/wallhit3.ogg')
 	opacity = 0

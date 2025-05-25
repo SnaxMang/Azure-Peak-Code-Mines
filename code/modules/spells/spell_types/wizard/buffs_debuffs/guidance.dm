@@ -1,8 +1,8 @@
 /obj/effect/proc_holder/spell/invoked/guidance
 	name = "Guidance"
 	overlay_state = "guidance"
-	desc = "Makes one's hand travel true, blessing them with arcyne luck in combat. (+15% chance to bypass parry / dodge, +15% chance to parry / dodge)"
-	cost = 1
+	desc = "Makes one's hand travel true, blessing them with arcyne luck in combat. (+20% chance to bypass parry / dodge, +20% chance to parry / dodge)"
+	cost = 2
 	xp_gain = TRUE
 	releasedrain = 60
 	chargedrain = 1
@@ -43,7 +43,7 @@
 #define GUIDANCE_FILTER "guidance_glow"
 /atom/movable/screen/alert/status_effect/buff/guidance
 	name = "Guidance"
-	desc = "Arcyne assistance guides my hands. (+15% chance to bypass parry / dodge, +15% chance to parry / dodge)"
+	desc = "Arcyne assistance guides my hands. (+20% chance to bypass parry / dodge, +20% chance to parry / dodge)"
 	icon_state = "buff"
 
 /datum/status_effect/buff/guidance

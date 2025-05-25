@@ -610,7 +610,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "bm" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "bn" = (
@@ -1007,7 +1007,7 @@
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors)
 "cA" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "cB" = (
@@ -2900,10 +2900,10 @@
 	icon_state = "tablewood2";
 	dir = 10
 	},
-/obj/item/rogueweapon/sword/gladius,
-/obj/item/rogueweapon/sword/gladius,
-/obj/item/rogueweapon/sword/gladius,
-/obj/item/rogueweapon/sword/gladius,
+/obj/item/rogueweapon/sword/iron/short/gladius,
+/obj/item/rogueweapon/sword/iron/short/gladius,
+/obj/item/rogueweapon/sword/iron/short/gladius,
+/obj/item/rogueweapon/sword/iron/short/gladius,
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "Vu" = (

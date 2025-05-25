@@ -215,7 +215,7 @@
 		if(headdy)
 			headdy.icon = 'icons/roguetown/mob/monster/goblins.dmi'
 			headdy.icon_state = "[src.dna.species.id]_head"
-			headdy.sellprice = rand(7,40)
+			headdy.sellprice = 20
 	src.grant_language(/datum/language/orcish)
 	var/obj/item/organ/eyes/eyes = src.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
@@ -233,6 +233,7 @@
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
 //	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
 //	blue breathes underwater, need a new specific one for this maybe organ cheque
 //	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
@@ -268,7 +269,7 @@
 			if(B.rotted)
 				var/turf/open/T = C.loc
 				if(istype(T))
-					T.add_pollutants(/datum/pollutant/rot, 1)
+					T.pollute_turf(/datum/pollutant/rot, 1)
 	if(should_update)
 		if(amount > 20 MINUTES)
 			C.update_body()

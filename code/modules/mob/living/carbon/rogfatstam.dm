@@ -83,7 +83,7 @@
 	if (nutrition >= NUTRITION_LEVEL_WELL_FED) // we've only just eaten recently so just flat out reduce the total loss by half
 		nutrition_amount *= 0.5
 
-	if (reagents.has_reagent(/datum/reagent/consumable/nutriment)) // we're still digesting so knock off a tiny bit
+	if (reagents?.has_reagent(/datum/reagent/consumable/nutriment)) // we're still digesting so knock off a tiny bit
 		nutrition_amount *= 0.9
 
 	return nutrition_amount

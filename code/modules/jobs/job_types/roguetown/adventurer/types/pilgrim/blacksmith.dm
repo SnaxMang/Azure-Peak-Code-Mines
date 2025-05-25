@@ -1,7 +1,7 @@
 /datum/advclass/blacksmith
 	name = "Blacksmith"
 	tutorial = "A skilled blacksmith, able to forge capable weapons for warriors in the bog, \
-	only after building a forge for themselves ofourse"
+	only after building a forge for themselves of course"
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/blacksmith
@@ -14,7 +14,7 @@
 	beltr = /obj/item/rogueweapon/hammer/iron
 	beltl = /obj/item/rogueweapon/tongs
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	gloves = /obj/item/clothing/gloves/roguetown/grenzelgloves/blacksmith
+	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith
 	cloak = /obj/item/clothing/cloak/apron/blacksmith
 	mouth = /obj/item/rogueweapon/huntingknife
 	pants = /obj/item/clothing/under/roguetown/trou
@@ -24,6 +24,8 @@
 						/obj/item/rogueore/coal=1,
 						/obj/item/rogueore/iron=1,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/recipe_book/blacksmithing = 1,
+						/obj/item/recipe_book/survival = 1,
 						)
 	ADD_TRAIT(H, TRAIT_TRAINED_SMITH, TRAIT_GENERIC)
 	if(H.pronouns == HE_HIM)

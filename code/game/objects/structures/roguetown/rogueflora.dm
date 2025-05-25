@@ -100,7 +100,7 @@
 
 /obj/structure/flora/roguetree/wise
 	name = "sacred tree"
-	desc = "A blessed primordial tree, ancient beyond years. Said to be the very embodiment of the Tree Father himself--his very presence imbuing druids with wild energies."
+	desc = "A blessed primordial tree, ancient beyond years. Said to be the very embodiment of the Tree Father himself—whose presence alone imbues druids with wild energies."
 	icon_state = "mystical"
 	max_integrity = 400
 
@@ -116,7 +116,7 @@
 
 /obj/structure/flora/roguetree/burnt
 	name = "burnt tree"
-	desc = "Maybe lightning, maybe war took the life of this once lively tree."
+	desc = "Maybe lightning, maybe war, took the life of this once lively tree."
 	icon = 'icons/roguetown/misc/96x96.dmi'
 	icon_state = "t1"
 	stump_type = /obj/structure/flora/roguetree/stump/burnt
@@ -186,7 +186,7 @@
 
 /obj/structure/flora/roguetree/stump/log
 	name = "ancient log"
-	desc = "Rotten remains of a tree that suffered nature's cruelty ages ago."
+	desc = "The rotten remains of a tree that suffered nature's cruelty ages ago."
 	icon_state = "log1"
 	opacity = 0
 	max_integrity = 200
@@ -204,7 +204,7 @@
 
 /obj/structure/flora/roguegrass
 	name = "grass"
-	desc = "Green, soft and lively."
+	desc = "Green, soft, and lively."
 	icon = 'icons/roguetown/misc/foliage.dmi'
 	icon_state = "grass1"
 	attacked_sound = "plantcross"
@@ -266,7 +266,7 @@
 
 /obj/structure/flora/roguegrass/bush
 	name = "bush"
-	desc = "A bush, I think I can see some spiders crawling in it."
+	desc = "A bush. It's crawling with spiders, but maybe there’s something useful inside..."
 	icon_state = "bush2"
 	layer = ABOVE_ALL_MOB_LAYER
 	var/res_replenish
@@ -382,7 +382,7 @@
 
 /obj/structure/flora/roguegrass/bush/wall
 	name = "great bush"
-	desc = "A bush, this one's roots are thick and block the way."
+	desc = "A bush. This one’s roots are thick enough to block the way."
 	opacity = TRUE
 	density = 1
 	climbable = FALSE
@@ -423,7 +423,7 @@
 
 /obj/structure/flora/rogueshroom
 	name = "mushroom"
-	desc = "Mushrooms are the only happy beings in this island."
+	desc = "Mushrooms are the only happy beings in this land."
 	icon = 'icons/roguetown/misc/foliagetall.dmi'
 	icon_state = "mush1"
 	opacity = 0
@@ -533,7 +533,7 @@
 
 /obj/structure/flora/roguegrass/thorn_bush
     name = "thorn bush"
-    desc = "A thorny bush, watch your step!"
+    desc = "A thorny bush. Watch your step!"
     icon_state = "thornbush"
     layer = ABOVE_ALL_MOB_LAYER
     blade_dulling = DULLING_CUT

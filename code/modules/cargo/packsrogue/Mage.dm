@@ -12,7 +12,7 @@
 /datum/supply_pack/rogue/Mage/Rontz
 	name = "Rontz"
 	cost = 150
-	contains = list(/obj/item/roguegem)
+	contains = list(/obj/item/roguegem/ruby)
 
 /datum/supply_pack/rogue/Mage/Blortz
 	name = "Blortz"

@@ -1,6 +1,7 @@
-/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt //makes you confused for 2 seconds,
+/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt
 	name = "Arcyne Bolt"
-	desc = "Shoot out a rapid bolt of arcyne magic that hits on impact. Little damage, but disorienting."
+	desc = "Shoot out a rapid bolt of arcyne magic. Inflicts blunt damage similar to a slingstone. \n\
+	Damage is increased by 50% versus simple-minded creechurs."
 	clothes_req = FALSE
 	range = 12
 	projectile_type = /obj/projectile/energy/rogue3
@@ -10,11 +11,11 @@
 	releasedrain = 15
 	chargedrain = 1
 	chargetime = 0
-	recharge_time = 3.5 SECONDS
+	recharge_time = 4 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
-	spell_tier = 3
+	spell_tier = 2
 	invocation = "Magicae Sagitta!"
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
@@ -22,17 +23,15 @@
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	cost = 2
+	cost = 3
 
 /obj/projectile/energy/rogue3
 	name = "Arcyne Bolt"
 	icon_state = "arcane_barrage"
-	damage = 25
-	damage_type = BRUTE
-	armor_penetration = 40
-	woundclass = BCLASS_SMASH
+	damage = 40
+	woundclass = BCLASS_BLUNT
 	nodamage = FALSE
-	flag = "magic"
+	npc_damage_mult = 1.5 // Makes it more effective against NPCs.
 	hitsound = 'sound/combat/hits/blunt/shovel_hit2.ogg'
 	speed = 1
 

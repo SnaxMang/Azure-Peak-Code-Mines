@@ -24,7 +24,9 @@
 		user.visible_message("<font color='yellow'>[user] makes a fist at [target]!</font>")
 		if(target.anti_magic_check(TRUE, TRUE))
 			return FALSE
-		target.adjustStaminaLoss(125)
+		if(istype(target, /mob/living/carbon))
+			var/mob/living/carbon = target
+			carbon.adjustStaminaLoss(-50)
 		target.Dizzy(10)
 		target.blur_eyes(20)
 		target.emote("drown")
@@ -116,3 +118,281 @@
 	else
 		to_chat(user, span_warning("The targeted location is blocked. My call fails to draw a mossback."))
 		return FALSE
+
+/obj/effect/proc_holder/spell/invoked/call_dreamfiend
+	name = "Summon Dreamfiend"
+	overlay_state = "dreamfiend"
+	range = 7
+	no_early_release = TRUE
+	charging_slowdown = 1
+	chargetime = 2 SECONDS
+	sound = 'sound/foley/bubb (1).ogg'
+	invocation = "From the dream, consume!"
+	invocation_type = "shout"
+	recharge_time = 300 SECONDS
+	miracle = TRUE
+	devotion_cost = 150
+
+	// Teleport parameters
+	var/inner_tele_radius = 1
+	var/outer_tele_radius = 2
+	var/include_dense = FALSE
+	var/include_teleport_restricted = FALSE
+
+/obj/effect/proc_holder/spell/invoked/call_dreamfiend/cast(list/targets, mob/living/user)
+	. = ..()
+	var/mob/living/carbon/target = targets[1]
+	
+	if(!istype(target))
+		to_chat(user, span_warning("This spell only works on creatures capable of dreaming!"))
+		revert_cast()
+		return FALSE
+	
+	if(!summon_dreamfiend(
+		target = target,
+		user = user,
+		F = /mob/living/simple_animal/hostile/rogue/dreamfiend,
+		outer_tele_radius = outer_tele_radius,
+		inner_tele_radius = inner_tele_radius,
+		include_dense = FALSE,
+		include_teleport_restricted = FALSE
+	))
+		to_chat(user, span_warning("No valid space to manifest the dreamfiend!"))
+		revert_cast()
+		return FALSE
+
+	return TRUE
+
+/proc/summon_dreamfiend(mob/living/target, mob/living/user, mob/F = /mob/living/simple_animal/hostile/rogue/dreamfiend, outer_tele_radius = 3, inner_tele_radius = 2, include_dense = FALSE, include_teleport_restricted = FALSE)
+	var/turf/target_turf = get_turf(target)
+	var/list/turfs = list()
+
+	// Reused turf selection logic from blink_to_target
+	for(var/turf/T in range(target_turf, outer_tele_radius))
+		if(T in range(target_turf, inner_tele_radius))
+			continue
+		if(istransparentturf(T))
+			continue
+		if(T.density && !include_dense)
+			continue
+		if(T.teleport_restricted && !include_teleport_restricted)
+			continue
+		if(T.x>world.maxx-outer_tele_radius || T.x<outer_tele_radius)
+			continue
+		if(T.y>world.maxy-outer_tele_radius || T.y<outer_tele_radius)
+			continue
+		turfs += T
+
+	if(!length(turfs))
+		for(var/turf/T in orange(target_turf, outer_tele_radius))
+			if(!(T in orange(target_turf, inner_tele_radius)))
+				turfs += T
+
+	if(!length(turfs))
+		return FALSE
+
+	var/turf/spawn_turf = pick(turfs)
+	
+	F = new F(spawn_turf)
+	F.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
+	F.ai_controller.set_blackboard_key(BB_MAIN_TARGET, target)
+	
+	F.visible_message(span_notice("A [F] manifests following after [target]... countless teeth bared with hostility!"))
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/abyssal_infusion
+	name = "Abyssal Infusion"
+	overlay_state = "abyssal_infusion"
+	range = 7
+	no_early_release = TRUE
+	charging_slowdown = 1
+	chargetime = 2 SECONDS
+	sound = 'sound/foley/bubb (1).ogg'
+	//Each dreamfiend has a different name to call!
+	invocation = "shogg vulgt!"
+	invocation_type = "shout"
+	recharge_time = 600 SECONDS
+	miracle = TRUE
+	devotion_cost = 300
+
+/obj/effect/proc_holder/spell/invoked/abyssal_infusion/cast(list/targets, mob/living/user)
+	. = ..()
+	var/mob/living/carbon/human/target = targets[1]
+
+	if(!istype(target, /mob/living/carbon/human) || target.mind == null)
+		to_chat(user, span_warning("This spell only works on creatures capable of dreaming!"))
+		revert_cast()
+		return FALSE
+
+	if(target == user)
+		to_chat(user, span_warning("You must maintain the connection to the dreamfiend from a safe spiritual distance or risk being consumed yourself!"))
+		revert_cast()
+		return FALSE
+
+	if(target.mind.has_spell(/obj/effect/proc_holder/spell/invoked/abyssal_strength))
+		to_chat(user, span_warning("[target] is already blessed with Abyssor's strength."))
+		revert_cast()
+		return FALSE
+
+	var/anglerfish_found = FALSE
+	var/list/held_items = list()
+
+	for(var/obj/item/I in user.held_items)
+		held_items += I
+
+	for(var/obj/item/I in held_items)
+		if(istype(I, /obj/item/reagent_containers/food/snacks/fish/angler))
+			qdel(I)
+			anglerfish_found = TRUE
+			break
+
+	if(!anglerfish_found)
+		to_chat(user, span_warning("An anglerfish is required to channel the abyssal energies!"))
+		revert_cast()
+		return FALSE
+
+	target.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/abyssal_strength)
+	to_chat(target, span_warning("My mind writhes, revealing a new ability."))
+
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/abyssal_strength
+	name = "Abyssal Strength"
+	overlay_state = "abyssal_strength1"
+	range = 7
+	no_early_release = TRUE
+	charging_slowdown = 1
+	chargetime = 2 SECONDS
+	sound = 'sound/foley/bubb (1).ogg'
+	//Each dreamfiend has a different name to call!
+	invocation = "shogg vulgt!"
+	invocation_type = "shout"
+	recharge_time = 750 SECONDS
+
+	var/stage = 1
+	var/casts_in_stage = 0
+	var/current_stage3_chance = 50
+	var/static/list/stage_mobs = list(
+		/mob/living/simple_animal/hostile/rogue/dreamfiend,
+		/mob/living/simple_animal/hostile/rogue/dreamfiend/major,
+		/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient
+	)
+
+/obj/effect/proc_holder/spell/invoked/abyssal_strength/cast(list/targets, mob/living/user)
+	. = ..()
+	var/mob/living/carbon/target = targets[1]
+
+	if(!istype(target) || !(target == user))
+		to_chat(user, span_warning("This spell only works on myself!"))
+		revert_cast()
+		return FALSE
+
+	var/list/stats = list(
+		"str" = 3 + ((stage - 1) * 1),
+		"con" = 1 + (stage * 2),
+		"end" = 1 + (stage * 2),
+		"fort" = 1 - (stage * 2),
+		"speed" = 1 - (stage * 2),
+		"per" = -1 * stage
+	)
+
+	var/summon_chance = 0
+	var/spawn_type
+	switch(stage)
+		if(1)
+			summon_chance = 5 + (casts_in_stage * 35)
+			spawn_type = stage_mobs[1]
+		if(2)
+			summon_chance = 10 + (casts_in_stage * 40)
+			spawn_type = stage_mobs[2]
+		if(3)
+			summon_chance = current_stage3_chance
+			current_stage3_chance += rand(1,20)
+			spawn_type = stage_mobs[3]
+
+	if(prob(summon_chance))
+		summon_dreamfiend(target = user, user = user, F = spawn_type)
+		to_chat(user, span_userdanger("You feel the dream manifest in reality, bearing a horrifying form!"))
+		user.mind.RemoveSpell(src)
+		return
+
+	if(stage < 3)
+		casts_in_stage++
+		if(casts_in_stage > 2)
+			stage++
+			casts_in_stage = 0
+			if(stage == 3)
+				to_chat(user, span_warning("I can feel countless slimy and oozing teeth biting into my skin! Something horrifying is observing me!"))
+			else
+				to_chat(user, span_warning("The whispers in your head grow louder..."))
+	else
+		casts_in_stage = min(casts_in_stage + 1, 100)
+	
+	target.apply_status_effect(
+		/datum/status_effect/buff/abyssal,
+		stats["str"],
+		stats["con"],
+		stats["end"],
+		stats["fort"],
+		stats["speed"],
+		stats["per"]
+	)
+
+	overlay_state = "abyssal_strength[stage]"
+
+	return TRUE
+
+/atom/movable/screen/alert/status_effect/buff/abyssal
+	name = "Abyssal strength"
+	desc = "I feel an unnatural power dwelling in my limbs."
+	icon_state = "abyssal"
+
+#define ABYSSAL_FILTER "abyssal_glow"
+
+/datum/status_effect/buff/abyssal
+	var/dreamfiend_chance = 0
+	var/stage = 1
+	var/str_buff = 3
+	var/con_buff = 3
+	var/end_buff = 3
+	var/speed_malus = 0
+	var/fortune_malus = 0
+	var/perception_malus = 0
+	var/outline_colour ="#00051f"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/abyssal
+	examine_text = "SUBJECTPRONOUN has muscles swollen with a strange pale strength."
+	id = "abyssal_strength"
+	duration = 450 SECONDS
+
+/datum/status_effect/buff/abyssal/on_creation(mob/living/new_owner, new_str, new_con, new_end, new_fort, new_speed, new_per)
+	str_buff = new_str
+	con_buff = new_con
+	end_buff = new_end
+	fortune_malus = new_fort
+	speed_malus = new_speed
+	perception_malus = new_per
+
+	effectedstats = list(
+		"strength" = str_buff,
+		"constitution" = con_buff,
+		"endurance" = end_buff,
+		"fortune" = fortune_malus,
+		"speed" = speed_malus,
+		"perception" = perception_malus
+	)
+	
+	return ..()
+
+/datum/status_effect/buff/abyssal/on_apply()
+	. = ..()
+	var/filter = owner.get_filter(ABYSSAL_FILTER)
+	if (!filter)
+		owner.add_filter(ABYSSAL_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 180, "size" = 1))
+	to_chat(owner, span_warning("My limbs swell with otherworldly power!"))
+
+/datum/status_effect/buff/abyssal/on_remove()
+	. = ..()
+	owner.remove_filter(ABYSSAL_FILTER)
+	to_chat(owner, span_warning("the strange power fades"))
+
+#undef ABYSSAL_FILTER

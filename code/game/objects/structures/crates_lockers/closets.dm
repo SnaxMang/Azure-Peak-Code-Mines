@@ -321,7 +321,7 @@
 		return
 	else
 		var/lockprogress = 0
-		var/locktreshold = 100
+		var/locktreshold = lock_strength
 
 		var/obj/item/lockpick/P = I
 		var/mob/living/L = user

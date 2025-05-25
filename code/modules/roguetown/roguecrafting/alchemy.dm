@@ -1,4 +1,5 @@
 /datum/crafting_recipe/roguetown/alchemy
+	abstract_type = /datum/crafting_recipe/roguetown/alchemy
 	req_table = FALSE
 	verbage_simple = "mix"
 	skillcraft = /datum/skill/craft/alchemy
@@ -62,7 +63,7 @@
 
 /datum/crafting_recipe/roguetown/alchemy/glassbottles
 	name = "alchemy bottles"
-	result = list(/obj/item/reagent_containers/glass/alchemical, /obj/item/reagent_containers/glass/alchemical, /obj/item/reagent_containers/glass/alchemical, /obj/item/reagent_containers/glass/alchemical, /obj/item/reagent_containers/glass/alchemical, /obj/item/reagent_containers/glass/alchemical)
+	result = list(/obj/item/reagent_containers/glass/bottle/alchemical, /obj/item/reagent_containers/glass/bottle/alchemical, /obj/item/reagent_containers/glass/bottle/alchemical, /obj/item/reagent_containers/glass/bottle/alchemical, /obj/item/reagent_containers/glass/bottle/alchemical, /obj/item/reagent_containers/glass/bottle/alchemical)
 	reqs = list(/obj/item/natural/stone = 1, /obj/item/natural/dirtclod = 1)
 	craftdiff = 1
 	verbage_simple = "forge"

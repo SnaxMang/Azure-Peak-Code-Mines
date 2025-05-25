@@ -1699,7 +1699,7 @@
 /area/rogue/under/cave/dukecourt)
 "kJ" = (
 /obj/structure/rack/rogue,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
 "kK" = (
@@ -2218,7 +2218,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "ou" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "ov" = (
@@ -3645,7 +3645,7 @@
 /area/rogue/outdoors/beach)
 "xN" = (
 /obj/structure/table/vtable,
-/obj/item/roguegem{
+/obj/item/roguegem/ruby{
 	pixel_y = 10
 	},
 /obj/item/roguegem/blue,
@@ -3722,7 +3722,7 @@
 /turf/open/water/sewer,
 /area/rogue/under/cave/dukecourt)
 "yq" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter)
@@ -6913,36 +6913,36 @@
 "TC" = (
 /obj/structure/rack/rogue/shelf/biggest,
 /obj/effect/decal/cleanable/dirt/cobweb,
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = 7;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = 7
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = 7;
 	pixel_y = -5
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = 0;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = 0
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = 0;
 	pixel_y = -5
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = -7;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = -7
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = -7;
 	pixel_y = -5
 	},

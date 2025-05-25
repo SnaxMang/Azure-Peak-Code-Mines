@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/haste
 	name = "Haste"
 	desc = "Cause a target to be magically hastened. (+5 Speed, 0.85 x Action Cooldown)"
-	cost = 2
+	cost = 4
 	xp_gain = TRUE
 	releasedrain = 60
 	chargedrain = 1

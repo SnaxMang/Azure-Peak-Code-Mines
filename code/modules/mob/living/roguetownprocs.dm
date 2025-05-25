@@ -1,3 +1,4 @@
+#define BASE_PARRY_STAMINA_DRAIN 5 // Unmodified stamina drain for parry, now a var instead of setting on simplemobs
 /proc/accuracy_check(zone, mob/living/user, mob/living/target, associated_skill, datum/intent/used_intent, obj/item/I)
 	if(!zone)
 		return
@@ -140,7 +141,7 @@
 			last_parry = world.time
 			if(intenty && !intenty.canparry)
 				return FALSE
-			var/drained = user.defdrain
+			var/drained = BASE_PARRY_STAMINA_DRAIN
 			var/weapon_parry = FALSE
 			var/offhand_defense = 0
 			var/mainhand_defense = 0
@@ -183,7 +184,10 @@
 					prob2defend += (defender_skill * 10)		// no bracers gonna be butts.
 				weapon_parry = FALSE
 			else
-				defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+				if(used_weapon)
+					defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+				else
+					defender_skill = H.mind?.get_skill_level(/datum/skill/combat/unarmed)
 				prob2defend += highest_defense
 				weapon_parry = TRUE
 
@@ -198,10 +202,10 @@
 					prob2defend -= (attacker_skill * 20)
 
 			if(HAS_TRAIT(src, TRAIT_GUIDANCE))
-				prob2defend += 15
+				prob2defend += 20
 
 			if(HAS_TRAIT(user, TRAIT_GUIDANCE))
-				prob2defend -= 15
+				prob2defend -= 20
 
 			// parrying while knocked down sucks ass
 			if(!(mobility_flags & MOBILITY_STAND))
@@ -335,6 +339,8 @@
 
 					var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
 					if(dam2take)
+						if(!user.mind)
+							dam2take = dam2take * 0.25
 						if(dam2take > 0 && intenty.masteritem?.intdamage_factor)
 							dam2take = dam2take * intenty.masteritem?.intdamage_factor
 						used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
@@ -532,10 +538,10 @@
 						prob2defend = prob2defend + (H.mind.get_skill_level(/datum/skill/combat/unarmed) * 10)
 
 		if(HAS_TRAIT(L, TRAIT_GUIDANCE))
-			prob2defend += 15
+			prob2defend += 20
 
 		if(HAS_TRAIT(U, TRAIT_GUIDANCE))
-			prob2defend -= 15
+			prob2defend -= 20
 
 		// dodging while knocked down sucks ass
 		if(!(L.mobility_flags & MOBILITY_STAND))
@@ -635,6 +641,8 @@
 		if(prob(probclip) && IS && IU)
 			var/dam2take = round((get_complex_damage(IU, user, FALSE)/2),1)
 			if(dam2take)
+				if(!user.mind)
+					dam2take = dam2take * 0.25
 				if(dam2take > 0 && IU.intdamage_factor != 0)
 					dam2take = dam2take * IU.intdamage_factor
 				IS.take_damage(max(dam2take,1), BRUTE, IU.d_type)

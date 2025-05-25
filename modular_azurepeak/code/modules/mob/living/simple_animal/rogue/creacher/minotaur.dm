@@ -42,7 +42,6 @@
 
 	deaggroprob = 0
 	defprob = 40
-	defdrain = 10
 	retreat_health = 0
 	food = 0
 	attack_sound = list('sound/combat/wooshes/blunt/wooshhuge (1).ogg','sound/combat/wooshes/blunt/wooshhuge (2).ogg','sound/combat/wooshes/blunt/wooshhuge (3).ogg')

@@ -2,7 +2,7 @@
 /obj/structure/roguewindow
 	name = "window"
 	desc = "A glass window."
-	icon = 'icons/roguetown/misc/structure.dmi'
+	icon = 'icons/roguetown/misc/roguewindow.dmi'
 	icon_state = "window-solid"
 	layer = TABLE_LAYER
 	density = TRUE
@@ -26,14 +26,14 @@
 	..()
 
 /obj/structure/roguewindow/obj_destruction(damage_flag)
-	message_admins("Window destroyed. [ADMIN_JMP(src)]")
-	log_admin("Window destroyed at X:[src.x] Y:[src.y] Z:[src.z] in area: [get_area(src)]")
 	..()
 
 /obj/structure/roguewindow/attacked_by(obj/item/I, mob/living/user)
 	..()
 	if(obj_broken || obj_destroyed)
 		var/obj/effect/track/structure/new_track = new(get_turf(src))
+		message_admins("Window [obj_destroyed ? "destroyed" : "broken"] by [user?.real_name] using [I] [ADMIN_JMP(src)]")
+		log_admin("Window [obj_destroyed ? "destroyed" : "broken"] by [user?.real_name] at X:[src.x] Y:[src.y] Z:[src.z] in area: [get_area(src)]")
 		new_track.handle_creation(user)
 
 /obj/structure/roguewindow/update_icon()
@@ -112,6 +112,22 @@
 	..()
 	lockdir = dir
 	icon_state = base_state
+
+/obj/structure/roguewindow/harem1
+	name = "harem window"
+	icon_state = "harem1-solid"
+	base_state = "harem1-solid"
+
+/obj/structure/roguewindow/harem2
+	name = "harem window"
+	icon_state = "harem2-solid"
+	base_state = "harem2-solid"
+	opacity = TRUE
+
+/obj/structure/roguewindow/harem3
+	name = "harem window"
+	icon_state = "harem3-solid"
+	base_state = "harem3-solid"
 
 /obj/structure/roguewindow/openclose/Initialize()
 	lockdir = dir
@@ -221,7 +237,6 @@
 /obj/structure/roguewindow/obj_break(damage_flag)
 	if(!brokenstate)
 		attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
-		message_admins("Window broken. [ADMIN_JMP(src)]")
 		log_admin("Window broken at X:[src.x] Y:[src.y] Z:[src.z] in area: [get_area(src)]")
 		loud_message("A loud crash of a window getting broken rings out", hearing_distance = 14)
 		new /obj/item/natural/glass/shard (get_turf(src))

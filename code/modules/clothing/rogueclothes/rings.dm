@@ -20,6 +20,13 @@
 	icon_state = "ring_s"
 	sellprice = 33
 
+/obj/item/clothing/ring/aalloy
+	name = "decrepit ring"
+	desc = "A decrepit old ring"
+	icon_state = "ring_a"
+	sellprice = 5
+
+
 /obj/item/clothing/ring/gold
 	name = "gold ring"
 	icon_state = "ring_g"
@@ -84,7 +91,7 @@
 	. = ..()
 	var/datum/component/magcom = GetComponent(/datum/component/anti_magic)
 	if(magcom)
-		magcom.RemoveComponent()
+		magcom.ClearFromParent()
 
 //gold rings
 /obj/item/clothing/ring/emerald

@@ -28,6 +28,7 @@
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)			
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
@@ -37,7 +38,7 @@
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 			H.set_blindness(0)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-			var/weapons = list("Bastard Sword","Mace","Billhook","Battle Axe")
+			var/weapons = list("Bastard Sword","Mace","Billhook","Battle Axe","Short Sword & Heater Shield")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Bastard Sword")
@@ -53,6 +54,28 @@
 				if("Battle Axe")
 					H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 					backr = /obj/item/rogueweapon/stoneaxe/battle
+				if("Short Sword & Heater Shield")
+					H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+					H.mind.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
+					backr = /obj/item/rogueweapon/shield/heater
+					beltr = /obj/item/rogueweapon/sword/iron/short
+			var/armors = list("Chainmaille Set","Iron Breastplate","Gambeson & Helmet")
+			var/armor_choice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+			switch(armor_choice)
+				if("Chainmaille Set")
+					shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+					pants = /obj/item/clothing/under/roguetown/chainlegs/iron
+					neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
+					gloves = /obj/item/clothing/gloves/roguetown/chain/iron
+				if("Iron Breastplate")
+					armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
+					pants = /obj/item/clothing/under/roguetown/trou/leather
+					gloves = /obj/item/clothing/gloves/roguetown/angle
+				if("Gambeson & Helmet")
+					shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+					pants = /obj/item/clothing/under/roguetown/trou/leather
+					head = /obj/item/clothing/head/roguetown/helmet/kettle
+					gloves = /obj/item/clothing/gloves/roguetown/angle
 			H.change_stat("strength", 2)
 			H.change_stat("endurance", 1)
 			H.change_stat("constitution", 2)
@@ -60,13 +83,9 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
-			pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 			shoes = /obj/item/clothing/shoes/roguetown/boots
-			neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
-			gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 			cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1)
 
 		if("Duelist")
 			to_chat(H, span_warning("You are an esteemed swordsman who foregoes armor in exchange for a more nimble fighting style."))
@@ -109,13 +128,14 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backr = /obj/item/rogueweapon/shield/buckler
 			belt = /obj/item/storage/belt/rogue/leather
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1, /obj/item/recipe_book/survival = 1)
 
 		if("Barbarian")
 			to_chat(H, span_warning("You are a brutal warrior who foregoes armor in order to showcase your raw strength. You specialize in unarmed combat and wrestling."))
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -126,15 +146,24 @@
 			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/combat_gronn.ogg'
 			H.set_blindness(0)
-			var/weapons = list("Katar","Battle Axe","MY BARE HANDS!!!")
+			var/weapons = list("Katar","Axe","Sword","Club","Spear","MY BARE HANDS!!!")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if ("Katar")
 					H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 					beltr = /obj/item/rogueweapon/katar
-				if("Battle Axe")
+				if("Axe")
 					H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
-					beltr = /obj/item/rogueweapon/stoneaxe/battle
+					beltr = /obj/item/rogueweapon/stoneaxe/boneaxe
+				if("Sword")
+					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+					beltr = /obj/item/rogueweapon/sword/short
+				if("Club")
+					H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+					beltr = /obj/item/rogueweapon/mace/woodclub
+				if("Spear")
+					H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+					r_hand = /obj/item/rogueweapon/spear/bonespear
 				if ("MY BARE HANDS!!!")
 					H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 					ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
@@ -197,14 +226,14 @@
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 			head = /obj/item/clothing/head/roguetown/bucklehat
 			gloves = /obj/item/clothing/gloves/roguetown/angle
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1)
-			beltl = pick(/obj/item/reagent_containers/glass/alchemical/strpot, 
-						/obj/item/reagent_containers/glass/alchemical/conpot, 
-						/obj/item/reagent_containers/glass/alchemical/endpot,
-						/obj/item/reagent_containers/glass/alchemical/spdpot,
-						/obj/item/reagent_containers/glass/alchemical/perpot,
-						/obj/item/reagent_containers/glass/alchemical/intpot,
-						/obj/item/reagent_containers/glass/alchemical/lucpot)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1)
+			beltl = pick(/obj/item/reagent_containers/glass/bottle/alchemical/strpot, 
+						/obj/item/reagent_containers/glass/bottle/alchemical/conpot, 
+						/obj/item/reagent_containers/glass/bottle/alchemical/endpot,
+						/obj/item/reagent_containers/glass/bottle/alchemical/spdpot,
+						/obj/item/reagent_containers/glass/bottle/alchemical/perpot,
+						/obj/item/reagent_containers/glass/bottle/alchemical/intpot,
+						/obj/item/reagent_containers/glass/bottle/alchemical/lucpot)
 
 		if("Flagellant")
 			to_chat(H, span_warning("You are a pacifistic warrior who embraces suffering, believing pain is the path to enlightenment. You take the suffering of others upon yourself."))
@@ -244,4 +273,5 @@
 			shirt = /obj/item/clothing/suit/roguetown/shirt/tunic
 			backl = /obj/item/storage/backpack/rogue/satchel   
 			belt = /obj/item/storage/belt/rogue/leather        
-			beltr = /obj/item/rogueweapon/whip                
+			beltr = /obj/item/rogueweapon/whip
+			backpack_contents = list(/obj/item/recipe_book/survival = 1)            

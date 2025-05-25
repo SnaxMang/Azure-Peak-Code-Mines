@@ -174,6 +174,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	cmode = 1
 
 	var/remains_type
+	var/binded = FALSE // Whether it is bound to a summoning circle or not
 
 	var/botched_butcher_results
 	var/perfect_butcher_results
@@ -292,7 +293,8 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			SEND_SIGNAL(src, COMSIG_MOB_STATCHANGE, DEAD)
 			return
 	if(footstep_type)
-		AddComponent(/datum/component/footstep, footstep_type)
+		if(!QDELING(src))
+			AddComponent(/datum/component/footstep, footstep_type)
 
 /mob/living/simple_animal/handle_status_effects()
 	..()

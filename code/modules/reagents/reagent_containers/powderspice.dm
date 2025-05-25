@@ -158,6 +158,17 @@
 	volume = 1
 	sellprice = 0
 
+/obj/item/reagent_containers/powder/rocknut/Initialize()
+	. = ..()
+	var/static/list/slapcraft_recipe_list = list(
+		/datum/crafting_recipe/roguetown/survival/rocknutdry,
+		)
+
+	AddElement(
+		/datum/element/slapcrafting,\
+		slapcraft_recipes = slapcraft_recipe_list,\
+		)
+
 /datum/reagent/floure
 	name = "flour"
 	description = ""
@@ -199,7 +210,7 @@
 	qdel(src)
 
 /obj/item/reagent_containers/powder/ozium
-	name = "powder"
+	name = "ozium"
 	desc = ""
 	icon = 'icons/roguetown/items/produce.dmi'
 	icon_state = "ozium"

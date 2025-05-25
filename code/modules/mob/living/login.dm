@@ -28,7 +28,7 @@
 //		to_chat(src, span_notice("I can ventcrawl! Use alt+click on vents to quickly travel about the station."))
 
 	if(ranged_ability)
-		ranged_ability.add_ranged_ability(src, span_notice("I currently have <b>[ranged_ability]</b> active!"))
+		ranged_ability.deactivate()
 
 	set_ssd_indicator(FALSE)
 

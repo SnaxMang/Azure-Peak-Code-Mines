@@ -25,6 +25,10 @@
 			target.adjustFireLoss(10)
 			target.fire_act(1,10)
 			return TRUE
+		if(target.has_status_effect(/datum/status_effect/buff/healing))
+			to_chat(user, span_warning("They are already under the effects of a healing aura!"))
+			revert_cast()
+			return FALSE
 		var/conditional_buff = FALSE
 		var/situational_bonus = 1
 		var/message_out

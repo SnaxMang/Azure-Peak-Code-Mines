@@ -20,7 +20,7 @@
 	movement_interrupt = TRUE
 	antimagic_allowed = FALSE
 	charging_slowdown = 3
-	cost = 2
+	cost = 4
 	spell_tier = 2 // Spellblade tier.
 
 	invocation = "Armatura Creetur!"
@@ -57,34 +57,45 @@
 	var/obj/item/new_helmet = new helmet(target)
 	target.equip_to_slot_or_del(new_helmet, SLOT_HEAD)
 	// Passing all these vars are necessary to override the owner because equip_to_slot_or_del don't actually assign an owner on equip
-	new_helmet.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	if(!QDELETED(new_helmet))
+		new_helmet.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill, GLOW_COLOR_ARCANE, target)
 	
 	var/obj/item/new_shirt = new shirt(target)
 	target.equip_to_slot_or_del(new_shirt, SLOT_SHIRT)
-	new_shirt.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	if(!QDELETED(new_shirt))
+		new_shirt.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill, GLOW_COLOR_ARCANE, target)
 	
 	var/obj/item/new_wrists = new wrists(target)
 	target.equip_to_slot_or_del(new_wrists, SLOT_WRISTS)
-	new_wrists.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	if(!QDELETED(new_wrists))
+		new_wrists.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_gloves = new gloves(target)
 	target.equip_to_slot_or_del(new_gloves, SLOT_GLOVES)
-	new_gloves.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	if(!QDELETED(new_gloves))
+		new_gloves.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_neck = new neck(target)
 	target.equip_to_slot_or_del(new_neck, SLOT_NECK)
-	new_neck.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	if(!QDELETED(new_neck))
+		new_neck.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_shoes = new shoes(target)
 	target.equip_to_slot_or_del(new_shoes, SLOT_SHOES)
-	new_shoes.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	if(!QDELETED(new_shoes))
+		new_shoes.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_armor = new armor(target)
 	target.equip_to_slot_or_del(new_armor, SLOT_ARMOR)
-	new_armor.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	if(!QDELETED(new_armor))
+		new_armor.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill, GLOW_COLOR_ARCANE, target)
 
 	var/obj/item/new_pants = new pants(target)
 	target.equip_to_slot_or_del(new_pants, SLOT_PANTS)
-	new_pants.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, /datum/skill/magic/arcane, GLOW_COLOR_ARCANE, target)
+	if(!QDELETED(new_pants))
+		new_pants.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill, GLOW_COLOR_ARCANE, target)
+
+/obj/effect/proc_holder/spell/invoked/conjure_armor/miracle
+	associated_skill = /datum/skill/magic/holy
 
 #undef CONJURE_DURATION

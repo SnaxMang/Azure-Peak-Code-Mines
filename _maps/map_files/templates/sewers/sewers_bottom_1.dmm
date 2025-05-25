@@ -7,7 +7,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "f" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "h" = (

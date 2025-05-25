@@ -220,17 +220,22 @@
 				var/stun_dur = max(((65 + (skill_diff * 10) + (user.STASTR * 5) - (M.STASTR * 5)) * combat_modifier), 20)
 				var/pincount = 0
 				user.rogfat_add(rand(1,3))
-				while(M == grabbed && !(M.mobility_flags & MOBILITY_STAND))
+				while(M == grabbed && !(M.mobility_flags & MOBILITY_STAND) && (src in M.grabbedby))
 					if(M.IsStun())
 						if(!do_after(user, stun_dur + 1, needhand = 0, target = M))
 							pincount = 0
+							qdel(src)
+							break
+						if(!(src in M.grabbedby))
+							pincount = 0
+							qdel(src)
 							break
 						M.Stun(stun_dur - pincount * 2)	
 						M.Immobilize(stun_dur)	//Made immobile for the whole do_after duration, though
 						user.rogfat_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)
 						M.visible_message(span_danger("[user] keeps [M] pinned to the ground!"))
 						pincount += 2
-					else
+					else if(src in M.grabbedby)
 						M.Stun(stun_dur - 10)
 						M.Immobilize(stun_dur)
 						user.rogfat_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)

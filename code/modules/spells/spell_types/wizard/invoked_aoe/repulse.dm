@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/repulse
 	name = "Repulse"
 	desc = "Conjure forth a wave of energy, repelling anyone around you."
-	cost = 1
+	cost = 3
 	xp_gain = TRUE
 	releasedrain = 50
 	chargedrain = 1
@@ -20,6 +20,7 @@
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_DISPLACEMENT
 	glow_intensity = GLOW_INTENSITY_MEDIUM
+	gesture_required = TRUE // Offensive spell. Don't blast guards while chained.
 	var/stun_amt = 5
 	var/maxthrow = 3
 	var/sparkle_path = /obj/effect/temp_visual/gravpush

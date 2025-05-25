@@ -13,22 +13,19 @@
 	invocation_type = "none"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	recharge_time = 10 SECONDS
+	recharge_time = 30 SECONDS
 	miracle = TRUE
 	devotion_cost = 10
 
 /obj/effect/proc_holder/spell/invoked/baothablessings/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
 		var/mob/living/carbon/target = targets[1]
-		target.apply_status_effect(/datum/status_effect/buff/druqks)
-		ADD_TRAIT(target, TRAIT_CRACKHEAD, TRAIT_MIRACLE)		//Gets the trait temorarily, basically will just stop any active/upcoming ODs.
+		if(target.has_status_effect(/datum/status_effect/buff/druqks/baotha))
+			to_chat(user, span_warning("They're already blessed by these effects!"))
+			revert_cast()
+			return FALSE
+		target.apply_status_effect(/datum/status_effect/buff/druqks/baotha) //Gets the trait temorarily, basically will just stop any active/upcoming ODs.	
 		target.visible_message("<span class='info'>[target]'s eyes appear to gloss over!</span>", "<span class='notice'>I feel.. at ease.</span>")
-		addtimer(CALLBACK(src, PROC_REF(remove_buff), target), wait = 2 MINUTES)	//Should be long enough to prevent an overdose.
-
-/obj/effect/proc_holder/spell/invoked/baothablessings/proc/remove_buff(mob/living/carbon/target)
-	REMOVE_TRAIT(target, TRAIT_CRACKHEAD, TRAIT_MIRACLE)							
-	to_chat(target, span_warning("I see everything clearly once more.."))
-	target.visible_message("[target]'s eyes appear to return to normal.")
 
 //Enrapturing Powder - T2, basically a crackhead blowing cocaine in your face.
 

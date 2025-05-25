@@ -10,6 +10,7 @@
 	var/toggle_state = null
 	var/icon_x_offset = 0
 	var/icon_y_offset = 0
+	var/always_destroy = FALSE
 //#else
 //	var/force_reupdate_inhand = FALSE
 //#endif

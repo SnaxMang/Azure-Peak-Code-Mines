@@ -31,7 +31,6 @@
 	canparry = TRUE
 	d_intent = INTENT_DODGE
 	defprob = 50
-	defdrain = 20
 	speak_emote = list("burbles")
 	faction = list("deepone")
 	footstep_type = FOOTSTEP_MOB_BAREFOOT

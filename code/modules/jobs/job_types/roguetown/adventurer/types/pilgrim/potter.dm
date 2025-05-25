@@ -36,7 +36,12 @@
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backr = /obj/item/rogueweapon/shovel  // For getting clay
 
-	backpack_contents = list(/obj/item/natural/clay = 3, /obj/item/natural/clay/glassbatch = 1, /obj/item/rogueore/coal=1, /obj/item/roguegear = 1)
+	backpack_contents = list(
+		/obj/item/natural/clay = 3,
+		/obj/item/natural/clay/glassbatch = 1, 
+		/obj/item/rogueore/coal = 1,
+		/obj/item/roguegear = 1,
+		/obj/item/recipe_book/ceramics = 1)
 	// Clay and glassBatch are raw materials
 	// Coal so he can build an ore furnace for glass blowing
 	// Coggers so he can build a potter's wheel.

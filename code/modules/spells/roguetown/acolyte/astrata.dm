@@ -68,6 +68,11 @@
 	if(isliving(targets[1]))
 		testing("revived1")
 		var/mob/living/target = targets[1]
+		if(!target.mind)
+			return FALSE
+		if(!target.mind.active)
+			to_chat(user, "Astrata is not done with [target], yet.")
+			return FALSE
 		if(target == user)
 			return FALSE
 		if(target.stat < DEAD)
@@ -81,6 +86,9 @@
 			target.visible_message(span_danger("[target] is unmade by holy light!"), span_userdanger("I'm unmade by holy light!"))
 			target.gib()
 			return TRUE
+		if(alert(target, "They are calling for you. Are you ready?", "Revival", "I need to wake up", "Don't let me go") != "I need to wake up")
+			target.visible_message(span_notice("Nothing happens. They are not being let go."))
+			return FALSE
 		target.adjustOxyLoss(-target.getOxyLoss()) //Ye Olde CPR
 		if(!target.revive(full_heal = FALSE))
 			to_chat(user, span_warning("Nothing happens."))
@@ -97,11 +105,10 @@
 		target.Jitter(100)
 		target.update_body()
 		target.visible_message(span_notice("[target] is revived by holy light!"), span_green("I awake from the void."))
-		if(target.mind)
-			if(revive_pq && !HAS_TRAIT(target, TRAIT_IWASREVIVED) && user?.ckey)
-				adjust_playerquality(revive_pq, user.ckey)
-				ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")
-			target.mind.remove_antag_datum(/datum/antagonist/zombie)
+		if(revive_pq && !HAS_TRAIT(target, TRAIT_IWASREVIVED) && user?.ckey)
+			adjust_playerquality(revive_pq, user.ckey)
+			ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")
+		target.mind.remove_antag_datum(/datum/antagonist/zombie)
 		target.remove_status_effect(/datum/status_effect/debuff/rotted_zombie)	//Removes the rotted-zombie debuff if they have it - Failsafe for it.
 		target.apply_status_effect(/datum/status_effect/debuff/revived)	//Temp debuff on revive, your stats get hit temporarily. Doubly so if having rotted.
 		return TRUE

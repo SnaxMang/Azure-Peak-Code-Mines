@@ -39,11 +39,14 @@
 	minimum_distance = 10
 	dodge_sound = 'sound/combat/dodge.ogg'
 	dodge_prob = 0
+
 	var/deaggroprob = 10
 	var/eat_forever
+	
 	candodge = TRUE
-	//global cooldown for how fast these things can attack. called by /datum/ai_behavior/basic_melee_attack and checked against world time.
-	//override to make them go faster or slower.
+
+	var/summon_tier = 0 // Tier of summoning
+	var/summon_primer = null // The message they get when summoned
 
 	//If the creature is doing something they should STOP MOVING.
 	var/can_act = TRUE

@@ -244,12 +244,12 @@
 /datum/outfit/job/roguetown/vet/merc/pre_equip(mob/living/carbon/human/H)
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
-	shirt = /obj/item/clothing/suit/roguetown/shirt/grenzelhoft // You do NOT get the BLACKSTEEL CUIRASS because yours BROKE & I hate you. Go on a personal quest to replace it or something.
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft // You do NOT get the BLACKSTEEL CUIRASS because yours BROKE & I hate you. Go on a personal quest to replace it or something.
 	head = /obj/item/clothing/head/roguetown/grenzelhofthat
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/half
-	pants = /obj/item/clothing/under/roguetown/grenzelpants
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
 	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
-	gloves = /obj/item/clothing/gloves/roguetown/grenzelgloves
+	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
 	beltl = /obj/item/rogueweapon/sword/short
 	beltr = /obj/item/storage/keyring/guardcastle
 	backr = /obj/item/storage/backpack/rogue/satchel/black

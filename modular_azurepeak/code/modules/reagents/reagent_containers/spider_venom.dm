@@ -27,7 +27,7 @@
 	metabolization_rate = 0.01
 	var/venom_resistance
 
-/obj/item/reagent_containers/glass/alchemical/spidervenom_paralytic
+/obj/item/reagent_containers/glass/bottle/alchemical/spidervenom_paralytic
 	list_reagents = list(/datum/reagent/toxin/spidervenom_paralytic = 1)
 	desc = "An ominous vial, filled with venom of the deadly Aragn spider. Feels hot to the touch."
 

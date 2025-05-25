@@ -248,10 +248,11 @@
 	added_skills = list(list(/datum/skill/misc/lockpicking, 3, 6))
 
 /datum/virtue/utility/granary
-	name = "Personal Granary"
-	desc = "You've worked in or around the kitchens enough to steal away a sack of supplies that no one would surely miss, just in case. You've picked up on some cooking tips in your spare time, as well."
+	name = "Cunning Provisioner"
+	desc = "You've worked in or around the docks enough to steal away a sack of supplies that no one would surely miss, just in case. You've picked up on some cooking and fishing tips in your spare time, as well."
 	added_stashed_items = list("Bag of Food" = /obj/item/storage/roguebag/food)
-	added_skills = list(list(/datum/skill/craft/cooking, 3, 6))
+	added_skills = list(list(/datum/skill/craft/cooking, 3, 6),
+						list(/datum/skill/labor/fishing, 2, 6))
 
 /datum/virtue/utility/forester
 	name = "Forester"

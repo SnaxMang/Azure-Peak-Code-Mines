@@ -46,6 +46,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/music, 1, TRUE)
+			backpack_contents = list(/obj/item/recipe_book/survival = 1) // Someone gonna argue it is sovlful to not have this but whatever
 			var/turf/TU = get_turf(H)
 			if(TU)
 				new /mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled(TU)
@@ -89,10 +90,10 @@
 			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
 			shoes = /obj/item/clothing/shoes/roguetown/boots/armor
-			belt = /obj/item/storage/belt/rogue/leather/plaquegold
+			belt = /obj/item/storage/belt/rogue/leather/steel/tasset
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/flashlight/flare/torch/lantern
-			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1)
+			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/recipe_book/survival = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
@@ -155,7 +156,7 @@
 			belt = /obj/item/storage/belt/rogue/leather
 			backr = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/flashlight/flare/torch/lantern
-			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1)
+			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1, /obj/item/recipe_book/survival = 1)
 			var/armors = list("Light Armor","Medium Armor")
 			var/armor_choice = input("Choose your armor.", "TAKE UP ARMS") as anything in armors
 			switch(armor_choice)

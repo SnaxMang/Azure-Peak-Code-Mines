@@ -13,7 +13,7 @@
 	hide_charge_effect = TRUE 
 	// Nondetection shouldn't need an invocation
 	xp_gain = TRUE
-	cost = 1
+	cost = 1 // Shit, situational
 
 /obj/item/melee/touch_attack/nondetection
 	name = "\improper arcyne focus"

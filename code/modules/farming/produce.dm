@@ -78,7 +78,7 @@
 /obj/item/reagent_containers/food/snacks/grown/rice
 	seed = /obj/item/seeds/rice
 	name = "rice grain"
-	desc = ""
+	desc = "Rice grains, ready to be worked with water to be cleaned."
 	icon = 'icons/roguetown/items/produce.dmi'
 	icon_state = "rice"
 	gender = PLURAL
@@ -88,8 +88,9 @@
 	tastes = list("rice" = 1)
 	can_distill = TRUE
 	distill_reagent = /datum/reagent/consumable/ethanol/sake
-	distill_amt = 12
+	distill_amt = 24
 	grind_results = list(/datum/reagent/floure = 10)
+	mill_result = /obj/item/reagent_containers/powder/flour
 
 /obj/item/reagent_containers/food/snacks/grown/apple
 	seed = /obj/item/seeds/apple
@@ -204,9 +205,9 @@
 
 /obj/item/reagent_containers/food/snacks/grown/nut
 	name = "rocknut"
-	desc = "a nut with mild stimulant properties"
+	desc = "a nut with mild stimulant properties. In powderized form, it can be used to make a zig."
 	seed = /obj/item/seeds/nut
-	icon_state = "nut"
+	icon_state = "rocknut"
 	tastes = list("nutty" = 1)
 	filling_color = "#6b4d18"
 	bitesize = 1
@@ -280,7 +281,7 @@
 /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleaf
 	seed = /obj/item/seeds/sweetleaf
 	name = "swampweed"
-	desc = "A 'foggy' pipe weed."
+	desc = "A pipeweed with pungent odor and a sparkling surface."
 	icon_state = "swampweed"
 	filling_color = "#008000"
 	bitesize_mod = 1
@@ -293,7 +294,7 @@
 /obj/item/reagent_containers/food/snacks/grown/rogue/pipeweed
 	seed = /obj/item/seeds/pipeweed
 	name = "westleach leaf"
-	desc = "A generic kind of pipe weed."
+	desc = "A pipeweed prized for its rich flavor."
 	icon_state = "westleach"
 	filling_color = "#008000"
 	bitesize_mod = 1
@@ -307,7 +308,7 @@
 /obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry
 	seed = null
 	name = "westleach leaf"
-	desc = "A dried leaf."
+	desc = "A dried pipeweed, ready to smoke."
 	icon_state = "westleachd"
 	dry = TRUE
 	pipe_reagents = list(/datum/reagent/drug/nicotine = 30)
@@ -315,16 +316,38 @@
 	list_reagents = list(/datum/reagent/drug/nicotine = 5, /datum/reagent/consumable/nutriment = 1)
 	grind_results = list(/datum/reagent/drug/nicotine = 10)
 
+/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry/Initialize()
+	. = ..()
+	var/static/list/slapcraft_recipe_list = list(
+		/datum/crafting_recipe/roguetown/survival/sigdry,
+		)
+
+	AddElement(
+		/datum/element/slapcrafting,\
+		slapcraft_recipes = slapcraft_recipe_list,\
+		)
+
 /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry
 	seed = null
 	name = "swampweed"
-	desc = "It's dried."
+	desc = "A prepared pipeweed prized for its foggy effects."
 	icon_state = "swampweedd"
 	dry = TRUE
 	pipe_reagents = list(/datum/reagent/drug/space_drugs = 30)
 	list_reagents = list(/datum/reagent/drug/space_drugs = 2,/datum/reagent/consumable/nutriment = 1)
 	grind_results = list(/datum/reagent/drug/space_drugs = 5)
 	eat_effect = /datum/status_effect/debuff/badmeal
+
+/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry/Initialize()
+	. = ..()
+	var/static/list/slapcraft_recipe_list = list(
+		/datum/crafting_recipe/roguetown/survival/sigsweet,
+		)
+
+	AddElement(
+		/datum/element/slapcrafting,\
+		slapcraft_recipes = slapcraft_recipe_list,\
+		)
 
 /obj/item/reagent_containers/food/snacks/grown/onion/rogue
 	name = "onion"
@@ -388,4 +411,25 @@
 	throw_range = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = 0)
 	dropshrink = 0.5
+	rotprocess = null
+
+/obj/item/reagent_containers/food/snacks/grown/coffee
+	name = "coffee cherry"
+	desc = "A small sweet, small red fruit that contains coffee bean(s) inside. Can be grounded in a millstone for coffee beans."
+	icon_state = "coffee"
+	seed = /obj/item/seeds/coffee
+	tastes = list("hibicus sweetness" = 1)
+	bitesize = 1
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	mill_result = /obj/item/reagent_containers/food/snacks/grown/coffeebeans
+	rotprocess = null
+
+/obj/item/reagent_containers/food/snacks/grown/tea
+	name = "tea leaves"
+	desc = "Tea leaves plucked from the plant. It is still fresh and needs to be dried before use."
+	icon_state = "tea"
+	seed = /obj/item/seeds/tea
+	tastes = list("grass" = 1)
+	bitesize = 1
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	rotprocess = null

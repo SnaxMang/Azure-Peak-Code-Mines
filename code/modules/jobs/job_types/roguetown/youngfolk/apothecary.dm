@@ -23,18 +23,21 @@
 
 /datum/outfit/job/roguetown/apothecary/pre_equip(mob/living/carbon/human/H)
 	..()
-	pants = /obj/item/clothing/under/roguetown/tights/black
-	shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/black
+	head = /obj/item/clothing/head/roguetown/roguehood/black
+	pants = /obj/item/clothing/under/roguetown/trou/apothecary
+	shirt = /obj/item/clothing/suit/roguetown/shirt/apothshirt
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/black
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	beltl = /obj/item/storage/belt/rogue/surgery_bag/full/physician
 	beltr = /obj/item/roguekey/physician
 	id = /obj/item/scomstone/bad
-	shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
-		/obj/item/natural/worms/leech/cheele = 1
+		/obj/item/natural/worms/leech/cheele = 1,
+		/obj/item/recipe_book/alchemy = 1,
+		/obj/item/clothing/mask/rogue/physician = 1,
 	)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)

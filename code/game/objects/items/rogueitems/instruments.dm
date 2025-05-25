@@ -106,7 +106,7 @@
 				var/filename = "[infile]"
 				var/file_ext = lowertext(copytext(filename, -4))
 				var/file_size = length(infile)
-
+				message_admins("[ADMIN_LOOKUPFLW(user)] uploaded a song [filename] of size [file_size / 1000000] (~MB).")
 				if(file_ext != ".ogg")
 					to_chat(user, span_warning("SONG MUST BE AN OGG."))
 					return
@@ -313,7 +313,7 @@
 
 /obj/item/rogue/instrument/vocals
 	name = "vocalist's talisman"
-	desc = "This talisman eminates a small shimmer of light. When held, it can amplify and even change a bard's voice."
+	desc = "This talisman emanates a soft shimmer of light. When held, it can amplify and even change a bard's voice."
 	icon_state = "vtalisman"
 	song_list = list("Harpy's Call (Feminine)" = 'sound/music/instruments/vocalsf (1).ogg',
 	"Necra's Lullaby (Feminine)" = 'sound/music/instruments/vocalsf (2).ogg',

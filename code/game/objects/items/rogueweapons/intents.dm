@@ -75,7 +75,7 @@
 	if(damfactor != 1)
 		inspec += "\n<b>Damage:</b> [damfactor]"
 	if(penfactor)
-		inspec += "\n<b>Armor Penetration:</b> [penfactor]"
+		inspec += "\n<b>Armor Penetration:</b> [penfactor < 0 ? "NONE" : penfactor]"
 	if(get_chargetime())
 		inspec += "\n<b>Charge Time</b>"
 	if(movement_interrupt)
@@ -98,6 +98,15 @@
 		inspec += "\nThis intent will peel the coverage off of your target's armor in non-key areas after [peel_divisor] consecutive hits.\nSome armor may have higher thresholds."
 	if(!allow_offhand)
 		inspec += "\nThis intent requires a free off-hand."
+	if(blade_class == BCLASS_EFFECT)
+		var/datum/intent/effect/int = src
+		inspec += "\nThis intent will apply a status effect on a successful hit. Damage dealt is not required."
+		if(length(int.target_parts))
+			inspec += "\nWorks on these bodyparts: "
+			var/str
+			for(var/part in int.target_parts)
+				str +="|[bodyzone2readablezone(part)]|"
+			inspec += str
 	inspec += "<br>----------------------"
 
 	to_chat(user, "[inspec.Join()]")
@@ -191,7 +200,7 @@
 	if(mob_light)
 		qdel(mob_light)
 	if(mob_charge_effect)
-		mastermob.vis_contents -= mob_charge_effect
+		mastermob?.vis_contents -= mob_charge_effect
 
 
 /datum/intent/use
@@ -416,7 +425,7 @@
 	animname = "blank22"
 	hitsound = list('sound/combat/hits/punch/punch (1).ogg', 'sound/combat/hits/punch/punch (2).ogg', 'sound/combat/hits/punch/punch (3).ogg')
 	misscost = 5
-	releasedrain = 5
+	releasedrain = 2	//Lowered for intent stam usage.
 	swingdelay = 0
 	rmb_ranged = TRUE
 	candodge = TRUE
@@ -447,7 +456,7 @@
 	animname = "blank22"
 	hitsound = list('sound/combat/hits/punch/punch (1).ogg', 'sound/combat/hits/punch/punch (2).ogg', 'sound/combat/hits/punch/punch (3).ogg')
 	misscost = 5
-	releasedrain = 5
+	releasedrain = 4	//More than punch cus pen factor.
 	swingdelay = 0
 	penfactor = 10
 	candodge = TRUE
@@ -610,3 +619,22 @@
 	no_attack = TRUE
 	candodge = FALSE
 	canparry = FALSE
+
+/datum/intent/effect
+	blade_class = BCLASS_EFFECT
+	var/datum/status_effect/intent_effect	//Status effect this intent will apply on a successful hit (damage not needed)
+	var/list/target_parts					//Targeted bodyparts which will apply the effect. Leave blank for anywhere on the body.
+
+/datum/intent/effect/daze
+	name = "dazing strike"
+	icon_state = "indaze"
+	attack_verb = list("dazes")
+	animname = "strike"
+	hitsound = list('sound/combat/hits/blunt/daze_hit.ogg')
+	chargetime = 0
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	swingdelay = 6
+	damfactor = 1
+	item_d_type = "blunt"
+	intent_effect = /datum/status_effect/debuff/dazed
+	target_parts = list(BODY_ZONE_HEAD)

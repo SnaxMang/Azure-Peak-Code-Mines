@@ -20,6 +20,7 @@
 /datum/intent/spear/bash
 	name = "bash"
 	blade_class = BCLASS_BLUNT
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
 	penfactor = 10
@@ -47,15 +48,12 @@
 	damfactor = 1
 
 /datum/intent/spear/cut/bardiche
-    damfactor = 1.0
-    chargetime = 1
+    damfactor = 1.2
+    chargetime = 0
 
 /datum/intent/spear/cut/glaive
 	damfactor = 1.2
 	chargetime = 0
-
-/datum/intent/spear/cut/bardiche/scythe
-	reach = 2
 
 /datum/intent/spear/cast
 	name = "cast"
@@ -91,6 +89,16 @@
 	recovery = 20
 	clickcd = 10
 
+/datum/intent/sword/bash
+	name = "pommel bash"
+	blade_class = BCLASS_BLUNT
+	icon_state = "inbash"
+	attack_verb = list("bashes", "strikes")
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	damfactor = 1.3
+	item_d_type = "blunt"
+
+
 /datum/intent/rend
 	name = "rend"
 	icon_state = "inrend"
@@ -98,7 +106,7 @@
 	animname = "cut"
 	blade_class = BCLASS_CHOP
 	reach = 1
-	penfactor = -60
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 2.5
 	chargetime = 10
 	no_early_release = TRUE
@@ -108,11 +116,48 @@
 
 /datum/intent/rend/reach
 	name = "long rend"
-	penfactor = -30
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	misscost = 5
 	chargetime = 5
 	damfactor = 2
 	reach = 2
+
+/datum/intent/rend/reach/partizan
+	name = "rending thrust"
+	attack_verb = list("skewers")
+	blade_class = BCLASS_STAB
+	chargetime = 10
+	swingdelay = 8
+	misscost = 20
+	damfactor = 1.8
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	item_d_type = "stab"
+	no_early_release = TRUE
+
+/datum/intent/partizan/peel
+	name = "armor peel"
+	icon_state = "inpeel"
+	attack_verb = list("snags")
+	animname = "cut"
+	blade_class = BCLASS_PEEL
+	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
+	chargetime = 2
+	penfactor = 200
+	swingdelay = 5
+	damfactor = 0.05
+	item_d_type = "slash"
+	peel_divisor = 4
+	reach = 2
+
+/datum/intent/spear/bash/ranged/quarterstaff
+	damfactor = 1
+
+/datum/intent/spear/thrust/quarterstaff
+	blade_class = BCLASS_BLUNT
+	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg')
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	damfactor = 1.3 // Adds up to be slightly stronger than an unenhanced ebeak strike.
+	chargetime = 6 // Meant to be stronger than a bash, but with a delay.
 
 //polearm objs ฅ^•ﻌ•^ฅ
 
@@ -128,7 +173,7 @@
 	wlength = WLENGTH_LONG
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	blade_dulling = DULLING_BASHCHOP
+	blade_dulling = DULLING_SHAFT_WOOD
 	sharpness = IS_BLUNT
 	walking_stick = TRUE
 	pixel_y = -16
@@ -188,7 +233,7 @@
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, SPEAR_CUT, SPEAR_BASH)
 	name = "spear"
-	desc = "This iron spear is great to impale goblins."
+	desc = "This iron spear is great to impale goblins. However its lack of reinforcements means it is ill prepared for combat against someone aiming to hew it in two!"
 	icon_state = "spear"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
@@ -204,12 +249,29 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_BASHCHOP
+	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 5
 	thrown_bclass = BCLASS_STAB
 	throwforce = 25
 	resistance_flags = FLAMMABLE
+
+/obj/item/rogueweapon/spear/aalloy
+	name = "decrepit spear"
+	desc = "A decrepit old spear. Aeon's grasp is upon it."
+	icon_state = "ancient_spear"
+	smeltresult = /obj/item/ingot/aalloy
+	force = 13
+	force_wielded = 22
+	max_integrity = 180
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+/obj/item/rogueweapon/spear/paalloy
+	name = "ancient spear"
+	desc = "A spear made of ancient alloys. Aeon's grasp has been lifted from it."
+	smeltresult = /obj/item/ingot/aaslag
+	icon_state = "ancient_spear"
+
 
 /obj/item/rogueweapon/spear/psyspear
 	name = "psydonian spear"
@@ -248,7 +310,7 @@
 	max_blade_int = 70
 	smeltresult = null
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_BASHCHOP
+	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 4
 	max_integrity = 60
@@ -256,7 +318,7 @@
 
 /obj/item/rogueweapon/spear/billhook
 	name = "billhook"
-	desc = "A neat hook. Used to pull riders from horses, as well as defend against said horses when used in a proper formation."
+	desc = "A neat hook. Used to pull riders from horses, as well as defend against said horses when used in a proper formation. The reinforcements along it's shaft grant it higher durability against attacks."
 	icon_state = "billhook"
 	smeltresult = /obj/item/ingot/steel
 	max_blade_int = 200
@@ -268,7 +330,7 @@
 	force = 12
 	force_wielded = 25
 	name = "improvised billhook"
-	desc = "Looks hastily made."
+	desc = "Looks hastily made, even a little flimsy."
 	icon_state = "billhook"
 	smeltresult = /obj/item/ingot/iron
 	max_blade_int = 100
@@ -292,11 +354,23 @@
 	max_blade_int = 50
 	smeltresult = null
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_BASHCHOP
+	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 4
 	max_integrity = 50
 	throwforce = 20
+
+// Copper spear, no point to adjust force just slightly better integrity
+/obj/item/rogueweapon/spear/stone/copper
+	name = "copper spear"
+	desc = "A simple spear with a copper tip. More durable than stone, but not much better."
+	pixel_y = 0
+	pixel_x = 0
+	max_integrity = 100
+	icon = 'icons/roguetown/weapons/32.dmi'
+	dam_icon = 'icons/effects/item_damage32.dmi'
+	icon_state = "cspear"
+	smeltresult = null
 
 /obj/item/rogueweapon/fishspear
 	force = 20
@@ -318,7 +392,7 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_BASHCHOP
+	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 4
 	thrown_bclass = BCLASS_STAB
@@ -515,7 +589,7 @@
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, /datum/intent/spear/cut/halberd, /datum/intent/sword/chop, SPEAR_BASH)
 	name = "halberd"
-	desc = "A steel halberd, the pinnicle of all cumulative melee weapon knowledge to some, but commonly seen in a guardsman's hands none-the-less."
+	desc = "A steel halberd, the pinnacle of all cumulative melee weapon knowledge to some, but commonly seen in a guardsman's hands none-the-less. The reinforcements along the shaft provide greater durability."
 	icon_state = "halberd"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
@@ -531,7 +605,7 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
-	blade_dulling = DULLING_BASHCHOP
+	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
 	wdefense = 6
 
@@ -548,7 +622,7 @@
 
 /obj/item/rogueweapon/halberd/holysee
 	name = "eclipsum halberd"
-	desc = "A mutual effort of Noc and Astrata's followers, this halberd was forged with both Silver and Gold alike. Blessed to hold strength and bring hope. Whether dae or nite."
+	desc = "A mutual effort of Noc and Astrata's followers, this halberd was forged with both Silver and Gold alike. Blessed to hold strength and bring hope. Whether dae or nite. The reinforced shaft provides greater durability."
 	icon_state = "gsspear"
 	max_integrity = 300
 	force = 20
@@ -558,21 +632,38 @@
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche, /datum/intent/axe/chop, SPEAR_BASH)
 	name = "bardiche"
-	desc = "A beautiful variant of the halberd."
+	desc = "A beautiful variant of the halberd. Its reinforced shaft provides it with greater durability against attacks."
 	icon_state = "bardiche"
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	max_blade_int = 200
 
+/obj/item/rogueweapon/halberd/bardiche/aalloy
+	name = "decrepit bardiche"
+	desc = "A decrepit bardiche. Aeon's grasp upon it."
+	max_integrity = 180
+	force = 12
+	force_wielded = 22
+	icon_state = "ancient_bardiche"
+	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+/obj/item/rogueweapon/halberd/bardiche/paalloy
+	name = "ancient bardiche"
+	desc = "A bardiche made of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "ancient_bardiche"
+	smeltresult = /obj/item/ingot/aaslag
+
+
 /obj/item/rogueweapon/halberd/bardiche/scythe
 	name = "summer scythe"
 	desc = "Summer's verdancy runs through the head of this scythe. All the more to sow."
 	icon_state = "dendorscythe"
-	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche/scythe, /datum/intent/axe/chop/scythe, SPEAR_BASH)
+	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche, /datum/intent/axe/chop/scythe, SPEAR_BASH)
 
 /obj/item/rogueweapon/halberd/psyhalberd
 	name = "Stigmata"
-	desc = "Christened in the Siege of Rockhill, these silver-tipped poleaxes - wielded by a lonesome contingent of Saint Eora's paladins - kept the horrors at bay for forty daes-and-nites. Long-since-recovered from the rubble, this relic now serve as a bulwark for the defenseless."
+	desc = "Christened in the Siege of Lirvas, these silver-tipped poleaxes - wielded by a lonesome contingent of Saint Eora's paladins - kept the horrors at bay for forty daes-and-nites. Long-since-recovered from the rubble, this relic now serve as a bulwark for the defenseless."
 	icon_state = "psyhalberd"
 
 /obj/item/rogueweapon/halberd/psyhalberd/ComponentInitialize()
@@ -583,7 +674,7 @@
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/spear/thrust/glaive, /datum/intent/spear/cut/glaive, /datum/intent/axe/chop/scythe, SPEAR_BASH)
 	name = "glaive"
-	desc = "A curved blade on a pole, specialised in durability and defence, but expensive to manufacture."
+	desc = "A curved blade on a pole, specialised in defence, but expensive to manufacture."
 	icon_state = "glaive"
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
@@ -624,12 +715,12 @@
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
 	max_blade_int = 300
-	blade_dulling = DULLING_BASHCHOP
+	blade_dulling = DULLING_SHAFT_REINFORCED
 	walking_stick = TRUE
 	wdefense = 5
 	wbalance = -1
 	sellprice = 60
-	intdamage_factor = 0.7
+	intdamage_factor = 1.2
 
 /obj/item/rogueweapon/eaglebeak/getonmobprop(tag)
 	. = ..()
@@ -645,7 +736,7 @@
 
 /obj/item/rogueweapon/eaglebeak/lucerne
 	name = "lucerne"
-	desc = "A polehammer of simple iron. Fracture bone and dissent with simple brute force."
+	desc = "A polehammer of simple iron. Fracture bone and dissent with simple brute force. The studding along its shaft makes for a slightly more reinforced weapon."
 	force = 12
 	force_wielded = 25
 	icon_state = "polehammer"
@@ -681,6 +772,8 @@
 	force_wielded = 30
 	possible_item_intents = list(/datum/intent/sword/chop,/datum/intent/sword/strike) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop, /datum/intent/sword/thrust/zwei, /datum/intent/sword/peel/big)
+	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
+	armor = list("blunt" = 50, "slash" = 50, "stab" = 50, "piercing" = 0)
 	name = "greatsword"
 	desc = "Might be able to chop anything in half!"
 	icon_state = "gsw"
@@ -698,6 +791,7 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
+	blade_dulling = DULLING_SHAFT_METAL
 	minstr = 9
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
@@ -715,7 +809,26 @@
 				return list("shrink" = 0.6,"sx" = 9,"sy" = -4,"nx" = -7,"ny" = 1,"wx" = -9,"wy" = 2,"ex" = 10,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 5,"sturn" = -190,"wturn" = -170,"eturn" = -10,"nflip" = 8,"sflip" = 8,"wflip" = 1,"eflip" = 0)
 			if("onbelt")
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+			if("altgrip")
+				return list("shrink" = 0.6,"sx" = 4,"sy" = 0,"nx" = -7,"ny" = 1,"wx" = -8,"wy" = 0,"ex" = 8,"ey" = -1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -135,"sturn" = -35,"wturn" = 45,"eturn" = 145,"nflip" = 8,"sflip" = 8,"wflip" = 1,"eflip" = 0)
 
+
+/obj/item/rogueweapon/greatsword/aalloy
+	name = "decrepit greatsword"
+	desc = "A decrepit old greatsword. You'd be lucky if it chopped anything in half. Aeon's grasp is upon its form."
+	force = 10
+	force_wielded = 25
+	max_integrity = 180
+	icon_state = "ancient_gsw"
+	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+
+/obj/item/rogueweapon/greatsword/paalloy
+	name = "ancient greatsword"
+	desc = "An ancient greatsword. Aeon's grasp lifted from its form."
+	icon_state = "ancient_gsw"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/rogueweapon/greatsword/zwei
 	name = "zweihander"
@@ -734,6 +847,8 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
 	max_blade_int = 300
+	force = 14
+	force_wielded = 35
 
 /obj/item/rogueweapon/greatsword/psygsword
 	name = "Apocrypha"
@@ -770,6 +885,7 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
+	blade_dulling = DULLING_SHAFT_METAL
 	minstr = 8
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
@@ -848,3 +964,69 @@
 				return list("shrink" = 0.8,"sx" = -9,"sy" = 5,"nx" = 9,"ny" = 5,"wx" = -4,"wy" = 4,"ex" = 4,"ey" = 4,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 37,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
 			if("wielded")
 				return list("shrink" = 0.8,"sx" = 8,"sy" = 0,"nx" = -1,"ny" = 0,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+
+/obj/item/rogueweapon/woodstaff/quarterstaff
+	name = "wooden quarterstaff"
+	desc = "A staff that makes any journey easier. Durable and swift, capable of bludgeoning stray volves and ruffians alike. Its length allow it to be used for a thrusting attack."
+	force = 15
+	force_wielded = 20
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
+	icon_state = "quarterstaff"
+	max_integrity = 300
+
+/obj/item/rogueweapon/woodstaff/quarterstaff/iron
+	name = "iron quarterstaff"
+	desc = "A quarterstaff reinforced with iron tips. It is capable of dealing more damage than a wooden one, and its blunt ends make for a decent blunt thrusting weapon. Can be used to bash down your opponents weapons."
+	force = 16
+	force_wielded = 22
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
+	icon_state = "quarterstaff_iron"
+	max_integrity = 300
+	blade_dulling = DULLING_SHAFT_REINFORCED
+	intdamage_factor = 1.2
+
+/obj/item/rogueweapon/woodstaff/quarterstaff/steel
+	name = "steel quarterstaff"
+	desc = "A quarterstaff reinforced with steel tips and steel rings, blurring the line between a light polehammer and a reinforced quarterstaff. Extremely durable, and more than capable of bludgeoning brigands to death. Durable enough to break your opponents weapons."
+	force = 18
+	force_wielded = 25
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
+	icon_state = "quarterstaff_steel"
+	max_integrity = 500
+	blade_dulling = DULLING_SHAFT_REINFORCED
+	intdamage_factor = 1.2
+
+/obj/item/rogueweapon/spear/partizan
+	name = "partizan"
+	desc = "A reinforced spear-like polearm of disputed origin: A studded shaft fitted with a steel spearhead with protrusions to aid in parrying. An extremely recent invention that is seeing increasingly more usage in the Western lands."
+	force = 8	//Not a possible one-handed weapon. Also too heavy!
+	force_wielded = 30
+	possible_item_intents = list(SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
+	gripped_intents = list(SPEAR_THRUST, PARTIZAN_REND, PARTIZAN_PEEL)
+	icon_state = "partizan"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	pixel_y = -16
+	pixel_x = -16
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	bigboy = TRUE
+	gripsprite = TRUE
+	wlength = WLENGTH_GREAT
+	w_class = WEIGHT_CLASS_BULKY
+	minstr = 10
+	max_blade_int = 200
+	wdefense = 6
+	thrown_bclass = BCLASS_STAB
+	throwforce = 12	//Not a throwing weapon. Too heavy!
+	max_integrity = 250
+	blade_dulling = DULLING_SHAFT_REINFORCED
+	intdamage_factor = 0.6
+
+/obj/item/rogueweapon/spear/partizan/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -6,"sy" = 2,"nx" = 8,"ny" = 2,"wx" = -4,"wy" = 2,"ex" = 1,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 300,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 100,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.6,"sx" = 4,"sy" = -2,"nx" = -3,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)

@@ -2,7 +2,7 @@
 /obj/effect/proc_holder/spell/invoked/knock
 	name = "Knock"
 	desc = "Force open adjacent doors, windows and most containers."
-	cost = 1
+	cost = 3
 	xp_gain = TRUE
 	school = "transmutation"
 	releasedrain = 60

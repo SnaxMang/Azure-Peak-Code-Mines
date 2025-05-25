@@ -46,6 +46,32 @@
 	bitesize = 1
 	dropshrink = 0.3
 
+/obj/item/reagent_containers/food/snacks/tallow/Initialize()
+	. = ..()
+	var/static/list/slapcraft_recipe_list = list(
+		/datum/crafting_recipe/roguetown/survival/soap,
+		/datum/crafting_recipe/roguetown/survival/candle,
+		/datum/crafting_recipe/roguetown/survival/candle/eora,
+		/datum/crafting_recipe/roguetown/survival/recurvepartial,
+		/datum/crafting_recipe/roguetown/survival/longbowpartial,
+		/datum/crafting_recipe/roguetown/leather/container/javelinbag,
+		/datum/crafting_recipe/roguetown/leather/fingerless_leather_gloves,
+		/datum/crafting_recipe/roguetown/leather/armor/heavy_leather_pants,
+		/datum/crafting_recipe/roguetown/leather/armor/heavy_leather_pants/shorts,
+		/datum/crafting_recipe/roguetown/leather/armor/helmet/advanced,
+		/datum/crafting_recipe/roguetown/leather/armor/heavy_leather_armor,
+		/datum/crafting_recipe/roguetown/leather/armor/heavy_leather_armor/coat,
+		/datum/crafting_recipe/roguetown/leather/armor/heavy_leather_armor/jacket,
+		/datum/crafting_recipe/roguetown/leather/hidebikini,
+		/datum/crafting_recipe/roguetown/leather/unique/otavanleatherpants,
+		/datum/crafting_recipe/roguetown/leather/unique/otavanboots,
+		)
+
+	AddElement(
+		/datum/element/slapcrafting,\
+		slapcraft_recipes = slapcraft_recipe_list,\
+		)
+
 // -------------- RAISINS -----------------
 /obj/item/reagent_containers/food/snacks/rogue/raisins
 	name = "raisins"
@@ -309,7 +335,7 @@
 			qdel(I)
 
 /*	............   Churning butter   ................ */
-/obj/item/reagent_containers/glass/bucket/wooden/attackby(obj/item/I, mob/living/user, params)
+/obj/item/reagent_containers/glass/bucket/attackby(obj/item/I, mob/living/user, params)
 	update_cooktime(user)
 	if(istype(I, /obj/item/kitchen/spoon))
 		if(!reagents.has_reagent(/datum/reagent/consumable/milk/salted, 15))
@@ -383,7 +409,7 @@
 
 
 /*	............   Making fresh cheese   ................ */
-/obj/item/reagent_containers/glass/bucket/wooden/attackby(obj/item/I, mob/living/user, params)
+/obj/item/reagent_containers/glass/bucket/attackby(obj/item/I, mob/living/user, params)
 	update_cooktime(user)
 	if(istype(I, /obj/item/natural/cloth))
 		if(reagents.has_reagent(/datum/reagent/consumable/milk/salted, 5))

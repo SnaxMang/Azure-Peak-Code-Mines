@@ -211,7 +211,7 @@
 	icon_state = "tablewood1"
 	},
 /obj/item/rope/chain,
-/obj/item/kitchen/fork/ironfork,
+/obj/item/kitchen/fork/iron,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/shelter/woods)
 "bD" = (
@@ -4639,7 +4639,7 @@
 /turf/open/water/swamp,
 /area/rogue/outdoors/woods)
 "Ls" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/shelter/woods)
 "Lt" = (
@@ -5837,7 +5837,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "Vw" = (
-/obj/item/reagent_containers/glass/bucket/wooden{
+/obj/item/reagent_containers/glass/bucket{
 	pixel_y = 15
 	},
 /obj/item/bath/soap,

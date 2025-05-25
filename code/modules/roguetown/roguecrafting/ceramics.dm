@@ -1,4 +1,5 @@
 /datum/crafting_recipe/roguetown/ceramics
+	abstract_type = /datum/crafting_recipe/roguetown/ceramics
 	skillcraft = /datum/skill/misc/ceramics
 
 /datum/crafting_recipe/roguetown/ceramics/clay

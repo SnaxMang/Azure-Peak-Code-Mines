@@ -60,3 +60,9 @@
 	name = "'Gilded Sallet' morphing elixir"
 	target_items = list(/obj/item/clothing/head/roguetown/helmet/sallet/visored)
 	result_item = /obj/item/clothing/head/roguetown/helmet/sallet/visored/gilded
+
+//Zydras donator item - bathmatron padded dress
+/obj/item/enchantingkit/zydras
+	name = "'Padded silky dress morphing elixir"
+	target_items = list(/obj/item/clothing/suit/roguetown/armor/armordress/alt)
+	result_item = /obj/item/clothing/suit/roguetown/armor/armordress/alt/zydrasdress

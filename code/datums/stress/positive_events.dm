@@ -206,3 +206,8 @@
 
 /datum/stressevent/noble_bowed_to/can_apply(mob/living/user)
 	return HAS_TRAIT(user, TRAIT_NOBLE)
+
+/datum/stressevent/perfume
+	stressadd = -1
+	desc = span_green("A soothing fragrance envelops me.")
+	timer = 10 MINUTES

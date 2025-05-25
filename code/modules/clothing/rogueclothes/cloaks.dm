@@ -834,6 +834,7 @@
 	item_state = "bear_cloak"
 
 /obj/item/clothing/cloak/darkcloak/bear/light
+	name = "light direbear cloak"
 	icon_state = "bbear_cloak"
 	item_state = "bbear_cloak"
 
@@ -860,7 +861,7 @@
 	icon_state = "leather_apron"
 	item_state = "leather_apron"
 	body_parts_covered = CHEST|GROIN
-	armor = list("blunt" = 25, "slash" = 5, "stab" = 15, "fire" = 24, "acid" = 0)
+	armor = list("blunt" = 0, "slash" = 5, "stab" = 15, "fire" = 24, "acid" = 0)
 	boobed = TRUE
 	salvage_result = /obj/item/natural/hide/cured
 
@@ -908,7 +909,7 @@
 	return TRUE*/
 
 /obj/item/clothing/cloak/raincloak
-	name = "cloak"
+	name = "rain cloak"
 	desc = "This one will help against the rainy weather."
 	color = null
 	icon_state = "rain_cloak"
@@ -1653,6 +1654,9 @@
 /obj/item/clothing/cloak/stabard/guardhood/Destroy()
 	GLOB.lordcolor -= src
 	return ..()
+
+/obj/item/clothing/cloak/stabard/guardhood/elder
+	name = "elder's hood"	
 
 /obj/item/clothing/cloak/hierophant
 	name = "hierophant's sash"

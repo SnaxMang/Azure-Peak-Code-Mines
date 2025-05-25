@@ -88,6 +88,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Nun Veil"
 	path = /obj/item/clothing/head/roguetown/nun
 
+/datum/loadout_item/saigaskull
+	name = "Saiga Skull"
+	path = /obj/item/clothing/head/roguetown/helmet/leather/saiga
+
+/datum/loadout_item/volfhelm
+	name = "Volf Helm"
+	path = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
+
 //CLOAKS
 /datum/loadout_item/tabard
 	name = "Tabard"
@@ -129,6 +137,9 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "light direbear cloak"
 	path = /obj/item/clothing/cloak/darkcloak/bear/light
 
+/datum/loadout_item/volfmantle
+	name = "Volf Mantle"
+	path = /obj/item/clothing/cloak/volfmantle
 
 //SHOES
 /datum/loadout_item/darkboots
@@ -167,6 +178,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Fur Anklets"
 	path = /obj/item/clothing/shoes/roguetown/boots/furlinedanklets
 
+/datum/loadout_item/exoticanklets
+	name = "Exotic Anklets"
+	path = /obj/item/clothing/shoes/roguetown/anklets
+
 //SHIRTS
 /datum/loadout_item/longcoat
 	name = "Longcoat"
@@ -200,6 +215,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Undervestments"
 	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
 
+/datum/loadout_item/exoticsilkbra
+	name = "Exotic Silk Bra"
+	path = /obj/item/clothing/suit/roguetown/shirt/exoticsilkbra
+
 /datum/loadout_item/bottomtunic
 	name = "Low-cut Tunic"
 	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut
@@ -231,6 +250,26 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/straplessdress/alt
 	name = "Strapless Dress, alt"
 	path = /obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/alt
+
+/datum/loadout_item/gown
+	name = "Spring Gown"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/gown
+
+/datum/loadout_item/gown/summer
+	name = "Summer Gown"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/gown/summergown
+
+/datum/loadout_item/gown/fall
+	name = "Fall Gown"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/gown/fallgown
+
+/datum/loadout_item/gown/winter
+	name = "Winter Gown"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/gown/wintergown
+
+/datum/loadout_item/gown/silkydress
+	name = "Silky Dress"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress
 
 /datum/loadout_item/leathervest
 	name = "Leather Vest"
@@ -294,6 +333,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Fingerless Gloves"
 	path = /obj/item/clothing/gloves/roguetown/fingerless
 
+/datum/loadout_item/exoticsilkbelt
+	name = "Exotic Silk Belt"
+	path = /obj/item/storage/belt/rogue/leather/exoticsilkbelt
+
 /datum/loadout_item/ragmask
 	name = "Rag Mask"
 	path = /obj/item/clothing/mask/rogue/ragmask
@@ -301,6 +344,18 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/halfmask
 	name = "Halfmask"
 	path = /obj/item/clothing/mask/rogue/shepherd
+
+/datum/loadout_item/dendormask
+	name = "Briar Mask"
+	path = /obj/item/clothing/head/roguetown/dendormask
+
+/datum/loadout_item/exoticsilkmask
+	name = "Exotic Silk Mask"
+	path = /obj/item/clothing/mask/rogue/exoticsilkmask
+
+/datum/loadout_item/duelmask
+	name = "Duelist's Mask"
+	path = /obj/item/clothing/mask/rogue/duelmask
 
 /datum/loadout_item/pipe
 	name = "Pipe"
@@ -329,10 +384,6 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/cloth_blindfold
 	name = "Cloth Blindfold"
 	path = /obj/item/clothing/mask/rogue/blindfold
-
-/datum/loadout_item/duelmask
-	name = "Duelist's Mask"
-	path = /obj/item/clothing/mask/rogue/duelmask
 
 /datum/loadout_item/psicross
 	name = "Psydonian Cross"
@@ -419,3 +470,8 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Donator Kit - Gilded Sallet"
 	path = /obj/item/enchantingkit/rebel
 	ckeywhitelist = list("rebel0")
+
+/datum/loadout_item/donator_zydras
+	name = "Donator Kit - Padded silky dress"
+	path = /obj/item/enchantingkit/zydras
+	ckeywhitelist = list("1ceres")

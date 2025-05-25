@@ -760,10 +760,12 @@ GLOBAL_VAR_INIT(mobids, 1)
  * For mobs this just shows the inventory
  */
 /mob/MouseDrop_T(atom/dropping, atom/user)
-	. = ..()
+	..()
 	if(ismob(dropping) && dropping != user)
+		var/mob/U = user
 		var/mob/M = dropping
-		M.show_inv(user)
+		if (!U.cmode || U.client.prefs.toggles & CMODE_STRIPPING)
+			M.show_inv(user)
 		return TRUE
 
 ///Is the mob muzzled (default false)

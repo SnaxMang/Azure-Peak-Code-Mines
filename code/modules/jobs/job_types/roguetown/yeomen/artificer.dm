@@ -41,7 +41,7 @@
 	head = /obj/item/clothing/head/roguetown/articap
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket
 	cloak = /obj/item/clothing/cloak/apron/waist/brown
-	gloves = /obj/item/clothing/gloves/roguetown/grenzelgloves/blacksmith
+	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith
 	pants = /obj/item/clothing/under/roguetown/trou/artipants
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/artificer
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
@@ -54,7 +54,13 @@
 						/obj/item/rogueweapon/hammer/steel = 1,
 						/obj/item/rogueweapon/handsaw = 1,
 						/obj/item/rogueweapon/chisel = 1,
-						/obj/item/lockpickring/mundane = 1)
+						/obj/item/lockpickring/mundane = 1,
+						/obj/item/recipe_book/blacksmithing = 1,
+						/obj/item/recipe_book/engineering = 1,
+						/obj/item/recipe_book/ceramics = 1,
+						/obj/item/recipe_book/builder = 1,
+						/obj/item/recipe_book/survival = 1,
+						)
 	H.change_stat("strength", 1)
 	H.change_stat("intelligence", 2)
 	H.change_stat("endurance", 1)

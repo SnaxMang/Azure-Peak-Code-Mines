@@ -1168,7 +1168,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!target.lying_attack_check(user))
 			return 0
 
-		var/armor_block = target.run_armor_check(selzone, "blunt", blade_dulling = user.used_intent.blade_class, damage = damage)
+		var/armor_block = target.run_armor_check(selzone, "blunt", armor_penetration = BLUNT_DEFAULT_PENFACTOR, blade_dulling = user.used_intent.blade_class, damage = damage)
 
 		target.lastattacker = user.real_name
 		if(target.mind)
@@ -1544,13 +1544,24 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(!affecting)
 		return
-
+	if(istype(user.used_intent, /datum/intent/effect) && selzone)
+		var/datum/intent/effect/int = user.used_intent
+		var/do_effect = FALSE
+		if(length(int.target_parts))
+			if(selzone in int.target_parts)
+				do_effect = TRUE
+		else
+			do_effect = TRUE
+		if(do_effect)
+			H.apply_status_effect(int.intent_effect)
 	hit_area = affecting.name
 	var/def_zone = affecting.body_zone
 
 	var/pen = I.armor_penetration
 	if(user.used_intent?.penfactor)
 		pen = I.armor_penetration + user.used_intent.penfactor
+	if(I.d_type == "blunt")
+		pen = BLUNT_DEFAULT_PENFACTOR
 
 //	var/armor_block = H.run_armor_check(affecting, "I.d_type", span_notice("My armor has protected my [hit_area]!"), span_warning("My armor has softened a hit to my [hit_area]!"),pen)
 

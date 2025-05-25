@@ -867,3 +867,18 @@
 			villain_text += span_userdanger("LUNATIC!")
 
 	return villain_text
+
+/proc/get_blade_dulling_text(obj/item/rogueweapon/I, verbose = FALSE)
+	switch(I.blade_dulling)
+		if(DULLING_SHAFT_WOOD)
+			return "[verbose ? "Wooden shaft" : "(W. shaft)"]"
+		if(DULLING_SHAFT_REINFORCED)
+			return "[verbose ? "Reinforced shaft" : "(R. shaft)"]"
+		if(DULLING_SHAFT_METAL)
+			return "[verbose ? "Metal shaft" : "(M. shaft)"]"
+		if(DULLING_SHAFT_GRAND)
+			return "[verbose ? "Grand shaft" : "(G. shaft)"]"
+		if(DULLING_SHAFT_CONJURED)
+			return "[verbose ? "Conjured shaft" : "(C. shaft)"]"
+		else
+			return null

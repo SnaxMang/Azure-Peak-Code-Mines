@@ -72,7 +72,7 @@
 	can_saddle = TRUE
 	aggressive = 1
 	remains_type = /obj/effect/decal/remains/saiga
-	rot_type = null
+	
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigakid
 	name = "saiga calf"

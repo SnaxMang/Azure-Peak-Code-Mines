@@ -43,6 +43,10 @@
 						/obj/item/flint = 1,
 						/obj/item/rogueweapon/huntingknife = 1,
 						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/rogueweapon/handsaw = 1,
+						/obj/item/dye_brush = 1,
+						/obj/item/recipe_book/builder = 1,
+						/obj/item/recipe_book/survival = 1,
 						)
 	H.change_stat("strength", 1)
 	H.change_stat("endurance", 2)

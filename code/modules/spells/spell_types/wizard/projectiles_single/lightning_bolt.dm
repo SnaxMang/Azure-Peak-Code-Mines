@@ -21,7 +21,7 @@
 	spell_tier = 2
 	invocation = "Fulmen!"
 	invocation_type = "shout"
-	cost = 2
+	cost = 6
 	xp_gain = TRUE
 
 /obj/projectile/magic/lightning

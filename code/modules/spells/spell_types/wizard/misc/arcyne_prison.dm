@@ -10,7 +10,7 @@
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_HIGH
 	wall_type = /obj/structure/forcefield_weak/arcyne_prison
-	cost = 2
+	cost = 6
 
 /obj/effect/proc_holder/spell/invoked/forcewall/arcyne_prison/cast(list/targets,mob/user = usr)
 	var/turf/target = get_turf(targets[1])

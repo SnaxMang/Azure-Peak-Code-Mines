@@ -1,7 +1,8 @@
+// I want to refactor Stoneskin to give ablative layer of armor but in the meantime Crit Res is too strong so I'll just nerf it and lower cost
 /obj/effect/proc_holder/spell/invoked/stoneskin
 	name = "Stoneskin"
 	overlay_state = "stoneskin"
-	desc = "Harden the target's skin like stone. (+3 Constitution, -2 Speed, Critical Resistance)"
+	desc = "Harden the target's skin like stone. (+5 Constitution)"
 	cost = 2
 	xp_gain = TRUE
 	releasedrain = 60
@@ -44,14 +45,14 @@
 #define STONESKIN_FILTER "stoneskin_glow"
 /atom/movable/screen/alert/status_effect/buff/stoneskin
 	name = "Stoneskin"
-	desc = "My skin is hardened like stone. (+3 Constitution, -2 Speed, Critical Resistance)"
+	desc = "My skin is hardened like stone. (+5 Constitution)"
 	icon_state = "buff"
 
 /datum/status_effect/buff/stoneskin
 	var/outline_colour ="#808080" // Granite Grey
 	id = "stoneskin"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/stoneskin
-	effectedstats = list("constitution" = 3, "speed" = -2)
+	effectedstats = list("constitution" = 5)
 	var/hadcritres = FALSE
 	duration = 1 MINUTES
 
@@ -64,16 +65,10 @@
 	if (!filter)
 		owner.add_filter(STONESKIN_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
 	to_chat(owner, span_warning("My skin hardens like stone."))
-	if(!HAS_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE))
-		ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, MAGIC_TRAIT)
-	else
-		hadcritres = TRUE
 
 /datum/status_effect/buff/stoneskin/on_remove()
 	. = ..()
 	to_chat(owner, span_warning("The stone shell cracks away."))
 	owner.remove_filter(STONESKIN_FILTER)
-	if(!hadcritres)
-		REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, MAGIC_TRAIT)
 
 #undef STONESKIN_FILTER

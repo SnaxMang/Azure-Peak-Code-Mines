@@ -79,6 +79,13 @@
 	icon_state = "goblet"
 	layer = ABOVE_MOB_LAYER
 
+/obj/structure/fluff/walldeco/flower
+	name = "sign"
+	desc = ""
+	icon = 'icons/roguetown/misc/tallstructure.dmi'
+	icon_state = "flower"
+	layer = ABOVE_MOB_LAYER
+
 /obj/structure/fluff/walldeco/barbersign
 	name = "sign"
 	desc = "The iconic swirl of the barber surgeon."
@@ -138,6 +145,9 @@
 	icon_state = "walldec1"
 	mouse_opacity = 0
 
+/obj/structure/fluff/walldeco/stone/bronze
+	color = "#ff9c1a"
+	
 /obj/structure/fluff/walldeco/church/line
 	name = ""
 	desc = ""
@@ -185,7 +195,7 @@
 	icon = 'icons/roguetown/misc/tallstructure.dmi'
 	can_buckle = 1
 	buckle_lying = 0
-	breakoutextra = 10 MINUTES
+	breakoutextra = 5 MINUTES
 	buckleverb = "tie"
 
 /obj/structure/fluff/walldeco/chains/Initialize()

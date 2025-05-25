@@ -31,7 +31,6 @@
 	canparry = TRUE
 	d_intent = INTENT_PARRY
 	defprob = 50
-	defdrain = 20
 	speak_emote = list("grunts")
 	speak = list("WAAAGH!", "KRUSH AND KILL!", "Never should have come here!", "Slaughter them all!", "Kill everything!", "Hahaha! Die!")
 	loot = list(/obj/effect/mob_spawn/human/orc/corpse/savageorc,

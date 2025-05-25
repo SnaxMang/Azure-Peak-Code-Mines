@@ -1,12 +1,14 @@
 /datum/anvil_recipe
+	abstract_type = /datum/anvil_recipe
 	var/name
+	var/category = "Misc"
 	var/list/additional_items = list()
 	var/material_quality = 0 // Quality of the bar(s) used. Accumulated per added ingot.
 	var/num_of_materials = 1 // Total number of materials used. Quality divided among them.
 	var/skill_quality = 0 // Accumulated per hit based on calculations, will decide final result.
 	var/appro_skill = /datum/skill/craft/blacksmithing
-	var/req_bar
-	var/created_item
+	var/atom/req_bar
+	var/atom/created_item
 	var/createditem_num = 1 // How many units to make.
 	var/craftdiff = 0
 	var/needed_item
@@ -151,3 +153,91 @@
 	if(istype(I, /obj/item/lockpick))
 		var/obj/item/lockpick/L = I
 		L.picklvl = modifier
+
+/datum/anvil_recipe/proc/show_menu(mob/user)
+	user << browse(generate_html(user),"window=new_recipe;size=500x810")
+
+/datum/anvil_recipe/proc/generate_html(mob/user)
+	var/client/client = user
+	if(!istype(client))
+		client = user.client
+	user << browse_rsc('html/book.png')
+	var/html = {"
+		<!DOCTYPE html>
+		<html lang="en">
+		<meta charset='UTF-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Charm:wght@700&display=swap');
+			body {
+				font-family: "Charm", cursive;
+				font-size: 1em;
+				text-align: center;
+				margin: 20px;
+				background-color: #f4efe6;
+				color: #3e2723;
+				background-color: rgb(31, 20, 24);
+				background:
+					url('book.png');
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-size: 100% 100%;
+
+			}
+			h1 {
+				text-align: center;
+				font-size: 1.5em;
+				border-bottom: 2px solid #3e2723;
+				padding-bottom: 10px;
+				margin-bottom: 20px;
+			}
+			.icon {
+				width: 96px;
+				height: 96px;
+				vertical-align: middle;
+				margin-right: 10px;
+			}
+		</style>
+		<body>
+		  <div>
+		    <h1>[name]</h1>
+		"}
+
+	if(craftdiff > 0)
+		html += "For those of [SSskills.level_names_plain[craftdiff]] skills<br>"
+	else
+		html += "Suitable for all skills<br>"
+
+	if(appro_skill == /datum/skill/craft/engineering) // SNOWFLAKE!!!
+		html += "in Engineering<br>"
+
+	html += {"<div>
+		      <strong>Requirements</strong>
+			  <br>"}
+
+	html += "[icon2html(new req_bar, user)] Start with [initial(req_bar.name)] on an anvil.<br>"
+	html += "Hammer the material.<br>"
+	for(var/atom/path as anything in additional_items)
+		html += "[icon2html(new path, user)] then add [initial(path.name)]<br>"
+		html += "Hammer the material.<br>"
+	html += "<br>"
+
+	html += {"
+		</div>
+		<div>
+		"}
+
+	if(createditem_num > 1)
+		html += "<strong class=class='scroll'>and then you get</strong> <br> [createditem_num] [icon2html(new created_item, user)] <br> [initial(created_item.name)]<br>"
+	else
+		html += "<strong class=class='scroll'>and then you get</strong> <br> [icon2html(new created_item, user)] <br> [initial(created_item.name)]<br>"
+
+	html += {"
+		</div>
+		</div>
+	</body>
+	</html>
+	"}
+	return html

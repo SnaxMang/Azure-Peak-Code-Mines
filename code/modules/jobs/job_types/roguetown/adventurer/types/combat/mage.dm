@@ -34,6 +34,7 @@
 				/obj/item/flashlight/flare/torch = 1,
 				/obj/item/spellbook_unfinished/pre_arcyne = 1,
 				/obj/item/roguegem/amethyst = 1,
+				/obj/item/recipe_book/survival = 1
 				)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
@@ -43,36 +44,40 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 			if(H.age == AGE_OLD)
 				H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
-				H.mind.adjust_spellpoints(2)
+				H.mind.adjust_spellpoints(6)
 			H.change_stat("intelligence", 3)
 			H.change_stat("perception", 2)
 			H.change_stat("speed", 1)
-			H.mind.adjust_spellpoints(5)
+			H.mind.adjust_spellpoints(21)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
+			switch(H.patron?.type)
+				if(/datum/patron/inhumen/zizo)
+					H.cmode_music = 'sound/music/combat_cult.ogg'
 		if("Spellsinger")
 			to_chat(H, span_warning("You belong to a school of bards renowned for their study of both the arcane and the arts."))
-			head = /obj/item/clothing/head/roguetown/bucklehat
-			mask = /obj/item/clothing/mask/rogue/ragmask/black
+			head = /obj/item/clothing/head/roguetown/spellcasterhat
 			shoes = /obj/item/clothing/shoes/roguetown/boots
-			pants = /obj/item/clothing/under/roguetown/tights/purple
+			pants = /obj/item/clothing/under/roguetown/trou/leather
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/councillor
-			gloves = /obj/item/clothing/gloves/roguetown/fingerless
+			gloves = /obj/item/clothing/gloves/roguetown/angle
 			belt = /obj/item/storage/belt/rogue/leather
-			armor = /obj/item/clothing/suit/roguetown/shirt/tunic/black
-			cloak = /obj/item/clothing/cloak/raincloak/purple
+			neck = /obj/item/clothing/neck/roguetown/gorget/steel
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/spellcasterrobe
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			beltr = /obj/item/rogueweapon/sword/sabre
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/conjure_weapon)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
@@ -81,15 +86,19 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 			H.change_stat("intelligence", 2)
 			H.change_stat("endurance", 1)
 			H.change_stat("speed", 2)
-			H.mind.adjust_spellpoints(3)
+			H.mind.adjust_spellpoints(12)
 			H.cmode_music = 'sound/music/combat_bard.ogg'
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
+			switch(H.patron?.type)
+				if(/datum/patron/inhumen/zizo)
+					H.cmode_music = 'sound/music/combat_cult.ogg'
 			var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
 			var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)

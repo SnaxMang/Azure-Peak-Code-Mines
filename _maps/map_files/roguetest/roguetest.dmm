@@ -316,7 +316,7 @@
 /area/rogue/indoors)
 "ju" = (
 /obj/structure/roguemachine/atm,
-/obj/structure/roguemachine/merchantvend,
+/obj/structure/roguemachine/goldface,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "jM" = (
@@ -624,32 +624,32 @@
 "wF" = (
 /obj/structure/rack/rogue/shelf/biggest,
 /obj/effect/decal/cleanable/dirt/cobweb,
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = 7;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = 7
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = 7;
 	pixel_y = -5
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/glass/alchemical,
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical,
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_y = -5
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = -7;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = -7
 	},
-/obj/item/reagent_containers/glass/alchemical{
+/obj/item/reagent_containers/glass/bottle/alchemical{
 	pixel_x = -7;
 	pixel_y = -5
 	},
@@ -752,7 +752,7 @@
 /area/rogue/indoors)
 "Do" = (
 /obj/structure/table/cooling,
-/obj/item/mortar,
+/obj/item/reagent_containers/glass/mortar,
 /obj/item/pestle,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors)
@@ -875,7 +875,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors)
 "KW" = (
-/obj/item/reagent_containers/glass/bucket/wooden{
+/obj/item/reagent_containers/glass/bucket{
 	pixel_y = 5;
 	pixel_x = 15
 	},
@@ -915,16 +915,16 @@
 	},
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /obj/structure/closet/crate/roguecloset,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/spoon/ironspoon,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/spoon/iron,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors)
 "LF" = (
@@ -1029,7 +1029,7 @@
 /obj/item/natural/cloth,
 /obj/item/natural/cloth,
 /obj/item/natural/cloth,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors)
 "Og" = (

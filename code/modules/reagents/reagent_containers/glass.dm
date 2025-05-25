@@ -2,6 +2,7 @@
 /obj/item/reagent_containers/glass
 	name = "glass"
 	amount_per_transfer_from_this = 10
+	var/amount_per_gulp = 5 // We need a separate amount for drinking
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50)
 	volume = 50
 	reagent_flags = OPENCONTAINER|REFILLABLE
@@ -74,7 +75,7 @@
 					if (prob(25))
 						to_chat(human_user, span_red("I've got better manners than this..."))
 			to_chat(user, span_notice("I swallow a gulp of [src]."))
-		addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to), M, min(amount_per_transfer_from_this,5), TRUE, TRUE, FALSE, user, FALSE, INGEST), 5)
+		addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to), M, amount_per_gulp, TRUE, TRUE, FALSE, user, FALSE, INGEST), 5)
 		playsound(M.loc,pick(drinksounds), 100, TRUE)
 		return
 
@@ -197,15 +198,21 @@
 	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
 	icon_state = "woodbucket"
 	item_state = "woodbucket"
+	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/foley/dropsound/wooden_drop.ogg'
 	max_integrity = 300
 	w_class = WEIGHT_CLASS_BULKY
+	force = 5
+	throwforce = 10
 	amount_per_transfer_from_this = 9
 	possible_transfer_amounts = list(9)
-	volume = 70
+	volume = 99
 	flags_inv = HIDEHAIR
 	reagent_flags = OPENCONTAINER
 	obj_flags = CAN_BE_HIT
 	gripped_intents = list(INTENT_POUR)
+	dropshrink = 0.8
+	slot_flags = null
 	resistance_flags = NONE
 	armor = list("blunt" = 25, "slash" = 20, "stab" = 15, "piercing" = 0, "fire" = 75, "acid" = 50) //Weak melee protection, because you can wear it on your head
 	slot_equipment_priority = list( \
@@ -219,26 +226,11 @@
 		SLOT_GENERC_DEXTROUS_STORAGE
 	)
 
-/obj/item/reagent_containers/glass/bucket/wooden
-	name = "bucket"
-	icon_state = "woodbucket"
-	item_state = "woodbucket"
-	icon = 'icons/roguetown/items/misc.dmi'
-	force = 5
-	throwforce = 10
-	amount_per_transfer_from_this = 9
-	volume = 99
-	armor = list("blunt" = 25, "slash" = 20, "stab" = 15, "piercing" = 0, "fire" = 0, "acid" = 50)
-	resistance_flags = FLAMMABLE
-	drop_sound = 'sound/foley/dropsound/wooden_drop.ogg'
-	dropshrink = 0.8
-	slot_flags = null
-
-/obj/item/reagent_containers/glass/bucket/wooden/alter
+/obj/item/reagent_containers/glass/bucket/alter
 	icon = 'modular/Neu_Food/icons/cooking.dmi'
 
 /* using the version in Neu_Food instead
-/obj/item/reagent_containers/glass/bucket/wooden/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/glass/bucket/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/natural/cloth))
 		var/obj/item/natural/cloth/T = I
 		if(T.wet && !T.return_blood_DNA())
@@ -256,14 +248,14 @@
 		return
 	..()
 */
-/obj/item/reagent_containers/glass/bucket/wooden/getonmobprop(tag)
+/obj/item/reagent_containers/glass/bucket/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
 			if("gen")
 				return list("shrink" = 0.5,"sx" = -5,"sy" = -8,"nx" = 7,"ny" = -9,"wx" = -1,"wy" = -8,"ex" = -1,"ey" = -8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0)
 
-/obj/item/reagent_containers/glass/bucket/wooden/update_icon(dont_fill=FALSE)
+/obj/item/reagent_containers/glass/bucket/update_icon(dont_fill=FALSE)
 	if(dont_fill)
 		testing("dontfull")
 		return ..()

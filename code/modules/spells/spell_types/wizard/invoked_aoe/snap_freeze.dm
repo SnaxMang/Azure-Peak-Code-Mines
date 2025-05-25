@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/snap_freeze // to do: get scroll icon
 	name = "Snap Freeze"
 	desc = "Freeze the air in a small area in an instant, slowing and mildly damaging those affected."
-	cost = 2
+	cost = 6
 	xp_gain = TRUE
 	releasedrain = 30
 	overlay_state = "snap_freeze" // Placeholder. 1 frame of shield sparkles

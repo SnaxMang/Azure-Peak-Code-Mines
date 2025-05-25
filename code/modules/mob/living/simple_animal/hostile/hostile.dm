@@ -370,10 +370,13 @@
 
 
 /mob/living/simple_animal/hostile/proc/AttackingTarget()
+	if(SEND_SIGNAL(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, target) & COMPONENT_HOSTILE_NO_PREATTACK)
+		return FALSE //but more importantly return before attack_animal called
 	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
 	in_melee = TRUE
 
-	return target.attack_animal(src)
+	if(!QDELETED(target))
+		return target.attack_animal(src)
 
 /mob/living/simple_animal/hostile/proc/Aggro()
 	vision_range = aggro_vision_range

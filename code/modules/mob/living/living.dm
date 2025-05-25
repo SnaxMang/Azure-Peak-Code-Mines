@@ -326,8 +326,8 @@
 			else //we have a short/medium weapon, so allow hitting legs
 				acceptable = list(BODY_ZONE_HEAD, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_STOMACH, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_NECK, BODY_ZONE_PRECISE_R_EYE,BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_EARS, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_SKULL, BODY_ZONE_PRECISE_NOSE, BODY_ZONE_PRECISE_MOUTH)
 		else
-			if(!CZ) //we are punching, no legs
-				acceptable = list(BODY_ZONE_HEAD, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_STOMACH, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_NECK, BODY_ZONE_PRECISE_R_EYE,BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_EARS, BODY_ZONE_PRECISE_SKULL, BODY_ZONE_PRECISE_NOSE, BODY_ZONE_PRECISE_MOUTH)
+			if(!CZ)
+				acceptable = list(BODY_ZONE_HEAD, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_STOMACH, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_NECK, BODY_ZONE_PRECISE_R_EYE,BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_EARS, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_SKULL, BODY_ZONE_PRECISE_NOSE, BODY_ZONE_PRECISE_MOUTH)
 				if(HAS_TRAIT(L, TRAIT_CIVILIZEDBARBARIAN))
 					acceptable = list(BODY_ZONE_HEAD, BODY_ZONE_R_ARM, BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_STOMACH, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_NECK, BODY_ZONE_PRECISE_R_EYE,BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_EARS, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_SKULL, BODY_ZONE_PRECISE_NOSE, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)
 	else if(!(L.mobility_flags & MOBILITY_STAND) && (mobility_flags & MOBILITY_STAND)) //we are prone, victim is standing
@@ -393,6 +393,8 @@
 			M.LAssailant = null
 		else
 			M.LAssailant = usr
+
+		M.update_damage_hud()
 
 		// Makes it so people who recently broke out of grabs cannot be grabbed again
 		if(TIMER_COOLDOWN_RUNNING(M, "broke_free") && M.stat == CONSCIOUS)
@@ -1029,6 +1031,7 @@
 
 /mob/living/proc/end_submit()
 	surrendering = 0
+	update_mobility()
 
 
 /mob/proc/stop_attack(message = FALSE)
@@ -1052,7 +1055,7 @@
 	update_charging_movespeed()
 
 /mob/proc/resist_grab(moving_resist)
-	return 1 //returning 0 means we successfully broke free
+	return TRUE //returning 0 means we successfully broke free
 
 /mob/living/resist_grab(moving_resist)
 	. = TRUE
@@ -1106,19 +1109,24 @@
 
 /mob/living/carbon/human/resist_grab(moving_resist)
 	var/mob/living/L = pulledby
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(HAS_TRAIT(H, TRAIT_NOSEGRAB) && !HAS_TRAIT(src, TRAIT_MISSING_NOSE))
-			var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
-			for(var/obj/item/grabbing/G in grabbedby)
-				if(G.limb_grabbed == head)
-					if(G.grabbee == pulledby)
-						if(G.sublimb_grabbed == BODY_ZONE_PRECISE_NOSE)
-							visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
-											span_warning("I struggle against [pulledby]'s grip!"), null, null, pulledby)
-							playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
-							to_chat(pulledby, span_warning("[src] struggles against my grip!"))
-							return FALSE
+	if(!ishuman(L))
+		return ..()
+	var/mob/living/carbon/human/H = L
+	for(var/obj/item/grabbing/G in grabbedby)
+		var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
+		if(G.limb_grabbed == head)
+			if(G.grabbee != pulledby)
+				continue
+			if(!HAS_TRAIT(H, TRAIT_NOSEGRAB) && HAS_TRAIT(src, TRAIT_MISSING_NOSE))
+				return ..()
+			if(G.sublimb_grabbed != BODY_ZONE_PRECISE_NOSE)
+				continue
+			visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
+							span_warning("I struggle against [pulledby]'s grip!"), null, null, pulledby)
+			playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
+			to_chat(pulledby, span_warning("[src] struggles against my grip!"))
+			return FALSE
+
 	return ..()
 
 /mob/living/proc/resist_buckle()
@@ -1795,9 +1803,9 @@
 				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
 					emote("huh")
 					to_chat(M, span_danger("[src] sees me! I'm found!"))
-					M.update_sneak_invis()
 					M.mob_timers[MT_INVISIBILITY] = world.time
 					M.mob_timers[MT_FOUNDSNEAK] = world.time
+					M.update_sneak_invis(reset = TRUE)
 			else
 				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
 					if(M.client?.prefs.showrolls)
@@ -1817,6 +1825,14 @@
 		for(var/obj/O in view(7,src))
 			if(istype(O, /obj/item/restraints/legcuffs/beartrap))
 				var/obj/item/restraints/legcuffs/beartrap/M = O
+				if(isturf(M.loc) && M.armed)
+					found_ping(get_turf(M), client, "trap")
+			if(istype(O, /obj/structure/trap,))
+				var/obj/structure/trap/M = O
+				if(isturf(M.loc) && M.armed)
+					found_ping(get_turf(M), client, "trap")
+			if(istype(O, /obj/structure/closet/crate/chest/trapped,))
+				var/obj/structure/trap/M = O
 				if(isturf(M.loc) && M.armed)
 					found_ping(get_turf(M), client, "trap")
 			if(istype(O, /obj/structure/flora/roguegrass/maneater/real))

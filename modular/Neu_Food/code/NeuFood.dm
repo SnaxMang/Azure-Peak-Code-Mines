@@ -5,9 +5,6 @@
  *						*
  * * * * * * * * * * * **/
 
-// CONTAINMENT ZONE - marked for death
-/obj/item/reagent_containers/powder/flour/salt // salt being subtype of flour is terrible for so many reasons repath to  /obj/item/reagent_containers/powder/salt
-
 
 /*	........   Templates / Base items   ................ */
 /obj/item/reagent_containers // added vars used in neu cooking, might be used for other things too in the future. How it works is in each items attackby code.
@@ -97,23 +94,56 @@
 	force = 0
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/kitchen/spoon/ironspoon
+/obj/item/kitchen/spoon/aalloy
+	name = "decrepit spoon"
+	icon_state = "aspoon"
+
+/obj/item/kitchen/spoon/iron
 	name = "iron spoon"
-	desc = "Traditional utensil for shoveling soup into your mouth, now made with iron for that metallic taste!"
 	icon_state = "spoon_iron"
 
+/obj/item/kitchen/spoon/tin
+	name = "pewter spoon"
+	icon_state = "spoon_iron"
+
+/obj/item/kitchen/spoon/gold
+	name = "gold spoon"
+	icon_state = "spoon_gold"
+	sellprice = 10
+
+/obj/item/kitchen/spoon/silver
+	name = "silver spoon"
+	icon_state = "spoon_silver"
+	sellprice = 20
+
 /obj/item/kitchen/fork
-	name = "wooden fork"
-	desc = "Traditional utensil for stabbing your food in order to shove it into your mouth."
+	name = "wooden fork"	
 	icon = 'modular/Neu_Food/icons/cooking.dmi'
 	icon_state = "fork_wooden"
 	force = 0
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/kitchen/fork/ironfork
+/obj/item/kitchen/fork/aalloy
+	name = "decrepit fork"
+	icon_state = "afork"
+
+/obj/item/kitchen/fork/iron
 	name = "iron fork"
-	desc = "Traditional utensil for stabbing your food, now made with iron for extra stabbiness!"
 	icon_state = "fork_iron"
+
+/obj/item/kitchen/fork/tin
+	name = "pewter fork"
+	icon_state = "fork_iron"
+
+/obj/item/kitchen/fork/gold
+	name = "gold fork"
+	icon_state = "fork_gold"
+	sellprice = 10
+
+/obj/item/kitchen/fork/silver
+	name = "silver fork"
+	icon_state = "fork_silver"
+	sellprice = 20
 
 /obj/item/kitchen/rollingpin
 	icon = 'modular/Neu_Food/icons/cooking.dmi'
@@ -153,8 +183,23 @@
 	fillsounds = list('sound/items/fillcup.ogg')
 	var/in_use // so you can't spam eating with spoon
 
+/obj/item/reagent_containers/glass/bowl/aalloy
+	name = "decrepit bowl"
+	icon_state = "abowl"
+
 /obj/item/reagent_containers/glass/bowl/iron
+	name = "iron bowl"
 	icon_state = "bowl_iron"
+
+/obj/item/reagent_containers/glass/bowl/gold
+	name = "gold bowl"
+	icon_state = "bowl_gold"
+	sellprice = 40
+
+/obj/item/reagent_containers/glass/bowl/silver
+	name = "silver bowl"
+	icon_state = "bowl_silver"
+	sellprice = 60
 
 /obj/item/reagent_containers/glass/bowl/update_icon()
 	cut_overlays()
@@ -231,6 +276,7 @@
 
 /obj/item/reagent_containers/peppermill // new with some animated art
 	name = "pepper mill"
+	desc = "Let the lord have his snack; Twist the head until it cracks."
 	icon = 'modular/Neu_Food/icons/cooking.dmi'
 	icon_state = "peppermill"
 	layer = CLOSED_BLASTDOOR_LAYER // obj layer + a little, small obj layering above convenient
@@ -252,7 +298,7 @@
 		/obj/item/reagent_containers/food/snacks/rogue/wienercabbage = "wienercabbage_platter",
 		/obj/item/reagent_containers/food/snacks/rogue/wienerpotato = "wienerpotato_platter",
 		/obj/item/reagent_containers/food/snacks/rogue/wienerpotatonions = "wpotonion_platter",
-		 )
+		)
 
 
 /obj/item/cooking/platter
@@ -269,20 +315,50 @@
 	grid_height = 32
 	var/datum/platter_sprites/sprite_choice = new /datum/platter_sprites/
 
+/obj/item/cooking/platter/aalloy
+	name = "decrepit platter"
+	desc = "A decrepit old platter. Aeon's grasp is upon its form."
+	icon_state = "aplatter"
+
+/obj/item/cooking/platter/copper
+	name = "copper platter"
+	desc = "A platter made from a sheet of copper. Known to impart a metallic taste when combined with acidic food."
+	icon_state = "platter_copper"
+	resistance_flags = FIRE_PROOF
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
+	sellprice = 5
 
 /obj/item/cooking/platter/pewter
 	name = "pewter platter"
-	desc = "Made from an alloy of tin and mercury. Rolls off the tongue quite nicely."
-	icon_state = "p_platter"
+	desc = "A tin plate that contains just a tinge of lead."
+	icon_state = "platter_tin"
+	resistance_flags = FIRE_PROOF
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
 	sellprice = 10
 
 /obj/item/cooking/platter/silver
 	name = "silver platter"
-	desc = "Made from polished silver. Fancy!"
-	icon_state = "s_platter"
+	desc = "A fancy silver plate often used by the nobility as a symbol of class."
+	icon_state = "platter_silver"
 	sellprice = 30
+	smeltresult = /obj/item/ingot/silver
 
+/obj/item/cooking/platter/gold
+	name = "gold platter"
+	desc = "A fancy gold plate often used by the nobility as a symbol of class."
+	icon_state = "platter_gold"
+	resistance_flags = FIRE_PROOF
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
+	sellprice = 25
+	smeltresult = /obj/item/ingot/gold
 
+/obj/item/tablecloth/silk
+	name = "silk tablecloth"
+	desc = "A fancy silk tablecloth, laid out for diplomatic feasts and other important events."
+	icon = 'modular/Neu_Food/icons/cooking.dmi'
+	icon_state = "tablecloth_silk"
+	sellprice = 40
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/book/rogue/yeoldecookingmanual // new book with some tips to learn
 	name = "Ye olde ways of cookinge"
@@ -298,9 +374,9 @@
  *								*
  * * * * * * * * * * * * * * * 	*/
 
-// -------------- POWDER (flour) -----------------
+// -------------- Flour -----------------
 /obj/item/reagent_containers/powder/flour
-	name = "powder"
+	name = "flour"
 	desc = "With this ambition, we build an empire."
 	gender = PLURAL
 	icon_state = "flour"
@@ -330,7 +406,7 @@
 	playsound(get_turf(user), 'modular/Neu_Food/sound/splishy.ogg', 100, TRUE, -1)
 	if(do_after(user, short_cooktime, target = src))
 		add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-		name = "wet powder"
+		name = "wet flour"
 		desc = "Destined for greatness, at your hands."
 		R.reagents.remove_reagent(/datum/reagent/water, 10)
 		water_added = TRUE
@@ -364,11 +440,9 @@
 
 /* -------------- RICE ----------------- */
 /obj/item/reagent_containers/food/snacks/grown/rice
-	desc = ""
-	gender = PLURAL
 	list_reagents = list(/datum/reagent/floure = 1)
 	volume = 1
-	sellprice = 0
+	sellprice = 3
 	var/water_added
 
 /obj/item/reagent_containers/food/snacks/grown/rice/attackby(obj/item/I, mob/living/user, params)

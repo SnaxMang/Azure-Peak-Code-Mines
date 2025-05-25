@@ -365,6 +365,42 @@
 	return covered_parts
 
 
+//Takes a user-targeted zone and returns a readable version of it.
+/proc/bodyzone2readablezone(zone)
+	switch(zone)
+		if(BODY_ZONE_HEAD)
+			return READABLE_ZONE_HEAD
+		if(BODY_ZONE_PRECISE_EARS)
+			return READABLE_ZONE_HEAD
+		if(BODY_ZONE_PRECISE_L_EYE, BODY_ZONE_PRECISE_R_EYE)
+			return READABLE_ZONE_EYES
+		if(BODY_ZONE_PRECISE_MOUTH)
+			return READABLE_ZONE_MOUTH
+		if(BODY_ZONE_PRECISE_NOSE)
+			return READABLE_ZONE_NOSE
+		if(BODY_ZONE_CHEST)
+			return READABLE_ZONE_CHEST
+		if(BODY_ZONE_PRECISE_STOMACH)
+			return READABLE_ZONE_VITALS
+		if(BODY_ZONE_PRECISE_GROIN)
+			return READABLE_ZONE_GROIN
+		if(BODY_ZONE_L_ARM)
+			return READABLE_ZONE_L_ARM
+		if(BODY_ZONE_PRECISE_L_HAND)
+			return READABLE_ZONE_L_HAND
+		if(BODY_ZONE_R_ARM)
+			return READABLE_ZONE_R_ARM
+		if(BODY_ZONE_PRECISE_R_HAND)
+			return READABLE_ZONE_R_HAND
+		if(BODY_ZONE_L_LEG)
+			return READABLE_ZONE_L_LEG
+		if(BODY_ZONE_PRECISE_L_FOOT)
+			return READABLE_ZONE_L_FOOT
+		if(BODY_ZONE_R_LEG)
+			return READABLE_ZONE_R_LEG
+		if(BODY_ZONE_PRECISE_R_FOOT)
+			return READABLE_ZONE_R_FOOT
+		
 
 /proc/slot2body_zone(slot)
 	switch(slot)

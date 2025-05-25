@@ -63,7 +63,7 @@
 	if(HAS_TRAIT(src, TRAIT_NOPAIN))
 		return
 	if(!stat)
-		var/pain_threshold = STAEND * 10
+		var/pain_threshold = STACON * 10
 		if(has_flaw(/datum/charflaw/masochist)) // Masochists handle pain better by about 1 endurance point
 			pain_threshold += 10
 		var/painpercent = get_complex_pain() / pain_threshold
@@ -71,7 +71,7 @@
 
 		if(world.time > mob_timers["painstun"])
 			mob_timers["painstun"] = world.time + 100
-			var/probby = 40 - (STAEND * 2)
+			var/probby = 40 - (STACON * 2)
 			probby = max(probby, 10)
 			if(lying || IsKnockdown())
 				if(prob(3) && (painpercent >= 80) )
@@ -113,11 +113,11 @@
 			adjustOxyLoss(5)
 	if(isopenturf(loc))
 		var/turf/open/T = loc
-		if(reagents&& T.pollutants)
-			var/obj/effect/pollutant_effect/P = T.pollutants
-			for(var/datum/pollutant/X in P.pollute_list)
-				for(var/A in X.reagents_on_breathe)
-					reagents.add_reagent(A, X.reagents_on_breathe[A])
+		if(reagents && T.pollution)
+			T.pollution.breathe_act(src)
+			if(next_smell <= world.time)
+				next_smell = world.time + 30 SECONDS
+				T.pollution.smell_act(src)
 
 /mob/living/proc/handle_inwater()
 	ExtinguishMob()
@@ -142,16 +142,16 @@
 		add_stress(/datum/stressevent/sewertouched)
 
 /mob/living/carbon/proc/get_complex_pain()
-	var/amt = 0
+	. = 0
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 		if(limb.status == BODYPART_ROBOTIC || limb.skeletonized)
 			continue
-		var/bodypart_pain = ((limb.brute_dam + limb.burn_dam) / limb.max_damage) * 100
+		var/bodypart_pain = ((limb.brute_dam + limb.burn_dam) / limb.max_damage) * limb.max_pain_damage
 		for(var/datum/wound/wound as anything in limb.wounds)
 			bodypart_pain += wound.woundpain
-		bodypart_pain = min(bodypart_pain, 100) //tops out at 100 per limb
-		amt += bodypart_pain
-	return amt
+		bodypart_pain = min(bodypart_pain, limb.max_pain_damage)
+		. += bodypart_pain
+	.
 
 ///////////////
 // BREATHING //
@@ -449,7 +449,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			head.cremation_progress += 999
 			if(head.cremation_progress >= 20)
 				if(head.status == BODYPART_ORGANIC) //Non-organic limbs don't burn
-					limb.skeletonize()
+					head.skeletonize()
 					should_update_body = TRUE
 //					head.drop_limb()
 //					head.visible_message(span_warning("[src]'s head crumbles into ash!"))

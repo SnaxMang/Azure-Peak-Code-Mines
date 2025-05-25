@@ -97,12 +97,12 @@
 	rotprocess = SHELFLIFE_EXTREME
 	eat_effect = /datum/status_effect/buff/foodbuff
 
-/*	.............   Fried Cackleberry   ................ */
+/*	.............   Fried egg   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/friedegg
 	trash = null
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
-	tastes = list("fried cackleberry" = 1)
-	name = "fried cackleberry"
+	tastes = list("fried egg" = 1)
+	name = "fried egg"
 	desc = "A favorite dish among Astratans."
 	icon_state = "friedegg"
 	portable = FALSE

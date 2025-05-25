@@ -248,14 +248,14 @@
 		H.change_stat("strength", -1)
 		H.change_stat("constitution", -1)
 		H.change_stat("intelligence", 4)
-		H.mind.adjust_spellpoints(11)
+		H.mind.adjust_spellpoints(36)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		if(H.age == AGE_OLD)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 			H.change_stat("speed", -1)
 			H.change_stat("intelligence", 1)
 			H.change_stat("perception", 1)
-			H.mind.adjust_spellpoints(2)
+			H.mind.adjust_spellpoints(6)
 			if(ishumannorthern(H))
 				belt = /obj/item/storage/belt/rogue/leather/plaquegold
 				cloak = null
@@ -306,5 +306,4 @@
 		H.change_stat("endurance", 1)
 		H.change_stat("speed", -1)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_spells_priest(H)
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
+	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.

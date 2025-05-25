@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/snacks/egg
 	icon = 'modular/Neu_Food/icons/food.dmi'
-	name = "cackleberry"
+	name = "egg"
 	desc = ""
 	icon_state = "egg"
 	dropshrink = 0.8

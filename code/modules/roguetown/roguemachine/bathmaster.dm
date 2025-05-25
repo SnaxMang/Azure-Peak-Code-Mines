@@ -1,5 +1,4 @@
 #define UPGRADE_NOTAX		(1<<0)
-#define UPGRADE_DRUGS   (1<<1)
 
 /obj/structure/roguemachine/bathvend
 	name = "BRASSFACE"
@@ -17,6 +16,15 @@
 	var/upgrade_flags
 	var/current_cat = "1"
 	var/lockid = "nightman"
+	var/list/categories = list(
+		"Alcohols", 
+		"Bulk", 
+		"Drugs",
+		"Exotic Apparel",
+		"Instruments",
+		"Perfumes",
+		"Roguery",
+		)
 
 /obj/structure/roguemachine/bathvend/Initialize()
 	. = ..()
@@ -100,8 +108,6 @@
 			options += "Enable Paying Taxes"
 		else
 			options += "Stop Paying Taxes"
-		if(!(upgrade_flags & UPGRADE_DRUGS))
-			options += "Access Smuggler Lines (50)"
 		var/select = input(usr, "Please select an option.", "", null) as null|anything in options
 		if(!select)
 			return
@@ -114,16 +120,6 @@
 			if("Stop Paying Taxes")
 				upgrade_flags |= UPGRADE_NOTAX
 				playsound(loc, 'sound/misc/gold_misc.ogg', 100, FALSE, -1)
-				playsound(loc, 'sound/misc/gold_license.ogg', 100, FALSE, -1)
-			if("Access Smuggler Lines (50)")
-				if(upgrade_flags & UPGRADE_DRUGS)
-					return
-				if(budget < 50)
-					say("Ask again when you're serious.")
-					playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
-					return
-				budget -= 50
-				upgrade_flags |= UPGRADE_DRUGS
 				playsound(loc, 'sound/misc/gold_license.ogg', 100, FALSE, -1)
 	return attack_hand(usr)
 
@@ -152,13 +148,9 @@
 
 	contents += "</center><BR>"
 
-	var/list/unlocked_cats = list("Alcohols","Bulk")
-	if(upgrade_flags & UPGRADE_DRUGS)
-		unlocked_cats+="Drugs"
-
 	if(current_cat == "1")
 		contents += "<center>"
-		for(var/X in unlocked_cats)
+		for(var/X in categories)
 			contents += "<a href='?src=[REF(src)];changecat=[X]'>[X]</a><BR>"
 		contents += "</center>"
 	else
@@ -169,7 +161,7 @@
 			var/datum/supply_pack/PA = SSmerchant.supply_packs[pack]
 			if(PA.group == current_cat)
 				pax += PA
-		for(var/datum/supply_pack/PA in sortList(pax))
+		for(var/datum/supply_pack/PA in sortNames(pax))
 			var/costy = PA.cost
 			if(!(upgrade_flags & UPGRADE_NOTAX))
 				costy=round(costy+(SStreasury.tax_value * costy))

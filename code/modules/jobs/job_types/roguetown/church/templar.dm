@@ -132,8 +132,7 @@
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_spells_templar(H)
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
+	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 
 /datum/outfit/job/roguetown/templar/monk/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
@@ -252,8 +251,7 @@
 
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_spells_templar(H)
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
+	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 
 /datum/outfit/job/roguetown/templar/crusader/choose_loadout(mob/living/carbon/human/H)
 	. = ..()

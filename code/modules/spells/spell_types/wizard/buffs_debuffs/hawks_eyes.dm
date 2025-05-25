@@ -1,8 +1,8 @@
 /obj/effect/proc_holder/spell/invoked/hawks_eyes
 	name = "Hawk's Eyes"
 	overlay_state = "hawks_eyes"
-	desc = "Sharpens the target's vision. (+3 Perception)"
-	cost = 1
+	desc = "Sharpens the target's vision. (+5 Perception)"
+	cost = 2
 	xp_gain = TRUE
 	releasedrain = 60
 	chargedrain = 1
@@ -44,14 +44,14 @@
 #define HAWKSEYES_FILTER "hawkseyes_glow"
 /atom/movable/screen/alert/status_effect/buff/hawks_eyes
 	name = "Hawk's Eyes"
-	desc = "My vision is sharpened. (+3 Perception)"
+	desc = "My vision is sharpened. (+5 Perception)"
 	icon_state = "buff"
 
 /datum/status_effect/buff/hawks_eyes
 	var/outline_colour ="#ffff00" // Same color as perception potion
 	id = "hawkseyes"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/hawks_eyes
-	effectedstats = list("perception" = 3)
+	effectedstats = list("perception" = 5)
 	duration = 1 MINUTES
 
 /datum/status_effect/buff/hawks_eyes/other

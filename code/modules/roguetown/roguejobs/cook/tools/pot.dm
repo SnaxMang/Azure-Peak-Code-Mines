@@ -14,6 +14,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	reagent_flags = OPENCONTAINER
 	throwforce = 10
+	dropshrink = 1 // Override for bucket
 	volume = 198
 
 /obj/item/reagent_containers/glass/bucket/pot/update_icon()
@@ -40,7 +41,18 @@
 			reagents.trans_to(I, reagents.total_volume)
 	return TRUE
 
+/obj/item/reagent_containers/glass/bucket/pot/aalloy
+	name = "decrepit pot"
+	desc = "A decrepit old pot. Aeon's grasp is upon it."
+	icon_state = "apote"
+	volume = 99
+
 /obj/item/reagent_containers/glass/bucket/pot/stone
 	name = "stone pot"
 	desc = "A pot made out of stone. It can hold less than a metal pot."
 	volume = 99 // 99 is the max volume for a stone pot
+
+/obj/item/reagent_containers/glass/bucket/pot/copper
+	name = "copper pot"
+	desc = "A pot made out of copper. It can hold a lot of liquid."
+	icon_state = "pote_copper"

@@ -30,8 +30,7 @@
 		H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_spells_templar(H)
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
+	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 
 /datum/outfit/job/roguetown/disciple/proc/brute_equip(mob/living/carbon/human/H)
 	backpack_contents = list(/obj/item/roguekey/inquisition = 1)

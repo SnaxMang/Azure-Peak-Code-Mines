@@ -28,11 +28,16 @@
 	if(SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A, proximity) & COMPONENT_NO_ATTACK_HAND)
 		return
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A, proximity)
+	var/rmb_stam_penalty = 1
+	if(istype(rmb_intent, /datum/rmb_intent/strong) || istype(rmb_intent, /datum/rmb_intent/swift))
+		rmb_stam_penalty = 1.5	//Uses a modifer instead of a flat addition, less than weapons no matter what rn. 50% extra stam cost basically.
 	if(isliving(A))
 		var/mob/living/L = A
 		if(!used_intent.noaa)
 			playsound(get_turf(src), pick(GLOB.unarmed_swingmiss), 100, FALSE)
 //			src.emote("attackgrunt")
+		if(used_intent.releasedrain)
+			rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 		if(L.checkmiss(src))
 			return
 		if(!L.checkdefense(used_intent, src))
@@ -45,6 +50,8 @@
 			if(I.w_class < WEIGHT_CLASS_GIGANTIC)
 				item_skip = TRUE
 		if(!item_skip)
+			if(used_intent.releasedrain)
+				rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 			if(used_intent.type == INTENT_GRAB)
 				var/obj/AM = A
 				if(istype(AM) && !AM.anchored)
@@ -487,6 +494,7 @@
 	. = FALSE
 	if(!(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND))
 		add_fingerprint(user)
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_RIGHT, user)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)
 		. = TRUE
 	if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)

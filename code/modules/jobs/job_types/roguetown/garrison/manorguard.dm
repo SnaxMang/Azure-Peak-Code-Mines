@@ -23,7 +23,7 @@
 	max_pq = null
 	round_contrib_points = 2
 
-	cmode_music = 'sound/music/combat_guard2.ogg'
+	cmode_music = 'sound/music/combat_guard3.ogg'
 
 /datum/job/roguetown/manorguard/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
@@ -88,7 +88,6 @@
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord		//Bit worse shirt protection than the archer
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale			//Makes up for worse shirt protection with kinda better armor protection
-	head = /obj/item/clothing/head/roguetown/helmet/sallet				//Better protection than kettle archer has
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	neck = /obj/item/clothing/neck/roguetown/gorget
 
@@ -111,6 +110,18 @@
 			backl = /obj/item/gwstrap
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardcastle)
 	H.verbs |= /mob/proc/haltyell
+
+	var/helmets = list(
+	"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
+	"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
+	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
+	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
+	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+	"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
 
 // Ranged weapons and daggers on the side - lighter armor, but fleet!
 /datum/advclass/manorguard/skirmisher
@@ -147,7 +158,6 @@
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord			// Cant wear chainmail anymoooree
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded		//Helps against arrows; makes sense for a ranged-type role.
-	head = /obj/item/clothing/head/roguetown/helmet/kettle
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 
@@ -161,13 +171,25 @@
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 		if("Bow") // They can head down to the armory to sideshift into one of the other bows.
 			beltr = /obj/item/quiver/arrows
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow
+			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 		if("Sling")
 			beltr = /obj/item/quiver/sling/iron
 			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling // Both are belt slots and it's not worth setting where the cugel goes for everyone else, sad.
 
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardcastle)
 	H.verbs |= /mob/proc/haltyell
+
+	var/helmets = list(
+	"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
+	"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
+	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
+	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
+	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+	"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
 
 /datum/advclass/manorguard/cavalry
 	name = "Cavalryman"
@@ -206,7 +228,6 @@
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord		//Bit worse shirt protection than the archer -- as foot soldier.
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale			//Makes up for worse shirt protection with kinda better armor protection
-	head = /obj/item/clothing/head/roguetown/helmet/winged				//Same as the sallet, but fleet!
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	neck = /obj/item/clothing/neck/roguetown/gorget
 
@@ -224,3 +245,15 @@
 	
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardcastle)
 	H.verbs |= /mob/proc/haltyell
+
+	var/helmets = list(
+	"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
+	"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
+	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
+	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
+	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+	"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]

@@ -46,9 +46,85 @@
 	destroy_sound = 'sound/items/pickbreak.ogg'
 	resistance_flags = FIRE_PROOF
 	associated_skill = /datum/skill/misc/lockpicking	//Doesn't do anything, for tracking purposes only
+	always_destroy = TRUE
 
 	grid_width = 32
 	grid_height = 64
+
+/obj/item/lockpick/goldpin
+	name = "gold hairpin"
+	desc = "Often used by wealthy courtesans and nobility to keep hair and clothing in place."
+	icon_state = "goldpin"
+	item_state = "goldpin"
+	icon = 'icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
+	resistance_flags = FIRE_PROOF
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK|ITEM_SLOT_HIP
+	body_parts_covered = NONE
+	w_class = WEIGHT_CLASS_TINY
+	experimental_onhip = FALSE
+	possible_item_intents = list(/datum/intent/use, /datum/intent/stab)
+	force = 10
+	throwforce = 5
+	dropshrink = 0.7
+	sellprice = 50
+	drop_sound = 'sound/items/gems (2).ogg'
+	destroy_sound = 'sound/items/pickbreak.ogg'
+	anvilrepair = /datum/skill/craft/armorsmithing
+	associated_skill = /datum/skill/misc/lockpicking
+	var/material = "gold"
+
+	grid_width = 32
+	grid_height = 32
+
+/obj/item/lockpick/goldpin/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_BELT_R)
+		icon_state = "[material]pin_beltr"
+		user.update_inv_belt()
+	if(slot == SLOT_BELT_L)
+		icon_state = "[material]pin_beltl"
+		user.update_inv_belt()
+	else
+		icon_state = "[material]pin"
+		user.update_icon()
+
+/obj/item/lockpick/goldpin/silver
+	name = "silver hairpin"
+	desc = "Often used by wealthy courtesans and nobility to keep hair and clothing in place. This one's silver - a rarity."
+	icon_state = "silverpin"
+	item_state = "silverpin"
+	icon = 'icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
+	sellprice = 100
+	material = "silver"
+	is_silver = TRUE
+
+/obj/item/lockpick/goldpin/silver/pickup(mob/user)
+	. = ..()
+	var/mob/living/carbon/human/H = user
+	if(!H.mind)
+		return
+	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
+	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
+	if(ishuman(H))
+		if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
+			H.Knockdown(10)
+			H.Paralyze(10)
+			H.adjustFireLoss(25)
+			H.fire_act(1,10)
+		if(V_lord)
+			if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+				to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
+				H.Knockdown(10)
+				H.adjustFireLoss(25)
+		if(W && W.transformed == TRUE)
+			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
+			H.Knockdown(10)
+			H.Paralyze(10)
+			H.adjustFireLoss(25)
+			H.fire_act(1,10)
 
 /obj/item/roguekey/lord
 	name = "master key"
@@ -145,6 +221,12 @@
 	desc = "This key opens the garrison's armory."
 	icon_state = "hornkey"
 	lockid = "armory"
+
+/obj/item/roguekey/knight
+	name = "knight's key"
+	desc = "This is a key to the knight's chambers."
+	icon_state = "ekey"
+	lockid = "knight"
 
 /obj/item/roguekey/merchant
 	name = "merchant's key"
@@ -369,7 +451,7 @@
 /obj/item/roguekey/nightmaiden
 	name = "bathhouse key"
 	desc = "This regal key opens doors inside the bath-house."
-	icon_state = "brownkey"
+	icon_state = "bathkey"
 	lockid = "nightmaiden"
 
 /obj/item/roguekey/mercenary

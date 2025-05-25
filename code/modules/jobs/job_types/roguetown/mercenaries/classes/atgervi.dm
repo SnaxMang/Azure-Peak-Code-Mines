@@ -47,7 +47,8 @@
 
 			head = /obj/item/clothing/head/roguetown/helmet/bascinet/atgervi
 			gloves = /obj/item/clothing/gloves/roguetown/angle/atgervi
-			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/atgervi
+			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/atgervi	//This is in armor and not shirt just to avoid seeing titty through it.
 			pants = /obj/item/clothing/under/roguetown/trou/leather/atgervi
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
 			shoes = /obj/item/clothing/shoes/roguetown/boots/leather/atgervi
@@ -58,7 +59,8 @@
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 			beltl = /obj/item/flashlight/flare/torch
 
-			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)	
+			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)	
 			H.cmode_music = 'sound/music/combat_vagarian.ogg'
 		if("Shaman")
 			H.set_blindness(0)
@@ -82,6 +84,7 @@
 			head = /obj/item/clothing/head/roguetown/helmet/leather/saiga/atgervi
 			gloves = /obj/item/clothing/gloves/roguetown/plate/atgervi
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/atgervi
+			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 			pants = /obj/item/clothing/under/roguetown/trou/leather/atgervi
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
 			shoes = /obj/item/clothing/shoes/roguetown/boots/leather/atgervi

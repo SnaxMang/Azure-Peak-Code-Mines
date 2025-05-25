@@ -44,7 +44,8 @@
 	backpack_contents = list(
 		/obj/item/needle/pestra = 1,
 		/obj/item/natural/worms/leech/cheele = 1, //little buddy
-		/obj/item/ritechalk,
+		/obj/item/ritechalk = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/steel/holysee = 1,	//Unique knife from the Holy See
 	)
 	ADD_TRAIT(H, TRAIT_CHOSEN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
@@ -70,8 +71,7 @@
 		H.change_stat("endurance", 1)
 		H.change_stat("speed", -1)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron) // This creates the cleric holder used for devotion spells
-	C.grant_spells_priest(H)
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
+	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
 
 	H.verbs |= /mob/living/carbon/human/proc/coronate_lord
 	H.verbs |= /mob/living/carbon/human/proc/churchexcommunicate

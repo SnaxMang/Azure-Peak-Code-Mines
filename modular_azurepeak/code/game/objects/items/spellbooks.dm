@@ -303,11 +303,6 @@ decreases charge time if held opened in hand, for pure mage build + aesthetics.
 	else
 		return ..()
 
-/obj/item/roguegem/amethyst
-	name = "amythortz"
-	icon_state = "amethyst"
-	desc = "A deep lavender crystal, it surges with magical energy, yet it's artificial nature means it is worth little."
-
 // Leaving this in for now for aesthetics, but they're now useless
 /obj/effect/roguerune/
 	name = "arcyne rune"
@@ -318,7 +313,16 @@ decreases charge time if held opened in hand, for pure mage build + aesthetics.
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = SIGIL_LAYER
 	color = "#3A0B61"
-	
+
+/obj/effect/roguerunelarge/
+	name = "arcyne rune"
+	desc = "Strange symbols pulse upon the ground..."
+	anchored = TRUE
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "imbuement"
+	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	layer = SIGIL_LAYER
+
 // helper proc
 /proc/isarcyne(mob/living/carbon/human/A)
 	return istype(A) && A.mind && (A.mind?.get_skill_level(/datum/skill/magic/arcane) > SKILL_LEVEL_NONE)

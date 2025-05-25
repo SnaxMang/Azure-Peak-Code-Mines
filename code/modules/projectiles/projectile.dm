@@ -83,7 +83,7 @@
 	var/npc_damage_mult = 1 // Multiplicative bonus damage.
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
-	var/flag = "piercing" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb
+	var/flag = "piercing" //Defines what armor to use when it hits things. Setting this to "blunt" might result in unexpected behavior (i.e. knockout on hit, figure out the root causes and excise it)
 	///How much armor this projectile pierces.
 	var/armor_penetration = 0
 	var/projectile_type = /obj/projectile

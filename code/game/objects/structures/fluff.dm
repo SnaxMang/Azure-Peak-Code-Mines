@@ -11,18 +11,34 @@
 	max_integrity = 150
 	var/deconstructible = TRUE
 
-/obj/structure/fluff/empty_sleeper/nanotrasen
-	name = "broken hypersleep chamber"
-	desc = "A Nanotrasen hypersleep chamber - this one appears broken. \
-		There are exposed bolts for easy disassembly using a wrench."
-	icon_state = "sleeper-o"
+/obj/structure/fluff/pillow
+	name = "pillows"
+	desc = "Soft plush pillows. Resting your head on one is so relaxing."
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "pillow"
+	density = FALSE
 
-/obj/structure/fluff/empty_sleeper/syndicate
-	icon_state = "sleeper_s-open"
+/obj/structure/fluff/pillow/red
+	color = CLOTHING_RED
+
+/obj/structure/fluff/pillow/blue
+	color = CLOTHING_BLUE
+
+/obj/structure/fluff/pillow/green
+	color = CLOTHING_GREEN
+
+/obj/structure/fluff/pillow/magenta
+	color = CLOTHING_MAGENTA
+
+/obj/structure/fluff/pillow/purple
+	color = CLOTHING_PURPLE
+
+/obj/structure/fluff/pillow/black
+	color = CLOTHING_BLACK
 
 /obj/structure/fluff/drake_statue //Ash drake status spawn on either side of the necropolis gate in lavaland.
 	name = "drake statue"
-	desc = ""
+	desc = "Possibly the only time you'll ever see its likeness up close and live to tell the tale."
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "drake_statue"
 	pixel_x = -16
@@ -39,7 +55,7 @@
 
 /obj/structure/fluff/paper/stack
 	name = "dense stack of papers"
-	desc = ""
+	desc = "You can already feel your eyes glazing over and the boredom creeping in."
 	icon_state = "paperstack"
 
 /obj/structure/fluff/divine
@@ -212,7 +228,7 @@
 
 /obj/structure/fluff/railing/fence
 	name = "palisade"
-	desc = ""
+	desc = "A rudimentary barrier that might keep the monsters at bay."
 	icon = 'icons/roguetown/misc/structure.dmi'
 	attacked_sound = 'sound/misc/woodhit.ogg'
 	destroy_sound = 'sound/misc/treefall.ogg'
@@ -305,6 +321,9 @@
 /obj/structure/bars/shop
 	icon_state = "barsbent"
 	layer = BELOW_OBJ_LAYER
+
+/obj/structure/bars/shop/bronze
+	color = "#ff9c1a"
 
 /obj/structure/bars/chainlink
 	icon_state = "chainlink"
@@ -779,6 +798,9 @@
 /obj/structure/fluff/statue/knight/interior/r
 	icon_state = "oknightstatue_r"
 
+/obj/structure/fluff/statue/knight/interior/r/bronze
+	color = "#ff9c1a"
+
 /obj/structure/fluff/statue/knightalt
 	icon_state = "knightstatue2_l"
 
@@ -816,6 +838,30 @@
 	pixel_y = -16
 
 /obj/structure/fluff/statue/femalestatue/Initialize()
+	. = ..()
+	var/matrix/M = new
+	M.Scale(0.7,0.7)
+	src.transform = M
+
+/obj/structure/fluff/statue/femalestatue1
+	icon = 'icons/roguetown/misc/ay.dmi'
+	icon_state = "2"
+	pixel_x = -32
+	pixel_y = -16
+
+/obj/structure/fluff/statue/femalestatue1/Initialize()
+	. = ..()
+	var/matrix/M = new
+	M.Scale(0.7,0.7)
+	src.transform = M
+
+/obj/structure/fluff/statue/femalestatue2
+	icon = 'icons/roguetown/misc/ay.dmi'
+	icon_state = "5"
+	pixel_x = -32
+	pixel_y = -16
+
+/obj/structure/fluff/statue/femalestatue2/Initialize()
 	. = ..()
 	var/matrix/M = new
 	M.Scale(0.7,0.7)
@@ -1200,6 +1246,12 @@
 	plane = GAME_PLANE_UPPER
 	blade_dulling = DULLING_BASH
 	max_integrity = 300
+
+/obj/structure/fluff/statue/shisha/hookah
+	name = "shisha pipe"
+	desc = "A traditional shisha pipe, this one is broken."
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "hookah"
 
 /obj/structure/fluff/headstake
 	name = "head on a stake"

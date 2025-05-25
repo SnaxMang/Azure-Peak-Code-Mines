@@ -40,7 +40,7 @@
 		pants = /obj/item/clothing/under/roguetown/trou
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
 		backr = /obj/item/storage/backpack/rogue/satchel
-		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1)
+		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1, /obj/item/recipe_book/blacksmithing = 1)
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
 		belt = /obj/item/storage/belt/rogue/leather
 		cloak = /obj/item/clothing/cloak/apron/blacksmith
@@ -51,7 +51,7 @@
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
 		backr = /obj/item/storage/backpack/rogue/satchel
-		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1)
+		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1, /obj/item/recipe_book/blacksmithing = 1)
 		belt = /obj/item/storage/belt/rogue/leather
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 		beltr = /obj/item/roguekey/blacksmith
@@ -104,7 +104,7 @@
 		pants = /obj/item/clothing/under/roguetown/trou
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
 		backr = /obj/item/storage/backpack/rogue/satchel
-		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1)
+		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1, /obj/item/recipe_book/blacksmithing = 1)
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
 		belt = /obj/item/storage/belt/rogue/leather
 		cloak = /obj/item/clothing/cloak/apron/blacksmith
@@ -115,7 +115,7 @@
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
 		backr = /obj/item/storage/backpack/rogue/satchel
-		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1)
+		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1, /obj/item/recipe_book/blacksmithing = 1)
 		belt = /obj/item/storage/belt/rogue/leather
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 		beltr = /obj/item/roguekey/blacksmith
@@ -147,7 +147,7 @@
 /datum/outfit/job/roguetown/blacksmith/pre_equip(mob/living/carbon/human/H)
 	..()
 	head = /obj/item/clothing/head/roguetown/hatfur
-	gloves = /obj/item/clothing/gloves/roguetown/grenzelgloves/blacksmith
+	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith
 	ADD_TRAIT(H, TRAIT_TRAINED_SMITH, TRAIT_GENERIC)
 	if(prob(50))
 		head = /obj/item/clothing/head/roguetown/hatblu
@@ -171,7 +171,7 @@
 		pants = /obj/item/clothing/under/roguetown/trou
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
 		backr = /obj/item/storage/backpack/rogue/satchel
-		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1)
+		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1, /obj/item/recipe_book/blacksmithing = 1)
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
 		belt = /obj/item/storage/belt/rogue/leather
 		cloak = /obj/item/clothing/cloak/apron/blacksmith
@@ -182,7 +182,7 @@
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
 		backr = /obj/item/storage/backpack/rogue/satchel
-		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1)
+		backpack_contents = list(/obj/item/rogueweapon/hammer/iron = 1, /obj/item/rogueweapon/tongs = 1, /obj/item/recipe_book/blacksmithing = 1)
 		belt = /obj/item/storage/belt/rogue/leather
 		beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 		beltr = /obj/item/roguekey/blacksmith

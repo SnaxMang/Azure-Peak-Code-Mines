@@ -116,5 +116,6 @@
 	. = ..()
 	if(!succeeded)
 		controller.clear_blackboard_key(target_key)
-		controller.pawn.icon_state = "mimic"
+		var/mob/living/simple_animal/hostile/retaliate/rogue/mimic/mimic_pawn = controller.pawn
+		mimic_pawn.disguise()
 

@@ -19,17 +19,17 @@
 
 /datum/supply_pack/rogue/Sellsword/grenzelhofthat
 	name = "Grenzel Hat"
-	cost = 5
+	cost = 15
 	contains = list(/obj/item/clothing/head/roguetown/grenzelhofthat)
 
 /datum/supply_pack/rogue/Sellsword/Grenzelpants
 	name = "Grenzel Pants"
-	cost = 5
-	contains = list(/obj/item/clothing/under/roguetown/grenzelpants)
+	cost = 15
+	contains = list(/obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants)
 
 /datum/supply_pack/rogue/Sellsword/Grenzelshoes
 	name = "Grenzel Shoes"
-	cost = 5
+	cost = 15
 	contains = list(/obj/item/clothing/shoes/roguetown/grenzelhoft)
 
 /datum/supply_pack/rogue/Sellsword/coif/steel

@@ -155,7 +155,7 @@
 	if(istype(I, /obj/item/reagent_containers/food/snacks/egg))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-			to_chat(user, span_notice("Working cackleberry into the dough, shaping it into a cake..."))
+			to_chat(user, span_notice("Working egg into the dough, shaping it into a cake..."))
 			playsound(get_turf(user), 'modular/Neu_Food/sound/eggbreak.ogg', 100, TRUE, -1)
 			if(do_after(user,long_cooktime, target = src))
 				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
@@ -459,8 +459,8 @@
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/rogue/sandwich/egg
-	tastes = list("cheese" = 1,"cackleberry" = 1)
-	name = "cackleberry toast"
+	tastes = list("cheese" = 1,"egg" = 1)
+	name = "egg toast"
 	faretype = FARE_NEUTRAL
 	icon_state = "bread_egg"
 	foodtype = GRAIN | MEAT
@@ -781,7 +781,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/hcake
 	name = "ranesheni cake"
-	desc = "Cake glazed with honey, in the famous Zybantu fashion, a delicious sweet treat."
+	desc = "Cake glazed with honey, in the famous ranesheni fashion, a delicious sweet treat."
 	icon_state = "honeycake"
 	slices_num = 8
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/hcakeslice

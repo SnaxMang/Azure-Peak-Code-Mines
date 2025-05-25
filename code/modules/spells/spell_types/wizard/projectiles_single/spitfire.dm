@@ -1,7 +1,8 @@
 
 /obj/effect/proc_holder/spell/invoked/projectile/spitfire
 	name = "Spitfire"
-	desc = "Shoot out a low-powered ball of fire that shines brightly on impact, potentially blinding a target."
+	desc = "Shoot out a low-powered ball of fire that shines brightly on impact, potentially blinding a target. \n\
+	Damage is increased by 100% versus simple-minded creechurs."
 	clothes_req = FALSE
 	range = 8
 	projectile_type = /obj/projectile/magic/aoe/fireball/rogue2
@@ -23,7 +24,7 @@
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokefire
 	associated_skill = /datum/skill/magic/arcane
-	cost = 1
+	cost = 3
 
 /obj/projectile/magic/aoe/fireball/rogue2
 	name = "spitfire"
@@ -32,6 +33,7 @@
 	exp_flash = 1
 	exp_fire = 0
 	damage = 20
+	npc_damage_mult = 2 // Makes it more effective against NPCs.
 	damage_type = BURN
 	nodamage = FALSE
 	flag = "magic"

@@ -1413,7 +1413,7 @@
 	},
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "sS" = (
-/obj/item/reagent_containers/glass/bucket/wooden/alter,
+/obj/item/reagent_containers/glass/bucket/alter,
 /obj/item/natural/cloth,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains/decap/stepbelow)
@@ -2170,7 +2170,7 @@
 "BH" = (
 /obj/item/ingot/gold,
 /obj/structure/table/wood,
-/obj/item/reagent_containers/glass/alchemical/conpot{
+/obj/item/reagent_containers/glass/bottle/alchemical/conpot{
 	pixel_x = -10;
 	pixel_y = 11
 	},
@@ -3269,7 +3269,7 @@
 "QD" = (
 /obj/item/roguestatue/gold,
 /obj/structure/table/wood,
-/obj/item/reagent_containers/glass/alchemical/conpot{
+/obj/item/reagent_containers/glass/bottle/alchemical/conpot{
 	pixel_x = -9;
 	pixel_y = 2
 	},
@@ -3668,11 +3668,11 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/goblinfort)
 "VW" = (
-/obj/item/reagent_containers/glass/alchemical/lucpot{
+/obj/item/reagent_containers/glass/bottle/alchemical/lucpot{
 	pixel_x = -9;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/glass/alchemical/strpot{
+/obj/item/reagent_containers/glass/bottle/alchemical/strpot{
 	pixel_x = 9;
 	pixel_y = 1
 	},

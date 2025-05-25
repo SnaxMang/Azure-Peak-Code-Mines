@@ -4,7 +4,7 @@
 	clothes_req = FALSE
 	overlay_state = "mindlink"
 	associated_skill = /datum/skill/magic/arcane
-	cost = 2
+	cost = 4
 	xp_gain = TRUE
 	recharge_time = 5 MINUTES
 	spell_tier = 3

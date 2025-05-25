@@ -37,14 +37,13 @@
 	pooptype = null
 	deaggroprob = 0
 	defprob = 40
-	defdrain = 10
 	del_on_deaggro = 10 SECONDS
 	retreat_health = 0
 	food = 0
 	attack_sound = list('sound/combat/wooshes/blunt/wooshhuge (1).ogg','sound/combat/wooshes/blunt/wooshhuge (2).ogg','sound/combat/wooshes/blunt/wooshhuge (3).ogg')
 	dodgetime = 0
 	aggressive = 1
-	rot_type = null
+	
 //	stat_attack = UNCONSCIOUS
 
 	can_have_ai = FALSE //disable native ai

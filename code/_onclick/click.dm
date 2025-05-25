@@ -342,6 +342,9 @@
 				adf = round(adf * 0.6)
 			changeNext_move(adf)
 		UnarmedAttack(A,1,params)
+	if(mob_timers[MT_INVISIBILITY] > world.time)			
+		mob_timers[MT_INVISIBILITY] = world.time
+		update_sneak_invis(reset = TRUE)
 
 //Branching path for Ranged clicks with or without items
 //DOES NOT ACTUALLY KNOW IF YOU'RE RANGED, DO NoT CALL ON IT'S OWN

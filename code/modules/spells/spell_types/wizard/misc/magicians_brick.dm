@@ -13,7 +13,7 @@
 	warnie = "spellwarning"
 	antimagic_allowed = FALSE
 	charging_slowdown = 3
-	cost = 1
+	cost = 3
 	spell_tier = 2 // Spellblade tier.
 
 	invocation = "Valtarem!"
@@ -21,6 +21,8 @@
 
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_LOW
+
+	gesture_required = TRUE // Don't really matter
 
 /obj/effect/proc_holder/spell/self/magicians_brick/cast(list/targets, mob/living/user = usr)
 	var/obj/item/rogueweapon/R = new /obj/item/rogueweapon/magicbrick(user.drop_location())

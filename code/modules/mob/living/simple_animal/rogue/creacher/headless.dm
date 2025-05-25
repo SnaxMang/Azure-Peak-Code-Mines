@@ -42,7 +42,6 @@
 	STASPD = 10
 	deaggroprob = 0
 	defprob = 10
-	defdrain = 5
 	del_on_deaggro = 999 SECONDS
 	retreat_health = 0.1
 	food = 0

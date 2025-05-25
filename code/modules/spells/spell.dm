@@ -280,16 +280,25 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if((invocation_type == "whisper" || invocation_type == "shout") && !H.can_speak_vocal())
+		if((invocation_type == "whisper" || invocation_type == "shout") && (!H.can_speak_vocal() || !H.getorganslot(ORGAN_SLOT_TONGUE)))
 			to_chat(user, span_warning("I can't get the words out!"))
+			return FALSE
+
+		if(HAS_TRAIT(H, TRAIT_PARALYSIS))
+			to_chat(user, span_warning("My body is paralyzed!"))
 			return FALSE
 
 		if(miracle && !H.devotion?.check_devotion(src))
 			to_chat(H, span_warning("I don't have enough devotion!"))
 			return FALSE
-		if(H.handcuffed && gesture_required)
-			to_chat(user, span_warning("[name] cannot be cast with my hands tied up!"))
-			return FALSE
+		if(gesture_required)
+			if(H.handcuffed)
+				to_chat(user, span_warning("[name] cannot be cast with my hands tied up!"))
+				return FALSE
+			if(!H.has_active_hand())
+				to_chat(user, span_warning("I can't cast this without functional hands!"))
+				return FALSE
+
 	else
 		if(clothes_req || human_req)
 			to_chat(user, span_warning("This spell can only be cast by humans!"))
@@ -435,6 +444,9 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	before_cast(targets, user = user)
 	if(user && user.ckey)
 		user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)
+	if(user.mob_timers[MT_INVISIBILITY] > world.time)			
+		user.mob_timers[MT_INVISIBILITY] = world.time
+		user.update_sneak_invis(reset = TRUE)
 	if(cast(targets, user = user))
 		invocation(user)
 		start_recharge()
@@ -674,10 +686,24 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			return FALSE
 		if(nonabstract_req && (isbrain(user)))
 			return FALSE
+
+	if(ishuman(user)) // Make the button red out and unselectable
+		var/mob/living/carbon/human/H = user
+		if(gesture_required)
+			if(H.handcuffed)
+				return FALSE
+			if(!H.has_active_hand())
+				return FALSE
+	
 	if((invocation_type == "whisper" || invocation_type == "shout") && isliving(user))
 		var/mob/living/living_user = user
 		if(!living_user.can_speak_vocal())
 			return FALSE
+		if(ishuman(user) && !living_user.getorganslot(ORGAN_SLOT_TONGUE)) // Shapeshifter has no tongue yeah
+			return FALSE
+
+	if(HAS_TRAIT(user, TRAIT_PARALYSIS))
+		return FALSE
 
 	return TRUE
 

@@ -305,7 +305,7 @@
 	onclose(user, "mob[REF(src)]")
 
 /mob/living/carbon/fall(forced)
-	loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
+	loc?.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
 
 /mob/living/carbon/is_muzzled()
 	return(istype(src.wear_mask, /obj/item/clothing/mask/muzzle))
@@ -323,15 +323,19 @@
 	if(restrained())
 		changeNext_move(CLICK_CD_BREAKOUT)
 		last_special = world.time + CLICK_CD_BREAKOUT
-		var/buckle_cd = 600
+		var/buckle_cd = 1 MINUTES
 		if(handcuffed)
 			var/obj/item/restraints/O = src.get_item_by_slot(SLOT_HANDCUFFED)
-			buckle_cd = O.breakouttime
+			if(STASTR > 15)
+				buckle_cd = O.breakouttime
+			else if(STASTR > 10)
+				buckle_cd = O.slipouttime - ((STASTR - 10) * 20 SECONDS)
 		if(istype(buckled, /obj/structure))
 			var/obj/structure/S = buckled
-			buckle_cd += S.breakoutextra
-		if(STASTR > 15)
-			buckle_cd = 3 SECONDS
+			if(STASTR > 15)
+				buckle_cd += 10 SECONDS
+			else
+				buckle_cd += S.breakoutextra
 		visible_message("<span class='warning'>[src] attempts to struggle free!</span>", \
 					"<span class='notice'>I attempt to struggle free...</span>")
 		if(do_after(src, buckle_cd, 0, target = src))
@@ -383,11 +387,14 @@
 		return
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.slipouttime
-	if((STASTR > 10) || (mind && mind.has_antag_datum(/datum/antagonist/zombie)))
-		cuff_break = FAST_CUFFBREAK
-		breakouttime = I.breakouttime
+	if((STASTR > 10))
+		var/time_mod = (STASTR - 10) * 20 SECONDS
+		breakouttime -= time_mod
+	if(mind && mind.has_antag_datum(/datum/antagonist/zombie))
+		breakouttime = 10 SECONDS
 	if(STASTR > 15)
 		cuff_break = INSTANT_CUFFBREAK
+		breakouttime = I.breakouttime
 	if(!cuff_break)
 		to_chat(src, "<span class='notice'>I attempt to remove [I]...</span>")
 		if(do_after(src, breakouttime, 0, target = src))
@@ -442,6 +449,8 @@
 	if(I != handcuffed && I != legcuffed)
 		return FALSE
 	visible_message("[cuff_break ? "<span class='danger'>" : "<span class='warning'>"][src] manages to [cuff_break ? "break" : "slip"] out of [I]!</span>")
+	if(cuff_break)
+		playsound(src, 'sound/misc/chain_snap.ogg', 100, FALSE, 10)
 	to_chat(src, "<span class='notice'>I [cuff_break ? "break" : "slip"] out of [I]!</span>")
 
 	if(istype(I, /obj/item/net))
@@ -927,8 +936,8 @@
 	else
 		clear_fullscreen("brute")*/
 
-	var/hurtdamage = ((get_complex_pain() / (STAEND * 10)) * 100) //what percent out of 100 to max pain
-	if(hurtdamage)
+	var/hurtdamage = ((get_complex_pain() / (STACON * 10)) * 100) //what percent out of 100 to max pain
+	if(hurtdamage > 5) //float
 		var/severity = 0
 		switch(hurtdamage)
 			if(5 to 20)
@@ -1086,13 +1095,14 @@
 	if(itemz)
 		for(var/X in get_equipped_items())
 			var/obj/item/I = X
+			if(I.extinguishable)
+				I.extinguish() //extinguishes our clothes
 			I.acid_level = 0 //washes off the acid on our clothes
-			I.extinguish() //extinguishes our clothes
 		var/obj/item/I = get_active_held_item()
-		if(I)
+		if(I && I.extinguishable)
 			I.extinguish()
 		I = get_inactive_held_item()
-		if(I)
+		if(I && I.extinguishable)
 			I.extinguish()
 	..()
 

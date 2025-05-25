@@ -21,6 +21,9 @@
 	canSmoothWith = list(/turf/closed, /turf/open/floor/rogue/volcanic, /turf/open/floor/rogue/dirt, /turf/open/floor/rogue/dirt/road,/turf/open/floor/rogue/naturalstone)
 	neighborlay_override = "lavedge"
 
+/turf/open/lava/nosmooth
+	smooth = SMOOTH_FALSE
+
 /turf/open/lava/Initialize()
 	. = ..()
 	dir = pick(GLOB.cardinals)

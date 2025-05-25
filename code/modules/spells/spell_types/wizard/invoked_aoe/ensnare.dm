@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/ensnare
 	name = "Ensnare"
 	desc = "Tendrils of arcyne force hold anyone in a small area in place for a short while."
-	cost = 1
+	cost = 3
 	xp_gain = TRUE
 	releasedrain = 20
 	chargedrain = 1
@@ -17,6 +17,7 @@
 	spell_tier = 3
 	invocation = "Impedio!"
 	invocation_type = "shout"
+	gesture_required = TRUE // Offensive spell
 	glow_color = GLOW_COLOR_DISPLACEMENT
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 	overlay_state = "ensnare"

@@ -187,10 +187,13 @@
 	. = ..()
 	cut_overlays()
 	if(chambered)
-		icon_state = "sling_ready"
-	if(ismob(loc))
-		var/mob/M = loc
-		M.update_inv_hands()
+		icon_state = "[initial(icon_state)]_ready"
+		var/mutable_appearance/ammo = mutable_appearance('icons/roguetown/weapons/ammo.dmi', chambered.icon_state)
+		add_overlay(ammo)
+	if(!ismob(loc))
+		return
+	var/mob/M = loc
+	M.update_inv_hands()
 
 /obj/item/ammo_box/magazine/internal/shot/sling
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet

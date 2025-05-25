@@ -18,7 +18,8 @@
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_LOW
-	cost = 1
+	gesture_required = TRUE // Spell w/ offensive potential, but don't matter cuz you have no hands. Still, consistency
+	cost = 3
 
 	xp_gain = TRUE
 	miracle = FALSE

@@ -11,7 +11,7 @@
 					 /obj/item/bodypart/r_arm, /obj/item/bodypart/r_leg, /obj/item/bodypart/l_leg)
 	faction = list("orcs")
 	ambushable = FALSE
-	rot_type = null
+	
 	base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, /datum/intent/unarmed/claw)
 	a_intent = INTENT_HELP
 	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE)
@@ -58,6 +58,7 @@
 
 	H.set_patron(/datum/patron/inhumen/graggar)
 	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_LEECHIMMUNE, INNATE_TRAIT)
 
 	H.possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\

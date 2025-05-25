@@ -8,7 +8,7 @@
 	vampcompat = FALSE
 	outfit = /datum/outfit/job/roguetown/adventurer/cleric
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
-	classes = list("Monk" = "You are a wandering acolyte, versed in both miracles and martial arts. You forego the heavy armor paladins wear in favor of a more nimble approach to combat, utilizing your fists.",
+	classes = list("Monk" = "You are a wandering acolyte, versed in both miracles and martial arts. You forgo the heavy armor worn by paladins in favor of a more nimble approach to combat, utilizing your fists.",
 					"Paladin" = "A holy warrior. Where others of the clergy may have spent their free time studying scriptures, you have instead honed your skills with a blade.",
 					"Missionary" = "You are a devout worshipper of the divine with a strong connection to your patron god. You've spent years studying scriptures and serving your deity - now you wander into foreign lands, spreading the word of your faith.",
 					"Cantor" = "You were a bard once - but you've found a new calling. Your eyes have been opened to the divine, now you wander from city to city singing songs and telling tales of your patron's greatness.")
@@ -42,9 +42,12 @@
 			belt = /obj/item/storage/belt/rogue/leather/rope
 			beltr = /obj/item/flashlight/flare/torch/lantern
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			backpack_contents = list(
+				/obj/item/flashlight/flare/torch = 1, 
+				/obj/item/recipe_book/survival = 1,
+				)
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells_templar(H)
+			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -100,7 +103,10 @@
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			gloves = /obj/item/clothing/gloves/roguetown/chain
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			backpack_contents = list(
+				/obj/item/flashlight/flare/torch = 1, 
+				/obj/item/recipe_book/survival = 1,
+			)
 			H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
@@ -126,8 +132,8 @@
 					cloak = /obj/item/clothing/cloak/templar/noc
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
 				if(/datum/patron/divine/abyssor)
-					cloak = /obj/item/clothing/cloak/templar/abyssor
-					head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
+					cloak = /obj/item/clothing/cloak/abyssortabard
+					head = /obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm
 				if(/datum/patron/divine/dendor)
 					cloak = /obj/item/clothing/cloak/templar/dendor
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
@@ -154,7 +160,7 @@
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
 			H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells_templar(H)
+			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 			var/weapons = list("Bastard Sword","Mace","Flail")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
@@ -187,8 +193,8 @@
 			beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/special
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells_templar(H)
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
@@ -259,7 +265,7 @@
 			backr = /obj/item/rogueweapon/woodstaff
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/flashlight/flare/torch/lantern
-			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch = 1)
+			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
@@ -308,9 +314,7 @@
 					cloak = /obj/item/clothing/suit/roguetown/shirt/robe //placeholder, anyone who doesn't have cool patron drip sprites just gets generic robes
 					head = /obj/item/clothing/head/roguetown/roguehood
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells(H)
-			START_PROCESSING(SSobj, C)
-
+			C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR)	//Minor regen, can level up to T4.
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)
 			neck = /obj/item/clothing/neck/roguetown/psicross
@@ -351,5 +355,3 @@
 			/obj/item/clothing/neck/roguetown/psicross/eora
 			)
 			neck = pick(psicross_options)
-
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)

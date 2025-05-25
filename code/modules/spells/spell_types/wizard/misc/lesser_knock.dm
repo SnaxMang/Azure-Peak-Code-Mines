@@ -16,7 +16,7 @@
 	invocation = "Parvus Pulso"
 	invocation_type = "whisper" // It is a fake stealth spell (lockpicking is very loud)
 	hide_charge_effect = TRUE
-	cost = 1
+	cost = 2 // Utility and needs lockpicking skills
 	
 /obj/item/melee/touch_attack/lesserknock
 	name = "Spectral Lockpick"

@@ -117,6 +117,16 @@
 	pixel_x = rand(-9, 9)
 	update_icon_state()
 	updateinfolinks()
+	var/static/list/slapcraft_recipe_list = list(
+		/datum/crafting_recipe/roguetown/survival/sigsweet,
+		/datum/crafting_recipe/roguetown/survival/sigdry,
+		/datum/crafting_recipe/roguetown/survival/rocknutdry,
+		)
+
+	AddElement(
+		/datum/element/slapcrafting,\
+		slapcraft_recipes = slapcraft_recipe_list,\
+		)
 
 /obj/item/paper/update_icon_state()
 	if(mailer)

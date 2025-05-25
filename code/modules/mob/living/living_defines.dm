@@ -135,7 +135,6 @@
 	var/surrendering = 0
 
 	var/defprob = 50 //base chance to defend against this mob's attacks, for simple mob combat
-	var/defdrain = 5
 	var/encumbrance = 0
 
 	var/eyesclosed = 0

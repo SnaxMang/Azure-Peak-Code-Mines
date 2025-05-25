@@ -1,6 +1,6 @@
 /obj/structure/fireaxecabinet
 	name = "Sword rack"
-	desc = ""
+	desc = "A fitting resting place for a sword etched and scratched by tales long past."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fireaxe"
 	anchored = TRUE

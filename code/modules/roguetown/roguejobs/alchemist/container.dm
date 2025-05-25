@@ -1,12 +1,12 @@
 
 /obj/item/reagent_containers/glass/bottle/rogue/healthpot
-	list_reagents = list(/datum/reagent/medicine/healthpot = 45)
+	list_reagents = list(/datum/reagent/medicine/healthpot = 48)
 
 /obj/item/reagent_containers/glass/bottle/rogue/healthpotnew
-	list_reagents = list(/datum/reagent/medicine/stronghealth = 45)
+	list_reagents = list(/datum/reagent/medicine/stronghealth = 48)
 
 /obj/item/reagent_containers/glass/bottle/rogue/manapot
-	list_reagents = list(/datum/reagent/medicine/manapot = 45)
+	list_reagents = list(/datum/reagent/medicine/manapot = 48)
 
 /obj/item/reagent_containers/glass/bottle/rogue/poison
 	list_reagents = list(/datum/reagent/toxin/killersice = 1)
@@ -16,13 +16,22 @@
 
 //vanderlin potion stuff//
 /obj/item/reagent_containers/glass/bottle/rogue/strongmanapot
-	list_reagents = list(/datum/reagent/medicine/strongmana = 45)
+	list_reagents = list(/datum/reagent/medicine/strongmana = 48)
 
 /obj/item/reagent_containers/glass/bottle/rogue/stampot
-	list_reagents = list(/datum/reagent/medicine/stampot = 45)
+	list_reagents = list(/datum/reagent/medicine/stampot = 48)
 
 /obj/item/reagent_containers/glass/bottle/rogue/strongstampot
-	list_reagents = list(/datum/reagent/medicine/strongstam = 45)
+	list_reagents = list(/datum/reagent/medicine/strongstam = 48)
+
+/obj/item/reagent_containers/glass/bottle/rogue/antidote
+	list_reagents = list(/datum/reagent/medicine/antidote = 48)
+
+/obj/item/reagent_containers/glass/bottle/rogue/strong_antidote
+	list_reagents = list(/datum/reagent/medicine/strong_antidote = 48)
+
+/obj/item/reagent_containers/glass/bottle/rogue/berrypoison
+	list_reagents = list(/datum/reagent/berrypoison = 15)
 
 /obj/item/reagent_containers/glass/bottle/rogue/strongpoison
 	list_reagents = list(/datum/reagent/strongpoison = 15)
@@ -33,25 +42,25 @@
 /obj/item/reagent_containers/glass/bottle/rogue/strongstampoison
 	list_reagents = list(/datum/reagent/strongstampoison = 15)
 
-/obj/item/reagent_containers/glass/alchemical/strpot
+/obj/item/reagent_containers/glass/bottle/alchemical/strpot
 	list_reagents = list(/datum/reagent/buff/strength = 27)
 
-/obj/item/reagent_containers/glass/alchemical/perpot
+/obj/item/reagent_containers/glass/bottle/alchemical/perpot
 	list_reagents = list(/datum/reagent/buff/perception = 27)
 
-/obj/item/reagent_containers/glass/alchemical/endpot
+/obj/item/reagent_containers/glass/bottle/alchemical/endpot
 	list_reagents = list(/datum/reagent/buff/endurance = 27)
 
-/obj/item/reagent_containers/glass/alchemical/conpot
+/obj/item/reagent_containers/glass/bottle/alchemical/conpot
 	list_reagents = list(/datum/reagent/buff/constitution = 27)
 
-/obj/item/reagent_containers/glass/alchemical/intpot
+/obj/item/reagent_containers/glass/bottle/alchemical/intpot
 	list_reagents = list(/datum/reagent/buff/intelligence = 27)
 
-/obj/item/reagent_containers/glass/alchemical/spdpot
+/obj/item/reagent_containers/glass/bottle/alchemical/spdpot
 	list_reagents = list(/datum/reagent/buff/speed = 27)
 
-/obj/item/reagent_containers/glass/alchemical/lucpot
+/obj/item/reagent_containers/glass/bottle/alchemical/lucpot
 	list_reagents = list(/datum/reagent/buff/fortune = 27)
 
 //////////////////////////
@@ -135,7 +144,7 @@
 
 /obj/item/reagent_containers/glass/bottle/rogue/beer/rtoper
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/rtoper = 48)
-	desc = "A bottle with the Rockhill-crest cork-seal. An especially tart cider from the kingdom of Rockhill. Myths say the brewers let the barrels age in the bog, which results in that especially stong flavour."
+	desc = "A bottle with the Lirvas-crest cork-seal. An especially tart cider from the petty kingdom of Lirvas. Myths say the brewers let the barrels age in the bog, which results in that especially stong flavour."
 
 /obj/item/reagent_containers/glass/bottle/rogue/beer/nred
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/nred = 48)

@@ -38,7 +38,6 @@
 		to_chat(user, "<span class='notice'>I remove [to_grind] from the mortar.</span>")
 		if(!user.put_in_hands(to_grind))
 			to_chat(user, span_warning("My hands are full! I drop [to_grind] on the ground"))
-			return
 		to_grind = null
 		return
 	to_chat(user, "<span class='notice'>It's empty.</span>")

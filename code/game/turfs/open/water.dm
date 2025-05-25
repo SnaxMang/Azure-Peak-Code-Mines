@@ -215,9 +215,12 @@
 		QDEL_NULL(water_top_overlay)
 
 /turf/open/water/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
-	if(isobj(AM))
-		var/obj/O = AM
-		O.extinguish()
+	if(!isobj(AM))
+		return
+	var/obj/O = AM
+	if(!O.extinguishable)
+		return
+	O.extinguish()
 
 /turf/open/water/get_slowdown(mob/user)
 	var/returned = slowdown
@@ -271,10 +274,27 @@
 	wash_in = TRUE
 	water_reagent = /datum/reagent/water/gross
 
+/turf/open/water/bloody
+	name = "blood"
+	desc = "Is that... a river of blood? EVIL!"
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "dirtW2"
+	water_level = 2
+	water_color = "#880808"
+	slowdown = 3
+	wash_in = TRUE
+	water_reagent = /datum/reagent/blood
+
 /turf/open/water/swamp/Initialize()
 	icon_state = "dirt"
 	dir = pick(GLOB.cardinals)
 	water_color = pick("#705a43")
+	.  = ..()
+
+/turf/open/water/bloody/Initialize()
+	icon_state = "dirt"
+	dir = pick(GLOB.cardinals)
+	water_color = pick("#880808")
 	.  = ..()
 
 /turf/open/water/swamp/Entered(atom/movable/AM, atom/oldLoc)

@@ -58,6 +58,11 @@
 #define BB_BASIC_MOB_CORPSE_TARGET "BB_basic_mob_corpse_target"
 ///What creature we want to cocoon
 #define BB_BASIC_MOB_COCOON_TARGET "BB_basic_mob_cocoon_target"
+///Who we want dead above all else...
+#define BB_MAIN_TARGET "BB_main_target"
+///How many times we'll attack defendants before getting disinterested
+#define BB_RETALIATE_ATTACKS_LEFT "BB_relatiate_attacks_left"
+#define BB_RETALIATE_COOLDOWN "BB_retaliate_cooldown"
 
 #define BB_BASIC_MOB_TAMED "BB_basic_mob_tamed"
 

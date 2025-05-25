@@ -249,7 +249,7 @@
 	new /obj/item/natural/stone(src)
 	new /obj/item/natural/stone(src)
 	new /obj/item/roguebin(src)
-	new /obj/item/reagent_containers/glass/bucket/wooden(src)
+	new /obj/item/reagent_containers/glass/bucket(src)
 
 /datum/roguestock/import/craftsman
 	name = "Craftsman Crate"

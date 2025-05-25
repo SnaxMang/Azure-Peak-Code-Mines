@@ -218,24 +218,26 @@
 
 /obj/item/reagent_containers/food/snacks/fish/crab
 	name = "crab"
-	desc = "A defensive shellfish that's a real hassle to crack open, they taste great when made into cakes with dough."
+	desc = "A defensive shellfish that's a real hassle to crack open, they taste great when made into cakes with butterdough slice."
 	icon_state = "crab"
 	sellprice = 10
 	fried_type = /obj/item/reagent_containers/food/snacks/rogue/fryfish/crab
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/fryfish/crab
-	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/shellfish
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/crab
 
 /obj/item/reagent_containers/food/snacks/fish/crab/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/dough))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/butterdoughslice))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading.ogg', 100, TRUE, -1)
-			to_chat(user, "<span class='notice'>Covering the crab with dough...</span>")
+			to_chat(user, "<span class='notice'>Covering the crab with butterdough...</span>")
 			if(do_after(user,short_cooktime, target = src))
 				user.mind.add_sleep_experience(/datum/skill/craft/cooking, user.STAINT)
 				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/crabcakeraw(loc)
 				qdel(I)
 				qdel(src)
+		return TRUE
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/fish/salmon
 	name = "salmon"

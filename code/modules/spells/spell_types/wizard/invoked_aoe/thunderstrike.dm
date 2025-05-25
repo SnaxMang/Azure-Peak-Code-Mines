@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/thunderstrike
 	name = "Thunderstrike"
 	desc = "Lashes out a walking barrage of lightning that strikes a line up to 7 tiles long in front of you."
-	cost = 2
+	cost = 3
 	releasedrain = 50
 	overlay_state = "thunderstrike" // Literally just sparks effect placeholder with 1 frame
 	chargedrain = 5

@@ -237,13 +237,21 @@
 	. = ..()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/update_icon()
-	. = ..()
+	..()
+
+	var/matrix/mat = matrix()
+	mat.Translate(20,20)
+
 	cut_overlays()
 	if(chambered)
-		icon_state = "bow_ready"
-	if(ismob(loc))
-		var/mob/M = loc
-		M.update_inv_hands()
+		var/mutable_appearance/ammo = mutable_appearance('icons/roguetown/weapons/ammo.dmi', chambered.icon_state)
+		ammo.transform = mat
+		add_overlay(ammo)
+
+	if(!ismob(loc))
+		return
+	var/mob/M = loc
+	M.update_inv_hands()
 
 /obj/item/ammo_box/magazine/internal/shot/bow
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow
@@ -340,16 +348,6 @@
 					"eastabove" = 0,
 					"westabove" = 0,)
 
-
-/obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve/update_icon()
-	. = ..()
-	cut_overlays()
-	if(chambered)
-		icon_state = "recurve_bow_ready"
-	if(ismob(loc))
-		var/mob/M = loc
-		M.update_inv_hands()
-
 /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
 	name = "yew longbow"
 	desc = "A sturdy warbow made of a tillered yew stave. It's difficult to handle, but the \
@@ -419,12 +417,3 @@
 					"eastabove" = 0,
 					"westabove" = 0,
 					)
-
-/obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow/update_icon()
-	. = ..()
-	cut_overlays()
-	if(chambered)
-		icon_state = "longbow_ready"
-	if(ismob(loc))
-		var/mob/M = loc
-		M.update_inv_hands()

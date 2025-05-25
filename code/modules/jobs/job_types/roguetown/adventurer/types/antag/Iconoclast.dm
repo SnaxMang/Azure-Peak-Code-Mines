@@ -10,7 +10,9 @@
 
 /datum/outfit/job/roguetown/bandit/iconoclast/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.set_patron(/datum/patron/inhumen/matthios) // we gotta be a matthian before the devotion stuff starts
+	if (!(istype(H.patron, /datum/patron/inhumen/matthios)))	//This is the only class that forces Matthios. Needed for miracles + limited slot.
+		to_chat(H, span_warning("Matthios embraces me.. I must uphold his creed. I am his light in the darkness."))
+		H.set_patron(/datum/patron/inhumen/matthios)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
@@ -48,5 +50,4 @@
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC) // We are going to be the lord's first heavy armor unarmed class
 	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_spells_monk(H)
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
+	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.

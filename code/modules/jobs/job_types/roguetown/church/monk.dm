@@ -155,11 +155,10 @@
 			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
 		if(H.patron?.type == /datum/patron/divine/eora)
-			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_GENERIC)
 		if(H.patron?.type == /datum/patron/divine/abyssor)
 			H.mind.adjust_skillrank(/datum/skill/labor/fishing, 3, TRUE)
 			ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_spells_monk(H)
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
+	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.

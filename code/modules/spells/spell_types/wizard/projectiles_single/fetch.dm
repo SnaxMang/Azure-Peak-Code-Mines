@@ -19,7 +19,7 @@
 	hide_charge_effect = TRUE // essential for rogue mage
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	cost = 1
+	cost = 2 // Combat spell, but of slighlty less obvious use
 	xp_gain = TRUE
 
 /obj/projectile/magic/fetch/on_hit(target)

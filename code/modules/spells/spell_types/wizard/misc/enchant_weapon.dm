@@ -1,9 +1,11 @@
 #define ENCHANT_DURATION 15 MINUTES
+#define ENCHANT_DURATION_GOLD 200 MINUTES
 
 /obj/effect/proc_holder/spell/invoked/enchant_weapon
 	name = "Enchant Weapon"
 	desc = "Enchant a weapon of your choice in your hand or on the ground.\n\
 	The enchantment will lasts for 15 minutes, and will automatically refresh in the hand of an Arcyne user.\n\
+	If the enchanter is holding a piece of gold ore in their hand, it will be consumed to enchant the weapon permanently (200 minutes).\n\
 	An enchantment cannot be applied to an already enchanted weapon.\n\
 	Searing Blade: Applies 8 burn damage through armor and parry / dodge, per strike.\n\
 	Force Blade: Increases the force of the weapon by 5.\n\
@@ -23,7 +25,7 @@
 	antimagic_allowed = FALSE
 
 	charging_slowdown = 3
-	cost = 1
+	cost = 2 // Slightly discounted as it is mostly buff.
 	spell_tier = 2 // Spellblade tier.
 
 	invocation = "Gladius Incantatus"
@@ -33,6 +35,7 @@
 
 /obj/effect/proc_holder/spell/invoked/enchant_weapon/cast(list/targets, mob/user = usr)
 	var/target = targets[1]
+	var/obj/item/sacrifice
 
 	var/list/enchant_types = list(
 		"Searing Blade" = SEARING_BLADE_ENCHANT,
@@ -40,13 +43,21 @@
 		"Durability" = DURABILITY_ENCHANT
 	)
 
+	for(var/obj/item/I in user.held_items)
+		if(istype(I, /obj/item/rogueore/gold))
+			sacrifice = I
+
 	if(istype(target, /obj/item/rogueweapon))
 		var/obj/item/I = target
 		var/enchant_type = input(user, "Select the type of enchantment you want to apply:", "Enchant Weapon") as anything in enchant_types
 		if(!enchant_type)
 			return
 		enchant_type = enchant_types[enchant_type]
-		I.AddComponent(/datum/component/enchanted_weapon, ENCHANT_DURATION, TRUE, /datum/skill/magic/arcane, user, enchant_type)
+		var/enchant_duration = sacrifice ? ENCHANT_DURATION_GOLD : ENCHANT_DURATION
+		if(sacrifice)
+			qdel(sacrifice)
+			to_chat(user, "I consumes the [sacrifice] to enchant [I] permanently.")
+		I.AddComponent(/datum/component/enchanted_weapon, enchant_duration, TRUE, /datum/skill/magic/arcane, user, enchant_type)
 		user.visible_message("[user] enchants the [I], enveloping it in a magical glow.")
 		return TRUE
 	else

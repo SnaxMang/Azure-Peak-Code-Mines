@@ -21,6 +21,10 @@
 	name = "80s-style Hair"
 	icon_state = "80s"
 
+/datum/sprite_accessory/hair/head/shorthaireighties_alt
+	name = "80s-style Hair (Alt)"
+	icon_state = "80s_alt"
+
 /datum/sprite_accessory/hair/head/afro
 	name = "Afro"
 	icon_state = "afro"

@@ -22,6 +22,8 @@
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/rogueweapon/chisel = 1, 
 						/obj/item/rogueweapon/hammer/wood = 1,
+						/obj/item/recipe_book/survival = 1,
+						/obj/item/recipe_book/builder = 1,
 						)
 	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen

@@ -22,7 +22,7 @@
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_DISPLACEMENT
 	glow_intensity = GLOW_INTENSITY_LOW
-	cost = 1
+	cost = 2 // Same as fetch, make it discounted to account for being less useful
 	xp_gain = TRUE
 
 /obj/projectile/magic/repel

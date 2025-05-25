@@ -36,7 +36,11 @@
 	id = /obj/item/clothing/ring/gold
 	r_hand = /obj/item/rogueweapon/woodstaff/riddle_of_steel/magos
 	backl = /obj/item/storage/backpack/rogue/satchel
-	backpack_contents = list(/obj/item/reagent_containers/glass/bottle/rogue/poison,/obj/item/reagent_containers/glass/bottle/rogue/healthpot)
+	backpack_contents = list(
+	/obj/item/reagent_containers/glass/bottle/rogue/poison, 
+	/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
+	/obj/item/recipe_book/alchemy
+	)
 	ADD_TRAIT(H, TRAIT_SEEPRICES, "[type]")
 	ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCYNE_T4, TRAIT_GENERIC)
@@ -58,14 +62,14 @@
 		H.change_stat("strength", -1)
 		H.change_stat("constitution", -1)
 		H.change_stat("intelligence", 4)
-		H.mind.adjust_spellpoints(11)
+		H.mind.adjust_spellpoints(36)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		if(H.age == AGE_OLD)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 			H.change_stat("speed", -1)
 			H.change_stat("intelligence", 1)
 			H.change_stat("perception", 1)
-			H.mind.adjust_spellpoints(2)
+			H.mind.adjust_spellpoints(6)
 			if(ishumannorthern(H))
 				belt = /obj/item/storage/belt/rogue/leather/plaquegold
 				cloak = null

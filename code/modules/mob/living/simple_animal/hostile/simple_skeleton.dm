@@ -30,7 +30,6 @@
 	canparry = TRUE
 	d_intent = INTENT_PARRY
 	defprob = 50
-	defdrain = 20
 	speak_emote = list("grunts")
 	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/skull)
 	faction = list("undead")

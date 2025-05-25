@@ -565,6 +565,8 @@
 /atom/movable/proc/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	set waitfor = 0
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
+	if(QDELETED(hit_atom))
+		return
 	return hit_atom.hitby(src, throwingdatum=throwingdatum)
 
 /atom/movable/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")

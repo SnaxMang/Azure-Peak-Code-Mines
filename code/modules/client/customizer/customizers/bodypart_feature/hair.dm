@@ -117,6 +117,7 @@
 	sprite_accessories = list(
 		/datum/sprite_accessory/hair/head/bald,
 		/datum/sprite_accessory/hair/head/shorthaireighties,
+		/datum/sprite_accessory/hair/head/shorthaireighties_alt,
 		/datum/sprite_accessory/hair/head/afro,
 		/datum/sprite_accessory/hair/head/afro2,
 		/datum/sprite_accessory/hair/head/afro_large,
@@ -485,6 +486,7 @@
 	sprite_accessories = list(
 		/datum/sprite_accessory/hair/head/bald,
 		/datum/sprite_accessory/hair/head/shorthaireighties,
+		/datum/sprite_accessory/hair/head/shorthaireighties_alt,
 		/datum/sprite_accessory/hair/head/afro,
 		/datum/sprite_accessory/hair/head/afro2,
 		/datum/sprite_accessory/hair/head/afro_large,

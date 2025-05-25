@@ -177,6 +177,22 @@
 	force = 18
 	max_integrity = 15
 
+/obj/item/rogueweapon/hammer/aalloy
+	name = "decrepit hammer"
+	desc = "A decrepit old hammer."
+	icon_state = "ahammer"
+	force = 12
+	max_integrity = 10
+	smeltresult = /obj/item/ingot/aalloy
+
+
+/obj/item/rogueweapon/hammer/copper
+	name = "copper hammer"
+	desc = "A copper hammer, slightly better than a stone hammer."
+	icon_state = "hammer_c"
+	force = 20
+	max_integrity = 100
+
 /obj/item/rogueweapon/hammer/iron	// iron hammer
 	name = "hammer"
 	desc = "Each strikes reverberate loudly chanting war!"
@@ -346,3 +362,20 @@
 			icon_state = "stonetongsi1"
 		else
 			icon_state = "stonetongsi0"
+
+/obj/item/rogueweapon/tongs/aalloy
+	name = "decrepit tongs"
+	icon_state = "atongs"
+	force = 5
+	smeltresult = null
+	max_integrity = 10
+
+/obj/item/rogueweapon/tongs/aalloy/update_icon()
+	. = ..()
+	if(!hingot)
+		icon_state = "atongs"
+	else
+		if(hott)
+			icon_state = "atongsi1"
+		else
+			icon_state = "atongsi0"

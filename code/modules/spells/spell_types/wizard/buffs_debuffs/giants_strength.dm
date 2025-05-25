@@ -2,7 +2,7 @@
 	name = "Giant's Strength"
 	overlay_state = "giantsstrength"
 	desc = "Strengthen the target. (+3 Strength)" // Design Note: +3 instead of +5 for direct damage stats
-	cost = 2 // Direct DPS stats
+	cost = 4 // Direct DPS stats
 	xp_gain = TRUE
 	releasedrain = 60
 	chargedrain = 1

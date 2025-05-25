@@ -17,6 +17,7 @@
 	gripsprite = TRUE
 	drop_sound = 'sound/foley/dropsound/wooden_drop.ogg'
 	smeltresult = /obj/item/ingot/iron
+
 /datum/intent/flailthresh
 	name = "thresh"
 	icon_state = "inthresh"
@@ -50,6 +51,15 @@
 			return
 	..()
 
+/obj/item/rogueweapon/thresher/aalloy
+	name = "decrepit thresher"
+	desc = "A withered old thresher. Aeon's grasp is upon it."
+	force = 5
+	force_wielded = 7
+	icon_state = "athresh"
+	smeltresult = /obj/item/ingot/aalloy
+
+
 /obj/item/rogueweapon/sickle
 	force = 10
 	possible_item_intents = list(DAGGER_CUT)
@@ -74,6 +84,15 @@
 			if("gen") return list("shrink" = 0.6,"sx" = -9,"sy" = 1,"nx" = 12,"ny" = 1,"wx" = -5,"wy" = 1,"ex" = 4,"ey" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
 			if("onbelt") return list("shrink" = 0.5,"sx" = -2,"sy" = -3,"nx" = 3,"ny" = -3,"wx" = -2,"wy" = -3,"ex" = 3,"ey" = -2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
+/obj/item/rogueweapon/sickle/aalloy
+	name = "decrepit sickle"
+	icon_state = "asickle"
+
+/obj/item/rogueweapon/sickle/copper
+	name = "copper sickle"
+	icon_state = "csickle"
+	smeltresult = /obj/item/ingot/copper
+
 /obj/item/rogueweapon/hoe
 	force = 10
 	force_wielded = 15
@@ -95,6 +114,16 @@
 	var/hoe_damage = null //the durability damage recieved for every work cycle
 	var/work_time = 3 SECONDS // the time it takes to make new soil or till soil
 
+/obj/item/rogueweapon/hoe/aalloy
+	name = "decrepit hoe"
+	icon_state = "ahoe"
+	smeltresult = /obj/item/ingot/aalloy
+
+/obj/item/rogueweapon/hoe/copper
+	name = "copper hoe"
+	icon_state = "choe"
+	smeltresult = /obj/item/ingot/copper
+
 /obj/item/rogueweapon/hoe/stone
 	force = 7
 	force_wielded = 12
@@ -107,7 +136,6 @@
 	max_integrity = 100
 	hoe_damage = 25
 	work_time = 15 SECONDS
-
 
 /obj/item/rogueweapon/hoe/getonmobprop(tag)
 	. = ..()
@@ -254,6 +282,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	drop_sound = 'sound/foley/dropsound/wooden_drop.ogg'
 	smeltresult = /obj/item/ingot/iron
+
 /obj/item/rogueweapon/pitchfork/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -261,6 +290,21 @@
 			if("gen") return list("shrink" = 0.7,"sx" = -9,"sy" = 2,"nx" = 10,"ny" = 2,"wx" = -6,"wy" = 1,"ex" = 3,"ey" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -15,"sturn" = 12,"wturn" = 0,"eturn" = 354,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
 			if("wielded") return list("shrink" = 0.8,"sx" = 7,"sy" = -3,"nx" = -6,"ny" = -2,"wx" = -3,"wy" = -2,"ex" = 7,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 39,"wturn" = -35,"eturn" = 27,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
 			if("onback") return list("shrink" = 0.7,"sx" = 1,"sy" = 3,"nx" = -1,"ny" = 3,"wx" = 4,"wy" = 3,"ex" = -3,"ey" = 3,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
+
+/obj/item/rogueweapon/pitchfork/aalloy
+	name = "decrepit pitchfork"
+	icon_state = "apitchfork"
+	smeltresult = /obj/item/ingot/aalloy
+
+/obj/item/rogueweapon/pitchfork/copper
+	name = "copper pitchfork"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	pixel_y = -16
+	pixel_x = -16
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	icon_state = "cfork"
+	smeltresult = /obj/item/ingot/copper
 
 /datum/intent/pforkdump
 	name = "scoop"
@@ -296,7 +340,7 @@
 
 /obj/item/rogueweapon/pitchfork/update_icon()
 	if(forked.len)
-		icon_state = "pitchforkstuff"
+		icon_state = "[initial(icon_state)]stuff"
 	else
 		icon_state = initial(icon_state)
 	..()

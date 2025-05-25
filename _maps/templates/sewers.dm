@@ -46,7 +46,7 @@
 		/obj/item/reagent_containers/glass/cup/steel = 3,
 		/obj/item/reagent_containers/glass/cup/golden = 1,
 		/obj/item/reagent_containers/glass/cup/skull = 1,
-		/obj/item/reagent_containers/glass/bucket/wooden = 6,
+		/obj/item/reagent_containers/glass/bucket = 6,
 		/obj/item/natural/feather = 8,
 		/obj/item/paper/scroll = 6,
 		/obj/item/rope = 6,

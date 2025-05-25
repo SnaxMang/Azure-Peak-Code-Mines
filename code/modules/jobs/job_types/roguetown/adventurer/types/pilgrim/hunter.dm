@@ -25,7 +25,8 @@
 						/obj/item/bait = 1,
 						/obj/item/rogueweapon/huntingknife = 1,
 						/obj/item/flashlight/flare/torch = 1,
-						/obj/item/flashlight/flare/torch/lantern = 1
+						/obj/item/flashlight/flare/torch/lantern = 1,
+						/obj/item/recipe_book/survival = 1,
 						)
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)

@@ -2,7 +2,7 @@
 	name = "Blink"
 	desc = "Teleport to a targeted location within your field of view. Limited to a range of 5 tiles. Only works on the same plane as the caster."
 	school = "conjuration"
-	cost = 1
+	cost = 3
 	releasedrain = 30
 	chargedrain = 1
 	chargetime = 3

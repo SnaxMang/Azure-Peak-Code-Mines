@@ -10,7 +10,7 @@
 	no_early_release = FALSE
 	chargedloop = null
 	sound = 'sound/magic/whiteflame.ogg'
-	cost = 1
+	cost = 2
 	spell_tier = 1 // Utility. For repair
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -33,7 +33,7 @@
 				I.obj_integrity = I.max_integrity
 				I.obj_fix()
 		else
-			user.visible_message(span_info("[I] appears to be in perfect condition."))
+			to_chat(user, span_info("[I] appears to be in perfect condition."))
 			revert_cast()
 	else
 		to_chat(user, span_warning("There is no item here!"))

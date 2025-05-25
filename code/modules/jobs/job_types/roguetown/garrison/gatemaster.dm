@@ -17,7 +17,7 @@
 	max_pq = null
 	round_contrib_points = 2
 
-	cmode_music = 'sound/music/combat_guard2.ogg'
+	cmode_music = 'sound/music/combat_guard.ogg'
 
 /datum/job/roguetown/gatemaster/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
