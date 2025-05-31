@@ -102,7 +102,7 @@
 	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/truffles)
 	footstep_type = FOOTSTEP_MOB_SHOE
 	pooptype = /obj/item/natural/poo/horse
-	faction = list("goats")
+	faction = list("pigs")
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bites"
 	melee_damage_lower = 8
@@ -165,7 +165,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/trufflepig/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/rogue/truffles))
 		visible_message("<span class='notice'>The pig munches the truffles, looking happy.</span>")
-		hangry_meter = 0
+		hangry_meter = 0 //Satisfies him fully
 		playsound(src,'sound/misc/eat.ogg', rand(30,60), TRUE)
 		qdel(O)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/rogue/toxicshrooms))
@@ -178,6 +178,17 @@
 		visible_message("<span class='notice'>The pig shivers.</span>")
 		sleep(10)
 		death()
+	if(istype(O, /obj/item/reagent_containers/food/snacks/grown/potato/rogue))
+		if(hangry_meter > 2)
+			hangry_meter -= 2 //Only really a way to unblock him
+			visible_message("<span class='notice'>The pig munches the potato, looking partially satisfied.</span>")
+			playsound(src,'sound/misc/eat.ogg', rand(30,60), TRUE)
+			qdel(O)
+			return
+		if(hangry_meter <= 2)//Is this abysmal code- absolutely - does it work for what it's meant to be - yes
+			visible_message("<span class='notice'>The pig munches the potato, completely indifferent.</span>")
+			playsound(src,'sound/misc/eat.ogg', rand(30,60), TRUE)
+			qdel(O)
 	else
 		return ..()
 

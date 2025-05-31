@@ -76,10 +76,10 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
-//Zydras donator item - bathmatron padded dress
-/obj/item/clothing/suit/roguetown/armor/armordress/alt/zydrasdress //armor dress worn by Bathmatrons/Bathmasters
-	name = "padded silky dress"
-	desc = "A gorgeous black and gold dress with built-in padding for protection."
+//Zydras donator item - merchant dress
+/obj/item/clothing/suit/roguetown/shirt/dress/silkydress/zydrasdress //Recolored silky dress
+	name = "Gold-Black silky dress"
+	desc = "A gorgeous black and gold dress. It seems the padding was removed."
 	icon_state = "zydrasdress"
 	item_state = "zydrasdress"
 	sleevetype = "zydrasdress"

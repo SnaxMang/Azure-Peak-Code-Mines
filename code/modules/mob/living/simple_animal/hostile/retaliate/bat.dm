@@ -97,6 +97,7 @@
 
 /obj/effect/decal/remains/crow
 	name = "zad remains"
+	desc = "Nevermore..."
 	gender = PLURAL
 	icon_state = "crow1"
 	icon = 'icons/roguetown/mob/monster/crow.dmi'

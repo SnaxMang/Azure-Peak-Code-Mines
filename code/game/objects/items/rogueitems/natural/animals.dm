@@ -120,7 +120,7 @@
 /obj/item/natural/bone
 	name = "bone"
 	icon_state = "bone"
-	desc = "The meatless remains of the dead. Whether it came from an animal or a person it all looks the same now."
+	desc = "The meatless remains of the dead. Whether it came from an animal or a person, it all looks the same now."
 	blade_dulling = 0
 	max_integrity = 20
 	static_debris = null

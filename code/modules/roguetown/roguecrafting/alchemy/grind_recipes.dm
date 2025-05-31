@@ -204,6 +204,11 @@
 	valid_input = /obj/item/reagent_containers/powder/salt
 	valid_outputs = list(/obj/item/alch/puresalt = 1)
 
+/datum/alch_grind_recipe/berrypowder
+	valid_input = /obj/item/reagent_containers/food/snacks/grown/berries/rogue
+	valid_outputs = list(/obj/item/alch/berrypowder = 1)
+	bonus_chance_outputs = list(/obj/item/alch/waterdust = 25)
+
 // Start of gem dust section - I've included gold dust as an additional product because of lesser alchemy, grinding up a gem should give you a bit extra (I mean come on it's a gem)
 
 /datum/alch_grind_recipe/mineraldustyellow  // costs two gold to make
@@ -238,11 +243,4 @@
 
 // End of gem dust section
 
-/datum/alch_grind_recipe/berrypowder
-	valid_input = /obj/item/reagent_containers/food/snacks/grown/berries/rogue
-	valid_outputs = list(/obj/item/alch/berrypowder = 1)
-	bonus_chance_outputs = list(/obj/item/alch/waterdust = 25)
 
-/datum/alch_grind_recipe/transistus
-	valid_input = list(/obj/item/alch/artemisia,/obj/item/alch/benedictus,/obj/item/alch/hypericum,/obj/item/alch/salvia,/obj/item/alch/atropa,/obj/item/alch/taraxacum)
-	valid_outputs = list(/obj/item/alch/transisdust = 1)

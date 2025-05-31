@@ -223,13 +223,34 @@
 	minor_pot = /datum/alch_cauldron_recipe/int_potion
 
 /obj/item/alch/transisdust
-	name = "transis dust"
-	desc = "A long mix of herb that product a special powder."
+	name = "sui dust"
+	desc = "A long mix of herbs resulting in a special dust. For you. Use it while held."
 	icon_state = "transisdust"
 
-	major_pot = /datum/alch_cauldron_recipe/gender_potion
-	med_pot = /datum/alch_cauldron_recipe/gender_potion
-	minor_pot = /datum/alch_cauldron_recipe/gender_potion
+/obj/item/alch/transisdust/attack_self(mob/living/user)
+	..()
+
+	if(alert("Do you wish to change your self?", "Dust of Self", "Yes", "No") != "Yes")
+		return
+	user.visible_message(
+		span_warn("[user] begins to use [src]."), 
+		span_warn("I begin to apply [src] on myself.")
+	)
+	if(!do_after(user, 5 SECONDS))
+		return
+
+	var/p_input = input(user, "Choose your character's pronouns", "Pronouns") as null|anything in GLOB.pronouns_list
+	if(p_input)
+		user.pronouns = p_input
+	if(alert("Do you wish to change your frame?", "Body Type", "Yes", "No") == "Yes")
+		user.gender = "male" ? "female" : "male"
+
+	if(!do_after(user, 5 SECONDS))
+		return
+
+	user.regenerate_icons()
+	to_chat(user, span_notice("Tis' complete."))
+	qdel(src)
 
 /obj/item/alch/puresalt
 	name = "purified salts"

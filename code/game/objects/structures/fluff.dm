@@ -25,7 +25,10 @@
 	color = CLOTHING_BLUE
 
 /obj/structure/fluff/pillow/green
-	color = CLOTHING_GREEN
+	color = CLOTHING_DARK_GREEN
+
+/obj/structure/fluff/pillow/brown
+	color = CLOTHING_BROWN
 
 /obj/structure/fluff/pillow/magenta
 	color = CLOTHING_MAGENTA
@@ -837,23 +840,11 @@
 	pixel_x = -32
 	pixel_y = -16
 
-/obj/structure/fluff/statue/femalestatue/Initialize()
-	. = ..()
-	var/matrix/M = new
-	M.Scale(0.7,0.7)
-	src.transform = M
-
 /obj/structure/fluff/statue/femalestatue1
 	icon = 'icons/roguetown/misc/ay.dmi'
 	icon_state = "2"
 	pixel_x = -32
 	pixel_y = -16
-
-/obj/structure/fluff/statue/femalestatue1/Initialize()
-	. = ..()
-	var/matrix/M = new
-	M.Scale(0.7,0.7)
-	src.transform = M
 
 /obj/structure/fluff/statue/femalestatue2
 	icon = 'icons/roguetown/misc/ay.dmi'
@@ -861,23 +852,11 @@
 	pixel_x = -32
 	pixel_y = -16
 
-/obj/structure/fluff/statue/femalestatue2/Initialize()
-	. = ..()
-	var/matrix/M = new
-	M.Scale(0.7,0.7)
-	src.transform = M
-
 /obj/structure/fluff/statue/femalestatue/zizo
 	icon = 'icons/roguetown/misc/ay.dmi'
 	icon_state = "4"
 	pixel_x = -32
 	pixel_y = -16
-
-/obj/structure/fluff/statue/femalestatue/zizo/Initialize()
-	. = ..()
-	var/matrix/M = new
-	M.Scale(0.7,0.7)
-	src.transform = M
 
 /obj/structure/fluff/statue/scare
 	name = "scarecrow"

@@ -2,6 +2,7 @@
 /obj/machinery/light/rogue/oven
 	icon = 'icons/roguetown/misc/lighting.dmi'
 	name = "oven"
+	desc = "With enough room for up to five whole pies, this humble yet wondrous invention has fed civilization since time immemorial."
 	icon_state = "oven1"
 	base_state = "oven"
 	density = FALSE

@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/snacks/smallrat
 	name = "rat"
-	desc = ""
+	desc = "A scurrying rodent often found in sewers and pantries."
 	icon_state = "srat"
 	icon = 'icons/roguetown/mob/monster/rat.dmi'
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)

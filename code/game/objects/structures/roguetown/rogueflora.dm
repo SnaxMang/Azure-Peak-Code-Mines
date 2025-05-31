@@ -3,7 +3,7 @@
 
 /obj/structure/flora/roguetree
 	name = "old tree"
-	desc = "An old, wicked tree that not even elves could love."
+	desc = "An old wicked tree that not even elves could love."
 	icon = 'icons/roguetown/misc/foliagetall.dmi'
 	icon_state = "t1"
 	opacity = 1

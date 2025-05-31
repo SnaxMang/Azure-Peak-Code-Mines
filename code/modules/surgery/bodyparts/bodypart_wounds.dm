@@ -523,6 +523,8 @@
 		returned_flags |= SURGERY_DISLOCATED
 	if(has_wound(/datum/wound/fracture))
 		returned_flags |= SURGERY_BROKEN
+	if(has_wound(/datum/wound/slash/vein))
+		returned_flags |= SURGERY_CUTVEIN
 	for(var/datum/wound/puncture/drilling/drilling in wounds)
 		if(drilling.is_sewn())
 			continue

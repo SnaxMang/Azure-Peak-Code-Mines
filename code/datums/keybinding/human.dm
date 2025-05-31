@@ -55,7 +55,7 @@
 
 /datum/keybinding/human/bag_equip_beltl/down(client/user)
 	var/mob/living/carbon/human/H = user.mob
-	H.smart_equipbag(SLOT_BELT_L)
+	H.smart_equipbag(SLOT_BELT_R)
 	return TRUE
 
 /datum/keybinding/human/bag_equip_beltr
@@ -66,7 +66,7 @@
 
 /datum/keybinding/human/bag_equip_beltr/down(client/user)
 	var/mob/living/carbon/human/H = user.mob
-	H.smart_equipbag(SLOT_BELT_R)
+	H.smart_equipbag(SLOT_BELT_L)
 	return TRUE
 
 /datum/keybinding/human/fixeye

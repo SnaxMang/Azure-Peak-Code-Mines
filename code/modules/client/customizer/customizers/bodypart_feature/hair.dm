@@ -397,6 +397,8 @@
 		/datum/sprite_accessory/hair/head/stacybun,
 		/datum/sprite_accessory/hair/head/zoey,
 		/datum/sprite_accessory/hair/head/kusanagi_alt,
+		/datum/sprite_accessory/hair/head/bubblebraids,
+		/datum/sprite_accessory/hair/head/bubblebraids_v2,
 		)
 
 /datum/customizer_choice/bodypart_feature/hair/head/humanoid/get_random_accessory(datum/customizer_entry/entry, datum/preferences/prefs)

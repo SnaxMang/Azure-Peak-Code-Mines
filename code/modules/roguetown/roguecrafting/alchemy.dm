@@ -59,6 +59,12 @@
 	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied = 1, /datum/reagent/water/blessed = 45, /obj/item/natural/cloth = 1, /obj/item/alch/silverdust = 1)
 	craftdiff = 4
 
+/datum/crafting_recipe/roguetown/alchemy/transisdust
+	name = "sui dust"
+	result = list(/obj/item/alch/transisdust)
+	reqs = list(/obj/item/herbseed/taraxacum = 1, /obj/item/herbseed/euphrasia = 1, /obj/item/herbseed/hypericum = 1, /obj/item/herbseed/salvia = 1)
+	craftdiff = 3
+
 /// bottle craft
 
 /datum/crafting_recipe/roguetown/alchemy/glassbottles

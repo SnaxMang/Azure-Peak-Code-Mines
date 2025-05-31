@@ -101,7 +101,7 @@
 	attack_verb_simple = "headbutt"
 	melee_damage_lower = 10
 	melee_damage_upper = 25
-	STASPD = 2
+	STASPD = 10
 	STACON = 8
 	STASTR = 12
 	childtype = list(/mob/living/simple_animal/hostile/retaliate/rogue/goat/goatlet = 90, /mob/living/simple_animal/hostile/retaliate/rogue/goat/goatletboy = 10)
@@ -240,7 +240,7 @@
 	pooptype = /obj/item/natural/poo/horse
 	STACON = 7
 	STASTR = 12
-	STASPD = 2
+	STASPD = 14
 	can_buckle = TRUE
 	buckle_lying = 0
 	can_saddle = TRUE

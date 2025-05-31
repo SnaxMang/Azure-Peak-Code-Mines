@@ -2,6 +2,7 @@
 
 /turf/closed/mineral //wall piece
 	name = "rock"
+	desc = "Lichens and moss cling to the jagged contours of the rock face. It is slick with moisture and exudes the heavy odors of dirt, minerals, and petrichor."
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "rock"
 	var/smooth_icon = 'icons/turf/smoothrocks.dmi'
@@ -190,7 +191,7 @@
 /turf/closed/mineral/random/rogue
 //	layer = ABOVE_MOB_LAYER
 	name = "rock"
-	desc = ""
+	desc = "Lichens and moss cling to the jagged contours of the rock face. It is slick with moisture and exudes the heavy odors of dirt, minerals, and petrichor."
 	icon = 'icons/turf/roguewall.dmi'
 	icon_state = "minrandbad"
 	smooth = SMOOTH_TRUE | SMOOTH_MORE
@@ -219,7 +220,7 @@
 /turf/closed/mineral/rogue
 //	layer = ABOVE_MOB_LAYER
 	name = "rock"
-	desc = ""
+	desc = "Lichens and moss cling to the jagged contours of the rock face. It is slick with moisture and exudes the heavy odors of dirt, minerals, and petrichor."
 	icon = 'icons/turf/roguewall.dmi'
 	icon_state = "rockyash"
 	smooth = SMOOTH_TRUE | SMOOTH_MORE
@@ -293,7 +294,7 @@
 
 /turf/closed/mineral/rogue/bedrock
 	name = "rock"
-	desc = "seems barren, and nigh indestructable"
+	desc = "Seems barren and nigh-indestructable"
 	icon_state = "rockyashbed"
 //	smooth_icon = 'icons/turf/walls/hardrock.dmi'
 	max_integrity = 10000000

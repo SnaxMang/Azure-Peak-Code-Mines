@@ -9,12 +9,14 @@
 	name = "PURITY"
 	desc = "You want to destroy your life."
 	icon = 'icons/roguetown/misc/machines.dmi'
-	icon_state = "streetvendor1"
+	icon_state = "purity"
 	density = TRUE
 	blade_dulling = DULLING_BASH
 	max_integrity = 0
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
+	light_outer_range = 6
+	light_color = "#ff13d8ff"
 	var/list/held_items = list()
 	var/locked = FALSE
 	var/budget = 0

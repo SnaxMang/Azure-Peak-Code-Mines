@@ -262,7 +262,7 @@
 
 /obj/item/rogue/instrument/flute
 	name = "flute"
-	desc = "A slender flute carefully carved from a smooth wood piece."
+	desc = "A row of slender hollow tubes of varying lengths that produce a light airy sound when blown across."
 	icon_state = "flute"
 	song_list = list("Half-Dragon's Ten Mammon" = 'sound/music/instruments/flute (1).ogg',
 	"'The Local Favorite'" = 'sound/music/instruments/flute (2).ogg',

@@ -707,3 +707,9 @@
 	result = /obj/structure/bobcatpelt
 	reqs = list(/obj/item/natural/fur/bobcat = 2)	//Gives no head for lynx, plus it's the smallest rug anyway.
 	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/structure/curtain
+	name = "curtain"
+	result = /obj/structure/curtain
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 0

@@ -339,7 +339,7 @@
 /datum/anvil_recipe/weapons/iron/greataxe
 	name = "Iron Greataxe (+1 Iron, +1 Small Log)"
 	req_bar = /obj/item/ingot/iron
-	additional_items = list(/obj/item/ingot/steel, /obj/item/grown/log/tree/small)
+	additional_items = list(/obj/item/ingot/iron, /obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/greataxe
 	craftdiff = 3
 

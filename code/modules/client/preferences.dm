@@ -1629,7 +1629,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					dat += "^text^ : Increases the <font size = \"4\">size</font> of the text.<br>"
 					dat += "((text)) : Decreases the <font size = \"1\">size</font> of the text.<br>"
 					dat += "* item : An unordered list item.<br>"
-					dat += "--- : Adds a horizontal rule.<br><br>"
+					dat += "--- : Adds a horizontal rule.<br>"
+					dat += "-=FFFFFFtext=- : Adds a specific <font color = '#FFFFFF'>colour</font> to text.<br><br>"
 					dat += "Minimum Flavortext: <b>[MINIMUM_FLAVOR_TEXT]</b> characters.<br>"
 					dat += "Minimum OOC Notes: <b>[MINIMUM_OOC_NOTES]</b> characters."
 					var/datum/browser/popup = new(user, "Formatting Help", nwidth = 400, nheight = 350)

@@ -4,7 +4,7 @@
 	name = "BRASSFACE"
 	desc = "Sweet, sweet, addiction. Love in the veins, comfort in my heart."
 	icon = 'icons/roguetown/misc/machines.dmi'
-	icon_state = "streetvendor1"
+	icon_state = "brassface"
 	density = TRUE
 	blade_dulling = DULLING_BASH
 	max_integrity = 0

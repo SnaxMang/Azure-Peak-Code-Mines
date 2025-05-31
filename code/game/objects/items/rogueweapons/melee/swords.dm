@@ -95,7 +95,7 @@
 	force_wielded = 25
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/peel)
-	armor = list("blunt" = 60, "slash" = 50, "stab" = 50, "piercing" = 0)
+	armor = ARMOR_SWORD
 	damage_deflection = 14
 	icon_state = "sword1"
 	icon = 'icons/roguetown/weapons/32.dmi'
@@ -441,7 +441,7 @@
 	desc = "A curved one-handed longsword. This type of scimitar is the quintessential armament of Ranesheni horsemen, its name derived from Sama'glos for \"Tiger's claw\"."
 	force = 24
 	wdefense = 6	//Has chop mode, so slightly less defense. Slightly.
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	icon_state = "tabi"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
@@ -676,7 +676,7 @@
 	swingsound = BLADEWOOSH_SMALL
 	minstr = 5
 	wdefense = 7		//Same as rapier
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 
 /datum/intent/sword/cut/sabre
 	clickcd = 8		//Faster than sword by 4
@@ -752,7 +752,7 @@
 	swingsound = BLADEWOOSH_SMALL
 	minstr = 6
 	wdefense = 7
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 
 /obj/item/rogueweapon/sword/rapier/vaquero
 	name = "cup-hilt rapier"
@@ -882,7 +882,7 @@
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/chop, /datum/intent/sword/peel)
 	gripped_intents = null
 	wdefense = 6
-	wbalance = 1
+	wbalance = WBALANCE_SWIFT
 	
 
 /obj/item/rogueweapon/sword/silver

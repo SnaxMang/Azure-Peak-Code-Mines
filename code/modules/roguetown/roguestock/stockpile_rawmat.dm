@@ -4,7 +4,7 @@
 	item_type = /obj/item/grown/log/tree/small
 	held_items = list(2, 2)
 	payout_price = 3
-	withdraw_price = 5
+	withdraw_price = 3
 	transport_fee = 3
 	export_price = 5
 	importexport_amt = 10
@@ -17,7 +17,7 @@
 	item_type = /obj/item/rogueore/coal
 	held_items = list(5, 0)
 	payout_price = 4
-	withdraw_price = 6
+	withdraw_price = 4
 	transport_fee = 4
 	export_price = 6
 	importexport_amt = 10
@@ -29,12 +29,12 @@
 	desc = "Stones. Used for construction"
 	item_type = /obj/item/natural/stone
 	held_items = list(10, 0)
-	payout_price = 0
+	payout_price = 1
 	withdraw_price = 1
 	transport_fee = 0
 	export_price = 1
 	importexport_amt = 10
-	stockpile_limit = 0
+	stockpile_limit = 30 // Allow a small amount of stones to be sold for chiselling
 	passive_generation = 10 // Free rocks!!
 
 /datum/roguestock/stockpile/glass
@@ -43,7 +43,7 @@
 	item_type = /obj/item/natural/clay/glassbatch
 	held_items = list(5, 0)
 	payout_price = 4
-	withdraw_price = 7
+	withdraw_price = 4
 	transport_fee = 5
 	export_price = 5
 	importexport_amt = 10
@@ -56,7 +56,7 @@
 	item_type = /obj/item/rogueore/iron
 	held_items = list(6, 0)
 	payout_price = 5
-	withdraw_price = 8
+	withdraw_price = 5
 	transport_fee = 6
 	export_price = 8
 	importexport_amt = 10
@@ -69,7 +69,7 @@
 	item_type = /obj/item/rogueore/copper
 	held_items = list(6, 0)
 	payout_price = 3
-	withdraw_price = 5
+	withdraw_price = 3
 	transport_fee = 3
 	export_price = 5
 	importexport_amt = 10
@@ -82,7 +82,7 @@
 	item_type = /obj/item/rogueore/tin
 	held_items = list(6, 0)
 	payout_price = 4
-	withdraw_price = 5
+	withdraw_price = 4
 	transport_fee = 4
 	export_price = 5
 	importexport_amt = 10
@@ -95,7 +95,7 @@
 	item_type = /obj/item/rogueore/gold
 	held_items = list(0, 0)
 	payout_price = 50
-	withdraw_price = 75
+	withdraw_price = 50
 	transport_fee = 10
 	export_price = 75
 	stockpile_limit = 20
@@ -107,7 +107,7 @@
 	item_type = /obj/item/rogueore/silver
 	held_items = list(0, 0)
 	payout_price = 75
-	withdraw_price = 100
+	withdraw_price = 75
 	transport_fee = 10
 	export_price = 100
 	stockpile_limit = 20

@@ -39,12 +39,6 @@
 	skill_required = SKILL_LEVEL_EXPERT // Strong poison should be more difficult to make
 	output_reagents = list(/datum/reagent/stampoison = 81,/datum/reagent/additive = 81)
 
-/datum/alch_cauldron_recipe/gender_potion
-	recipe_name = "Gender Potion"
-	smells_like = "living beings"
-	skill_required = SKILL_LEVEL_MASTER // If this ever add re-added, it should be hard to make
-	output_reagents = list(/datum/reagent/medicine/gender_potion = 9)
-
 //Healing potions
 /datum/alch_cauldron_recipe/health_potion
 	recipe_name = "Elixir of Health"
